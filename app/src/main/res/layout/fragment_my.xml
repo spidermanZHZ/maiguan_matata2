@@ -71,4 +71,28 @@
             android:textColor="@color/Et_hintText"
             />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:textSize="14sp"
+            android:textColor="@color/Et_hintText"
+            android:text="@string/art_buy_type"
+            />
+        <TextView
+            android:id="@+id/tv_art_buy_type3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:textSize="13sp"
+            android:textColor="@color/Et_hintText"
+            />
+    </LinearLayout>
 </com.zhy.autolayout.AutoLinearLayout>
