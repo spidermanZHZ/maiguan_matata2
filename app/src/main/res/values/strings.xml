@@ -134,4 +134,7 @@
     <string name="change_child_et_sign">请输入学习宣言</string>
     <string name="change_child_date">出生年月:</string>
     <string name="change_child_sex">性别:</string>
+
+    <string name="course_details">课程详情</string>
+
 </resources>

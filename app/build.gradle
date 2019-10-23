@@ -72,7 +72,7 @@ dependencies {
     //RecyclerView实现画廊效果
     implementation 'com.chenlittleping:recyclercoverflow:1.0.6'
     //TokePhoto实现设置头像
-    implementation  'com.jph.takephoto:takephoto_library:4.0.3'
+    implementation 'com.jph.takephoto:takephoto_library:4.0.3'
 
     //日期选择
     implementation 'com.github.florent37:SingleDateAndTimePicker:v2.0.4'

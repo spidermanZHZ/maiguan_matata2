@@ -9,6 +9,7 @@ import com.example.administrator.matata_android.bean.ChildId;
 import com.example.administrator.matata_android.bean.LoginBean;
 import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
+import com.example.administrator.matata_android.bean.OnLineCourseBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -170,6 +171,15 @@ public interface APIService {
      */
     @GET("course/offline")
     Observable<BaseBeanResponse<MusicOnlineBean>> getMusicOffline(@QueryMap Map<String ,Object> map);
+
+    /**
+     * 音乐学院线上课程详情
+     * @param map
+     * @return
+     */
+    @GET("course/online/details")
+    Observable<BaseBeanResponse<OnLineCourseBean>> getOnlineCourse(@QueryMap Map<String ,Object> map);
+
 
 
 }

@@ -69,7 +69,8 @@
         <activity android:name=".homepage.activitys.ArtBuyActivity" />
         <activity android:name=".homepage.activitys.ArtBuyCompleteActivity" />
         <activity android:name=".growup.activity.StudyAdjustActivity" />
-        <activity android:name=".growup.activity.ChangChildInfoActivity"></activity>
+        <activity android:name=".growup.activity.ChangChildInfoActivity" />
+        <activity android:name=".homepage.activitys.CourseDetailsActivity"></activity>
     </application>
 
 </manifest>
