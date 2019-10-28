@@ -136,6 +136,9 @@ public class ChangChildInfoActivity extends TakePhotoActivity {
     public void takeCancel() {
         super.takeCancel();
     }
-
+    //git 测试
+    public void test(){
+    
+    }
 
 }
