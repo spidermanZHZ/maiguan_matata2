@@ -56,10 +56,10 @@ public class ChangChildInfoActivity extends TakePhotoActivity {
         setContentView(R.layout.activity_chang_child_info);
         ButterKnife.bind(this);
         //ininData();
-        initDatas();
+        initDatass();
     }
 
-    private void initDatas(){
+    private void initDatass(){
      //获取TakePhoto实例
     takePhoto = getTakePhoto();
     //设置裁剪参数
