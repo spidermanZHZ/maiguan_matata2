@@ -7,7 +7,7 @@ import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 
 /**
- * VIP会员页面，git测试一下
+ * VIP会员页面
  */
 public class MyVipActivity extends BaseActivity {
 
