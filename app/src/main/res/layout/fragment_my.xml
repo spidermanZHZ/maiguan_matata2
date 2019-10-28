@@ -114,6 +114,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/my_ll_vip"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="13dp"
@@ -147,6 +148,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/my_ll_extension"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -179,6 +181,7 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/my_ll_order"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -211,6 +214,7 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/my_ll_follow"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
@@ -243,6 +247,7 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/my_ll_message"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -275,6 +280,7 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/my_ll_friend"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
