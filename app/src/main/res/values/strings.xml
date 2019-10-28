@@ -137,4 +137,11 @@
 
     <string name="course_details">课程详情</string>
 
+    <string name="my_vip">我的会员</string>
+    <string name="my_center">推广中心</string>
+    <string name="my_offline">退出登录</string>
+    <string name="my_order">我的订单</string>
+    <string name="my_friend">邀请好友</string>
+    <string name="my_follow">我的关注</string>
+    <string name="my_news">我的消息</string>
 </resources>
