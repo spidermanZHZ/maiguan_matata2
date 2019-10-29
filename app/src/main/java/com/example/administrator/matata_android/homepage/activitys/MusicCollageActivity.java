@@ -8,6 +8,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +47,7 @@ public class MusicCollageActivity extends BaseFragmentActivity {
     @BindView(R.id.coverflow_recycler)
     RecyclerCoverFlow coverflowRecycler;
     @BindView(R.id.viewpager)
-    WrapContentHeightViewPager viewpager;
+    ViewPager viewpager;
     @BindView(R.id.abl_bar)
     AppBarLayout ablBar;
 
@@ -56,7 +57,8 @@ public class MusicCollageActivity extends BaseFragmentActivity {
     private List<Fragment> fragmentList;
     private List<String> list_Title;
 
-
+    private MusicOnlineFragment musicOnlineFragment=new MusicOnlineFragment();
+    private MusicOfflineFragment musicOfflineFragment=new MusicOfflineFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_music_collage);
@@ -97,9 +99,10 @@ public class MusicCollageActivity extends BaseFragmentActivity {
         getMusicHot();
         hotAdapter = new MusicHotAdapter(this, R.layout.adapter_music_hot, null);
         coverflowRecycler.setAdapter(hotAdapter);
+
         fragmentList = new ArrayList<>();
-        fragmentList.add(new MusicOnlineFragment());
-        fragmentList.add(new MusicOfflineFragment());
+        fragmentList.add(musicOnlineFragment);
+        fragmentList.add(musicOfflineFragment);
         list_Title = new ArrayList<>();
         list_Title.add("one");
         list_Title.add("two");

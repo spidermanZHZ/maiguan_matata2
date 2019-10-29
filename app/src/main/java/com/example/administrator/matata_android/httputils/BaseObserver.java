@@ -20,12 +20,14 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;
 
+import static android.support.constraint.Constraints.TAG;
+
 /**
  * 自定义观察者
  * @param <T>
  */
 public abstract class BaseObserver<T> implements Observer<BaseBeanResponse<T>> {
-
+    public static final String TAG = "BaseObserver";
     private ProgressDialog progressDialog;//网络请求提示progress
     private TextDialog textDialog;
     private Context mContext;
@@ -117,7 +119,8 @@ public abstract class BaseObserver<T> implements Observer<BaseBeanResponse<T>> {
             if (t instanceof ResultException){
                 errorMessage=((ResultException)t).getErrMsg();
             }else {
-                errorMessage="网络连接超时，请稍后再试...";
+                errorMessage="网络连接超时，请稍后再试..."+t.toString();
+                Log.i(TAG, ".....onError:...... "+t.toString());
             }
         }
 

@@ -35,6 +35,7 @@
         <item name="android:backgroundDimEnabled">false</item>
         <!-- 模糊-->
     </style>
+
     <style name="myDialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -53,10 +54,10 @@
                 android:gravity="center"
                 android:button="@null"
                 android:textSize="12sp"-->
-    <style name="myRadioButton" >
+    <style name="myRadioButton">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
-       <item name="android:gravity">center</item>
+        <item name="android:gravity">center</item>
         <item name="android:button">@null</item>
         <item name="android:textSize">12sp</item>
     </style>
@@ -90,4 +91,8 @@
         <item name="banner_placeholderDrawable">@mipmap/ic_launcher</item>
 
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -34,47 +34,60 @@ public class CourseDetailsRemarkFragment extends BaseViewNeedSetFragment {
 
     private OnLineCourseBean onLineCourseBean;
 
+    private static final String BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE="CourseDetailsRemarkFragment_Online";
+
+    private static CourseDetailsRemarkFragment newInstance(OnLineCourseBean onLineCourseBean){
+
+        CourseDetailsRemarkFragment courseDetailsRemarkFragment=new CourseDetailsRemarkFragment();
+
+        Bundle bundle=new Bundle();
+
+        bundle.putSerializable(BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE,onLineCourseBean);
+
+        if (courseDetailsRemarkFragment.isRemoving()) {
+
+            courseDetailsRemarkFragment.getArguments().putAll(bundle);
+
+        } else {
+
+            courseDetailsRemarkFragment.setArguments(bundle);
+
+        }
+
+        return courseDetailsRemarkFragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_course_details_remark, null);
+
         viewPager.setViewForPosition(view, 2);
+
         courseDetailsRemarkRv=(RecyclerView)view.findViewById(R.id.course_details_remark_rv);
+
+        adapter=new CourseDetailsRemarkFragmentAdapter(getContext(),R.layout.adapter_course_details_remark,null);
+
+        Bundle bundle=getArguments();
+
+        if (bundle!=null){
+            onLineCourseBean =(OnLineCourseBean)bundle.getSerializable(BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE);
+
+            adapter.addData(onLineCourseBean.getEvaluate());
+        }
+
         initData();
+
         return view;
 
     }
 
-    /**
-     * 更新数据
-     * @param onLineCourseBeans
-     */
-    public void upData(OnLineCourseBean onLineCourseBeans){
-        this.onLineCourseBean=onLineCourseBeans;
-        adapter.addData(onLineCourseBeans.getEvaluate());
-    }
-    /**
-     * EventBus接收数据
-     * @param onLineCourseBean
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(OnLineCourseBean onLineCourseBean){
-        if (onLineCourseBean!=null){
-            adapter.addData(onLineCourseBean.getEvaluate());
-        }
-
-    }
-
-
     private void initData() {
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         courseDetailsRemarkRv.setLayoutManager(linearLayoutManager);
-        adapter=new CourseDetailsRemarkFragmentAdapter(getContext(),R.layout.adapter_course_details_remark,null);
         courseDetailsRemarkRv.setAdapter(adapter);
-
     }
 
 

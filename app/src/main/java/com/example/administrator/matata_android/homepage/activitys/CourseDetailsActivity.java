@@ -90,6 +90,10 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
     protected void getExras() {
         Intent intent = getIntent();
         onlineId=intent.getStringExtra("onlineId");
+        Bundle bundless=new Bundle();
+        bundless.putString("CourseDetailsFragment_url",onlineId);
+        courseDetailsFragment.setArguments(bundless);
+
     }
 
     @Override
@@ -116,12 +120,12 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
+                viewPager.resetHeight(i);
             }
 
             @Override
             public void onPageSelected(int i) {
-                viewPager.resetHeight(i);
+
             }
 
             @Override
@@ -156,27 +160,35 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("token", MatataSPUtils.getToken());
         map.put("onlineId",onlineId);
+
         beanBaseObservers=new BaseObserver<OnLineCourseBean>(this,false,false) {
             @Override
             public void onSuccess(OnLineCourseBean onLineCourseBean) {
 
-                //EventBus传递数据
-                EventBus.getDefault().postSticky(onLineCourseBean);
-
                 adapter.addData(onLineCourseBean);
-                 adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
+
                 //设置数据
                 courseDetailsTitle.setText(onLineCourseBean.getName());
                 courseDetailsLabel.setText(String.valueOf("共"+onLineCourseBean.getNum()+"节"));
                 courseDetailsWorkOff.setText(String.valueOf("已售出"+onLineCourseBean.getPay_num()));
 
+                //发送数据
+                EventBus.getDefault().post(onLineCourseBean);
+
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("CourseDetailsRemarkFragment_Online",onLineCourseBean);
+                courseDetailsRemarkFragment.setArguments(bundle);
 
             }
+
         };
         RetrofitUtil.getInstance().getApiService().getOnlineCourse(map)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(beanBaseObservers);
+
+
     }
 }

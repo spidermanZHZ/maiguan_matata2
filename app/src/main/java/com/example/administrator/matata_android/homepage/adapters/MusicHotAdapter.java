@@ -31,15 +31,15 @@ public class MusicHotAdapter extends BaseQuickAdapter<MusicHotBean ,BaseViewHold
         Glide.with(mContext)
                 .load(URL+item.getCover_pic())
                 .into((ImageView)helper.getView(R.id.music_hot_iv));
-
-        helper.setText(R.id.music_hot_tv_title,item.getName());//名称
-        if (item.getType().equals("online")){
-            helper.setText(R.id.music_hot_tv_type,"(线上课程)");
-
-        }else {
-            helper.setText(R.id.music_hot_tv_type,"(线下课程)");
-        }
-        helper.setText(R.id.music_hot_tv_price,"活动价：¥"+item.getPrice());
-    }
+//
+//        helper.setText(R.id.music_hot_tv_title,item.getName());//名称
+//        if (item.getType().equals("online")){
+//            helper.setText(R.id.music_hot_tv_type,"(线上课程)");
+//
+//        }else {
+//            helper.setText(R.id.music_hot_tv_type,"(线下课程)");
+//        }
+//        helper.setText(R.id.music_hot_tv_price,"活动价：¥"+item.getPrice());
+   }
 
 }

@@ -30,40 +30,30 @@ public class CourseDetailsCatalogFragment  extends BaseViewNeedSetFragment {
     private CourseDetailsCatalogFragmentAdapter adapter;
     private WrapContentHeightViewPager viewPager;
 
+    private OnLineCourseBean onLineCourseBean;
+
+    private static final String BUNDLE_ONLINE="CourseDetailsCatalogFragment_Online";
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view =inflater.inflate( R.layout.fragment_course_details_catalog,null);
-        viewPager.setViewForPosition(view,1);
-        adapter=new CourseDetailsCatalogFragmentAdapter(getContext(),R.layout.adapter_course_details_catalog,null);
-        rv=(RecyclerView)view.findViewById(R.id.course_details_catalog_rv);
-
         EventBus.getDefault().register(this);
+        viewPager.setViewForPosition(view,1);
+        rv=(RecyclerView)view.findViewById(R.id.course_details_catalog_rv);
+        adapter=new CourseDetailsCatalogFragmentAdapter(getContext(),R.layout.adapter_course_details_catalog,null);
+
+        initData();
+        return view;
+    }
+
+    private void initData(){
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(adapter);
-
-        return view;
-    }
-
-    /**
-     * EventBus接收数据
-     * @param onLineCourseBean
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(OnLineCourseBean onLineCourseBean){
-        if (onLineCourseBean!=null){
-            adapter.addData(onLineCourseBean.getCatalog());
-        }
-
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        EventBus.getDefault().unregister(this);
     }
 
     /**
@@ -72,5 +62,23 @@ public class CourseDetailsCatalogFragment  extends BaseViewNeedSetFragment {
      */
     public void setWrapContentHeightViewPager(WrapContentHeightViewPager mViewPagerView) {
         this.viewPager=mViewPagerView;
+    }
+
+    /**
+     *接受数据
+     * @param onLineCourseBean
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void  Event(OnLineCourseBean onLineCourseBean) {
+       adapter.addData(onLineCourseBean.getCatalog());
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(EventBus.getDefault().isRegistered(this))
+        {
+            EventBus.getDefault().unregister(this);
+        }
     }
 }

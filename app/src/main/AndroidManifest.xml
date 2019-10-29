@@ -76,7 +76,12 @@
         <activity android:name=".my.activitys.MyOrderActivity" />
         <activity android:name=".my.activitys.MyFollowActivity" />
         <activity android:name=".my.activitys.MyMessageActivity" />
-        <activity android:name=".my.activitys.MyFriendActivity"></activity>
+        <activity android:name=".my.activitys.MyFriendActivity" />
+        <activity
+            android:name=".homepage.activitys.CourseDetailsOffLineActivity"
+            android:label="@string/title_activity_course_details_off_line"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".homepage.activitys.MusicCollagetwoActivity"></activity>
     </application>
 
 </manifest>

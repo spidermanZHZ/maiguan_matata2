@@ -1,10 +1,11 @@
 package com.example.administrator.matata_android.homepage.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,7 +14,7 @@ import com.example.administrator.matata_android.bean.MusicOnlineBean;
 import com.example.administrator.matata_android.homepage.adapters.MusicOnlineAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
-import com.example.administrator.matata_android.zhzbase.base.BaseFragment;
+import com.example.administrator.matata_android.zhzbase.base.BaseViewNeedSetFragment;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 
 import java.util.HashMap;
@@ -25,42 +26,34 @@ import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class MusicOfflineFragment extends BaseFragment {
+public class MusicOfflineFragment extends BaseViewNeedSetFragment {
 
-    private RecyclerView musicAdapterRv;
+    @BindView(R.id.music_adapter_rv)
+    RecyclerView musicAdapterRv;
+    Unbinder unbinder;
     private MusicOnlineAdapter adapter;
     private BaseObserver<MusicOnlineBean> musicOnlineBeanBaseObserver;
 
+    @Nullable
     @Override
-    protected int initLayoutId() {
-        return R.layout.fragment_music_offline;
-    }
-
-    @Override
-    protected void getExras() {
-      musicAdapterRv=  (RecyclerView) rootView.findViewById(R.id.music_adapter_rv);
-    }
-
-    @Override
-    protected void initData() {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_music_offline, null);
+        unbinder = ButterKnife.bind(this, view);
+        musicAdapterRv = (RecyclerView) view.findViewById(R.id.music_adapter_rv);
+        adapter = new MusicOnlineAdapter(getContext(), R.layout.adapter_music_online, null);
+        initData();
         getMusicOnline();
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext());
+        return view;
+    }
+
+
+    private void initData() {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         musicAdapterRv.setLayoutManager(linearLayoutManager);
-        adapter=new MusicOnlineAdapter(getContext(),R.layout.adapter_music_online,null);
         musicAdapterRv.setAdapter(adapter);
-
     }
 
-    @Override
-    protected void setListener() {
-
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return false;
-    }
     /**
      * 获取线上课数据
      */
@@ -86,4 +79,10 @@ public class MusicOfflineFragment extends BaseFragment {
 
     }
 
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

@@ -144,4 +144,5 @@
     <string name="my_friend">邀请好友</string>
     <string name="my_follow">我的关注</string>
     <string name="my_news">我的消息</string>
+    <string name="title_activity_course_details_off_line">CourseDetailsOffLineActivity</string>
 </resources>
