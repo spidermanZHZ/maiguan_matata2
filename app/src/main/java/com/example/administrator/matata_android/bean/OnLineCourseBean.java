@@ -45,6 +45,23 @@ public class OnLineCourseBean implements Serializable {
 
     private int id;
     private int class_id;
+    private String pay_num;
+
+    public String getPay_num() {
+        return pay_num;
+    }
+
+    public void setPay_num(String pay_num) {
+        this.pay_num = pay_num;
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
     private String name;
     private int teacher_id;
     private int theme_id;

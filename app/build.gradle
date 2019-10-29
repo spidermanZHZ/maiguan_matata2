@@ -76,4 +76,6 @@ dependencies {
 
     //日期选择
     implementation 'com.github.florent37:SingleDateAndTimePicker:v2.0.4'
+    //EventBus
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

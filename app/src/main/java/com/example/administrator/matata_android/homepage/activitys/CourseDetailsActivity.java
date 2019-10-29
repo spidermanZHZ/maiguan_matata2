@@ -24,6 +24,8 @@ import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragmentActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -70,6 +72,12 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
     private CourseDeatilsAdapter adapter;
     private BaseObserver<OnLineCourseBean> beanBaseObservers;
     private String onlineId;
+
+    private CourseDetailsFragment courseDetailsFragment=new CourseDetailsFragment();
+    private CourseDetailsCatalogFragment courseDetailsCatalogFragment=new CourseDetailsCatalogFragment();
+    private CourseDetailsRemarkFragment courseDetailsRemarkFragment=new CourseDetailsRemarkFragment();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_course_details);
@@ -88,11 +96,14 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
     protected void initData() {
 
         adapter=new CourseDeatilsAdapter(this,R.layout.adapter_course_details_pic,null);
+        courseDetailsFragment.setWrapContentHeightViewPager(viewPager);
+        courseDetailsCatalogFragment.setWrapContentHeightViewPager(viewPager);
+        courseDetailsRemarkFragment.setWrapContentHeightViewPager(viewPager);
 
         fragmentList = new ArrayList<>();
-        fragmentList.add(new CourseDetailsFragment());
-        fragmentList.add(new CourseDetailsCatalogFragment());
-        fragmentList.add(new CourseDetailsRemarkFragment());
+        fragmentList.add(courseDetailsFragment);
+        fragmentList.add(courseDetailsCatalogFragment);
+        fragmentList.add(courseDetailsRemarkFragment);
         list_Title = new ArrayList<>();
 
         list_Title.add("课程介绍");
@@ -101,6 +112,25 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
 
         viewPager.setAdapter(new MusicPageAdapter(getSupportFragmentManager(), fragmentList, CourseDetailsActivity.this, list_Title));
         courseDetailsTablelayout.setupWithViewPager(viewPager);
+        //重置高度
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                viewPager.resetHeight(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+        viewPager.resetHeight(0);
+
         getCourseDetails();
     }
 
@@ -129,8 +159,18 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
         beanBaseObservers=new BaseObserver<OnLineCourseBean>(this,false,false) {
             @Override
             public void onSuccess(OnLineCourseBean onLineCourseBean) {
-                 adapter.addData(onLineCourseBean);
+
+                //EventBus传递数据
+                EventBus.getDefault().postSticky(onLineCourseBean);
+
+                adapter.addData(onLineCourseBean);
                  adapter.notifyDataSetChanged();
+                //设置数据
+                courseDetailsTitle.setText(onLineCourseBean.getName());
+                courseDetailsLabel.setText(String.valueOf("共"+onLineCourseBean.getNum()+"节"));
+                courseDetailsWorkOff.setText(String.valueOf("已售出"+onLineCourseBean.getPay_num()));
+
+
             }
         };
         RetrofitUtil.getInstance().getApiService().getOnlineCourse(map)
