@@ -98,6 +98,8 @@ public class MusicCollagetwoActivity extends BaseFragmentActivity {
         viewPager.setOffscreenPageLimit(1);//保持当前页的前后一页，当fragment过多时会被销毁
         indicatorViewPager = new IndicatorViewPager(indicator, viewPager);
         inflate = LayoutInflater.from(getApplicationContext());
+
+
         fragmentList = new ArrayList<>();
         fragmentList.add(new MusicOnlineFragment());
         fragmentList.add(new MusicOfflineFragment());

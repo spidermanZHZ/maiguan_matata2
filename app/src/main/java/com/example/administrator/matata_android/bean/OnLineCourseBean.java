@@ -5,6 +5,7 @@ import java.util.List;
 
 public class OnLineCourseBean implements Serializable {
 
+
     /**
      * id : 22
      * class_id : 51
@@ -20,7 +21,7 @@ public class OnLineCourseBean implements Serializable {
      * profile : <p style="text-align:center;"></p><div class="media-wrap image-wrap"><img src="/matata_server/showFile/showImage?fk=71fb4abe07844ef5a16a4445ab65478d.jpeg&amp;show=null"/></div><p></p>
      * description : 架子鼓基础课程与演练
      * cover_pic : storage/2019-07-30/kBuoXeaHj1Xotv5ZsPHmclFS1CxGxbEQHlOFnfji.jpeg
-     * detail_pic : storage/2019-07-30/3rJxSnaIQjGHZgYX5wY9cVeeQC0Dovm15kWmptya.jpeg
+     * detail_pic : ["storage/2019-07-30/3rJxSnaIQjGHZgYX5wY9cVeeQC0Dovm15kWmptya.jpeg"]
      * distribution_ratio1 : 0
      * distribution_ratio2 : 0
      * distribution_ratio3 : null
@@ -41,27 +42,12 @@ public class OnLineCourseBean implements Serializable {
      * evaluate : [{"id":256,"is_anonymous":"1","user_id":897,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"111","status":"0","evaluate_time":"2018-10-13 09:42:43","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2018-10-13 09:42:43","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":null,"fd_user_head":null},{"id":510,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"老师讲的内容非常清楚，条理清晰，非常适合像我这种爵士鼓爱好者。此外，老师的一些简单表演更是让我对于爵士鼓的学习增添了向往！感谢老师！","status":"0","evaluate_time":"2018-10-25 16:27:36","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-01-04 16:29:43","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"阿基诺","fd_user_head":"201901/e8ef2ea7c31c4d2db52886b41d01cc93.jpeg"},{"id":511,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"老师讲的特别好。不知道还没有继续的教程","status":"0","evaluate_time":"2018-11-08 16:29:53","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-01-04 16:31:39","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"歌不灵","fd_user_head":"201901/b045310fdea4445f8f3476e7dab63ab1.jpeg"},{"id":512,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"讲的好，很想亲自学习架子鼓的打法。","status":"0","evaluate_time":"2018-11-22 16:31:43","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-01-04 16:33:31","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"思wei","fd_user_head":"201901/74a7e0a6064c4a84a65109d7dfceb590.jpeg"},{"id":513,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"好评..............","status":"0","evaluate_time":"2018-12-06 16:33:39","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-01-04 16:35:01","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"一念不成","fd_user_head":"201901/1230ad516a3f47629a2f35705abda67a.jpeg"},{"id":514,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"非常好，感谢老师！","status":"0","evaluate_time":"2018-12-19 16:35:12","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-01-04 16:36:41","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"童安格","fd_user_head":"201901/70bbfa885309405ca20ca15c943fdc5e.jpeg"},{"id":515,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"老师很细心，突然更喜欢架子鼓了，可惜现在还没有鼓，就先看看视频解解馋","status":"0","evaluate_time":"2018-12-27 16:36:50","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-01-04 16:39:00","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"韩菇凉","fd_user_head":"201901/24e76bf7035d4dfc97ffc78e973bdb28.jpeg"},{"id":516,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"宝贝6岁跟着视频学了几节课，效果还是很不错的。","status":"0","evaluate_time":"2019-01-05 10:24:45","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-01-07 10:26:33","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"刘霁","fd_user_head":"201901/f56c2a181ee940378e2df1dcd464b4b3.jpeg"},{"id":517,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"很棒的课程","status":"0","evaluate_time":"2019-01-06 10:26:37","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-01-07 10:27:44","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"清静","fd_user_head":"201901/6bb6ad1b57224b218f4941321b1dc3ac.jpeg"},{"id":563,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"讲的挺好，只是内容太少了","status":"0","evaluate_time":"2019-02-10 10:53:50","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-02-13 10:57:28","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"斯蒂芬","fd_user_head":"201902/41d4cc04d87843e891b11e0df5614fc6.jpeg"},{"id":612,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"讲得好，很想亲自学习架子鼓的打法","status":"0","evaluate_time":"2019-03-08 09:38:09","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-03-11 09:41:58","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"P文玲","fd_user_head":"201903/df90c71e868444eca8d62559111478b8.jpeg"},{"id":613,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"挺满意，老师很细心","status":"0","evaluate_time":"2019-03-10 09:42:12","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-03-11 09:48:29","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"S薰","fd_user_head":"201903/2e111e789f1f4e888578f6c38241f593.jpeg"},{"id":623,"is_anonymous":"0","user_id":0,"busi_type":"01","order_id":0,"obj_id":22,"desc_consistent":"5","feel":"5","service_attitude":"5","evaluate_content":"很棒，很清楚明了，适合小孩子学习","status":"0","evaluate_time":"2019-03-05 10:22:11","reply_admin_id":null,"reply_content":null,"reply_time":null,"updateDt":"2019-03-11 10:23:24","obj_name":"打击乐协会会长亲自上阵 演示架子鼓基础训练","fd_user_name":"梧桐树","fd_user_head":"201903/6d9f4c7415cf4d03a4e372105e5a5151.jpeg"}]
      * catalog : [{"id":13,"album_id":22,"class_id":51,"name":"大师解读-任兴伟老师","theme_id":0,"pitch_number":1,"is_audition":"1","profile":null,"description":null,"video":"201812/3bf5d022cfd84b92b9fc5db66ce0880e.mp4","video_time_length":"02:15","cover_pic":null,"click_rate":0,"sort":1,"status":"0","createDt":"2018-05-12 08:31:18","updateDt":"2019-01-07 09:41:14","up_type":"0","up_dt1_start":null,"up_dt1_end":null,"up_dt2":0,"up_dt3":null,"stars":0},{"id":14,"album_id":22,"class_id":51,"name":"大师干货-鼓棒选择","theme_id":0,"pitch_number":2,"is_audition":"0","profile":null,"description":null,"video":"201812/b09d0835e57b44f3a6722b195b680be5.mp4","video_time_length":"06:09","cover_pic":null,"click_rate":0,"sort":2,"status":"0","createDt":"2018-05-12 08:33:41","updateDt":"2018-12-10 14:04:02","up_type":"0","up_dt1_start":null,"up_dt1_end":null,"up_dt2":0,"up_dt3":null,"stars":0},{"id":15,"album_id":22,"class_id":51,"name":"大师干货-架子鼓介绍","theme_id":0,"pitch_number":3,"is_audition":"0","profile":null,"description":null,"video":"201812/2307dd7859f3424abcb0454e2e195e8e.mp4","video_time_length":"08:23","cover_pic":null,"click_rate":0,"sort":3,"status":"0","createDt":"2018-05-12 08:37:29","updateDt":"2018-12-10 14:10:36","up_type":"0","up_dt1_start":null,"up_dt1_end":null,"up_dt2":0,"up_dt3":null,"stars":0},{"id":16,"album_id":22,"class_id":51,"name":"大师干货-基础练习","theme_id":0,"pitch_number":4,"is_audition":"0","profile":null,"description":null,"video":"201812/3e551bd2cc0044ddb6e9419e87114b1a.mp4","video_time_length":"08:58","cover_pic":null,"click_rate":0,"sort":4,"status":"0","createDt":"2018-05-12 08:40:17","updateDt":"2018-12-10 14:12:55","up_type":"0","up_dt1_start":null,"up_dt1_end":null,"up_dt2":0,"up_dt3":null,"stars":0},{"id":17,"album_id":22,"class_id":51,"name":"大师干货-模拟演练01","theme_id":0,"pitch_number":5,"is_audition":"0","profile":null,"description":null,"video":"201812/b4456361a23e4001ac84df4d8530dd79.mp4","video_time_length":"09:41","cover_pic":null,"click_rate":0,"sort":5,"status":"0","createDt":"2018-05-12 08:43:14","updateDt":"2018-12-10 14:17:11","up_type":"0","up_dt1_start":null,"up_dt1_end":null,"up_dt2":0,"up_dt3":null,"stars":0},{"id":18,"album_id":22,"class_id":51,"name":"大师干货-模拟演练02","theme_id":0,"pitch_number":6,"is_audition":"0","profile":null,"description":null,"video":"201812/78ae3da1b74a45abbabcae526e8c1dda.mp4","video_time_length":"08:17","cover_pic":null,"click_rate":0,"sort":6,"status":"0","createDt":"2018-05-12 08:45:51","updateDt":"2018-12-10 14:21:24","up_type":"0","up_dt1_start":null,"up_dt1_end":null,"up_dt2":0,"up_dt3":null,"stars":0},{"id":19,"album_id":22,"class_id":51,"name":"大师干货-模拟演练03","theme_id":0,"pitch_number":7,"is_audition":"0","profile":null,"description":null,"video":"201812/1b88107381c94519b111f86e27217266.mp4","video_time_length":"08:34","cover_pic":null,"click_rate":0,"sort":7,"status":"0","createDt":"2018-05-12 09:04:43","updateDt":"2018-12-10 14:26:09","up_type":"0","up_dt1_start":null,"up_dt1_end":null,"up_dt2":0,"up_dt3":null,"stars":0}]
      * is_purchase : false
+     * pay_num : 0
+     * classify : {"id":51,"name":"打击乐"}
      */
 
     private int id;
     private int class_id;
-    private String pay_num;
-
-    public String getPay_num() {
-        return pay_num;
-    }
-
-    public void setPay_num(String pay_num) {
-        this.pay_num = pay_num;
-    }
-
-    public boolean isFavorite() {
-        return isFavorite;
-    }
-
-    public void setFavorite(boolean favorite) {
-        isFavorite = favorite;
-    }
     private String name;
     private int teacher_id;
     private int theme_id;
@@ -74,7 +60,6 @@ public class OnLineCourseBean implements Serializable {
     private String profile;
     private String description;
     private String cover_pic;
-    private String detail_pic;
     private int distribution_ratio1;
     private int distribution_ratio2;
     private Object distribution_ratio3;
@@ -93,6 +78,9 @@ public class OnLineCourseBean implements Serializable {
     private int stars;
     private boolean isFavorite;
     private boolean is_purchase;
+    private int pay_num;
+    private ClassifyBean classify;
+    private List<String> detail_pic;
     private List<EvaluateBean> evaluate;
     private List<CatalogBean> catalog;
 
@@ -206,14 +194,6 @@ public class OnLineCourseBean implements Serializable {
 
     public void setCover_pic(String cover_pic) {
         this.cover_pic = cover_pic;
-    }
-
-    public String getDetail_pic() {
-        return detail_pic;
-    }
-
-    public void setDetail_pic(String detail_pic) {
-        this.detail_pic = detail_pic;
     }
 
     public int getDistribution_ratio1() {
@@ -360,6 +340,30 @@ public class OnLineCourseBean implements Serializable {
         this.is_purchase = is_purchase;
     }
 
+    public int getPay_num() {
+        return pay_num;
+    }
+
+    public void setPay_num(int pay_num) {
+        this.pay_num = pay_num;
+    }
+
+    public ClassifyBean getClassify() {
+        return classify;
+    }
+
+    public void setClassify(ClassifyBean classify) {
+        this.classify = classify;
+    }
+
+    public List<String> getDetail_pic() {
+        return detail_pic;
+    }
+
+    public void setDetail_pic(List<String> detail_pic) {
+        this.detail_pic = detail_pic;
+    }
+
     public List<EvaluateBean> getEvaluate() {
         return evaluate;
     }
@@ -374,6 +378,32 @@ public class OnLineCourseBean implements Serializable {
 
     public void setCatalog(List<CatalogBean> catalog) {
         this.catalog = catalog;
+    }
+
+    public static class ClassifyBean {
+        /**
+         * id : 51
+         * name : 打击乐
+         */
+
+        private int id;
+        private String name;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
     }
 
     public static class EvaluateBean {

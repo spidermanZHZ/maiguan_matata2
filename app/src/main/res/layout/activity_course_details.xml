@@ -29,7 +29,7 @@
             />
     </LinearLayout>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
@@ -132,26 +132,28 @@
                 android:layout_marginTop="17dp"
                 android:background="@color/white"
                 >
-                <android.support.v7.widget.Toolbar
+                <com.shizhefei.view.indicator.ScrollIndicatorView
+                    android:id="@+id/spring_indicator"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    app:layout_collapseMode="pin"
+                    android:layout_height="50dp"
                     android:background="@color/white"
-                    app:contentInsetLeft="0dp"
-                    app:contentInsetStart="0dp" >
-                  <android.support.design.widget.TabLayout
-                    android:id="@+id/course_details_tablelayout"
+                    />
+                <android.support.v4.widget.NestedScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"/>
-                </android.support.v7.widget.Toolbar>
-                    <com.example.administrator.matata_android.homepage.WrapContentHeightViewPager
-                        android:id="@+id/course_details_viewpager"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/title"
+                    android:fillViewport="true"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    >
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/spring_viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+                </android.support.v4.widget.NestedScrollView>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"

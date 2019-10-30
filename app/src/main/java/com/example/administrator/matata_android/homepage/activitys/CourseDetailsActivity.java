@@ -1,28 +1,34 @@
 package com.example.administrator.matata_android.homepage.activitys;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
-import com.example.administrator.matata_android.homepage.WrapContentHeightViewPager;
 import com.example.administrator.matata_android.homepage.adapters.CourseDeatilsAdapter;
-import com.example.administrator.matata_android.homepage.adapters.MusicPageAdapter;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsCatalogFragment;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsFragment;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsRemarkFragment;
-import com.example.administrator.matata_android.homepage.fragments.MusicOfflineFragment;
-import com.example.administrator.matata_android.homepage.fragments.MusicOnlineFragment;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragmentActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.shizhefei.view.indicator.IndicatorViewPager;
+import com.shizhefei.view.indicator.ScrollIndicatorView;
+import com.shizhefei.view.indicator.slidebar.SpringBar;
+import com.shizhefei.view.indicator.transition.OnTransitionTextListener;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -58,25 +64,30 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
     LinearLayout courseDetailsCollect;
     @BindView(R.id.course_details_work_off)
     TextView courseDetailsWorkOff;
-    @BindView(R.id.course_details_tablelayout)
-    TabLayout courseDetailsTablelayout;
-    @BindView(R.id.course_details_viewpager)
-    WrapContentHeightViewPager viewPager;
+
     @BindView(R.id.course_details_price)
     TextView courseDetailsPrice;
     @BindView(R.id.course_details_join)
     TextView courseDetailsJoin;
+    @BindView(R.id.spring_indicator)
+    ScrollIndicatorView indicator;
+    @BindView(R.id.spring_viewPager)
+    ViewPager viewPager;
 
     private List<Fragment> fragmentList;
-    private List<String> list_Title;
+
     private CourseDeatilsAdapter adapter;
     private BaseObserver<OnLineCourseBean> beanBaseObservers;
     private String onlineId;
 
-    private CourseDetailsFragment courseDetailsFragment=new CourseDetailsFragment();
-    private CourseDetailsCatalogFragment courseDetailsCatalogFragment=new CourseDetailsCatalogFragment();
-    private CourseDetailsRemarkFragment courseDetailsRemarkFragment=new CourseDetailsRemarkFragment();
+    private CourseDetailsFragment courseDetailsFragment = new CourseDetailsFragment();
+    private CourseDetailsCatalogFragment courseDetailsCatalogFragment = new CourseDetailsCatalogFragment();
+    private CourseDetailsRemarkFragment courseDetailsRemarkFragment = new CourseDetailsRemarkFragment();
 
+
+    private IndicatorViewPager indicatorViewPager;
+    private LayoutInflater inflate;
+    private int unSelectColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,9 +100,10 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
     @Override
     protected void getExras() {
         Intent intent = getIntent();
-        onlineId=intent.getStringExtra("onlineId");
-        Bundle bundless=new Bundle();
-        bundless.putString("CourseDetailsFragment_url",onlineId);
+        onlineId = intent.getStringExtra("onlineId");
+
+        Bundle bundless = new Bundle();
+        bundless.putString("CourseDetailsFragment_url", onlineId);
         courseDetailsFragment.setArguments(bundless);
 
     }
@@ -99,43 +111,28 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
     @Override
     protected void initData() {
 
-        adapter=new CourseDeatilsAdapter(this,R.layout.adapter_course_details_pic,null);
-        courseDetailsFragment.setWrapContentHeightViewPager(viewPager);
-        courseDetailsCatalogFragment.setWrapContentHeightViewPager(viewPager);
-        courseDetailsRemarkFragment.setWrapContentHeightViewPager(viewPager);
+        adapter = new CourseDeatilsAdapter(this, R.layout.adapter_course_details_pic, null);
+        getCourseDetails();
+        courseDetailsCoverflowRecycler.setAdapter(adapter);
+
+
+        int selectColor = Color.parseColor("#f8f8f8");
+        unSelectColor = Color.parseColor("#010101");
+
+        indicator.setOnTransitionListener(new OnTransitionTextListener().setColor(selectColor, unSelectColor));
+        indicator.setScrollBar(new SpringBar(getApplicationContext(), Color.GRAY));
+        viewPager.setOffscreenPageLimit(1);//保持当前页的前后一页，当fragment过多时会被销毁
+        indicatorViewPager = new IndicatorViewPager(indicator, viewPager);
+        inflate = LayoutInflater.from(getApplicationContext());
 
         fragmentList = new ArrayList<>();
         fragmentList.add(courseDetailsFragment);
         fragmentList.add(courseDetailsCatalogFragment);
         fragmentList.add(courseDetailsRemarkFragment);
-        list_Title = new ArrayList<>();
 
-        list_Title.add("课程介绍");
-        list_Title.add("课程目录");
-        list_Title.add("课程评价");
+        indicatorViewPager.setAdapter(new CourseDetailsActivity.CourseDetailsAdapter(getSupportFragmentManager(), fragmentList));
+        indicatorViewPager.setCurrentItem(0, false);
 
-        viewPager.setAdapter(new MusicPageAdapter(getSupportFragmentManager(), fragmentList, CourseDetailsActivity.this, list_Title));
-        courseDetailsTablelayout.setupWithViewPager(viewPager);
-        //重置高度
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-                viewPager.resetHeight(i);
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
-        viewPager.resetHeight(0);
-
-        getCourseDetails();
     }
 
     @Override
@@ -156,12 +153,12 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
     /**
      * 获取课程详情
      */
-    private void getCourseDetails(){
-        Map<String,Object> map=new HashMap<String,Object>();
+    private void getCourseDetails() {
+        Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", MatataSPUtils.getToken());
-        map.put("onlineId",onlineId);
+        map.put("onlineId", onlineId);
 
-        beanBaseObservers=new BaseObserver<OnLineCourseBean>(this,false,false) {
+        beanBaseObservers = new BaseObserver<OnLineCourseBean>(this, true, false) {
             @Override
             public void onSuccess(OnLineCourseBean onLineCourseBean) {
 
@@ -170,14 +167,15 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
 
                 //设置数据
                 courseDetailsTitle.setText(onLineCourseBean.getName());
-                courseDetailsLabel.setText(String.valueOf("共"+onLineCourseBean.getNum()+"节"));
-                courseDetailsWorkOff.setText(String.valueOf("已售出"+onLineCourseBean.getPay_num()));
+                courseDetailsLabel.setText(String.valueOf("共" + onLineCourseBean.getNum() + "节"));
+                courseDetailsWorkOff.setText(String.valueOf("已售出" + onLineCourseBean.getPay_num()));
+
 
                 //发送数据
                 EventBus.getDefault().post(onLineCourseBean);
 
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("CourseDetailsRemarkFragment_Online",onLineCourseBean);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("CourseDetailsRemarkFragment_Online", onLineCourseBean);
                 courseDetailsRemarkFragment.setArguments(bundle);
 
             }
@@ -190,5 +188,54 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
                 .subscribe(beanBaseObservers);
 
 
+    }
+
+
+    private class CourseDetailsAdapter extends IndicatorViewPager.IndicatorFragmentPagerAdapter {
+        private List<Fragment> fragmentList;
+
+        public CourseDetailsAdapter(FragmentManager fragmentManager, List<Fragment> fragments) {
+            super(fragmentManager);
+            this.fragmentList = fragments;
+        }
+
+        @Override
+        public int getCount() {
+            return fragmentList.size();//2个fragment
+        }
+
+        @Override
+        public View getViewForTab(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = inflate.inflate(R.layout.tab_top, container, false);
+            }
+            TextView textView = (TextView) convertView;
+            textView.setText(names[position % names.length]);
+            int padding = dipToPix(10);
+            textView.setPadding(padding, 0, padding, 0);
+            return convertView;
+        }
+
+
+        @Override
+        public Fragment getFragmentForPage(int position) {
+            return fragmentList.get(position);
+        }
+
+    }
+
+
+
+    private String[] names = {"课程介绍", "课程目录","课程评价"};
+
+    /**
+     * 根据dip值转化成px值
+     *
+     * @param dip
+     * @return
+     */
+    private int dipToPix(float dip) {
+        int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, getResources().getDisplayMetrics());
+        return size;
     }
 }

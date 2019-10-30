@@ -28,7 +28,7 @@ public class CourseDetailsRemarkFragment extends BaseViewNeedSetFragment {
 
     private RecyclerView courseDetailsRemarkRv;
 
-    private WrapContentHeightViewPager viewPager;
+
 
     private CourseDetailsRemarkFragmentAdapter adapter;
 
@@ -63,7 +63,7 @@ public class CourseDetailsRemarkFragment extends BaseViewNeedSetFragment {
 
         View view = inflater.inflate(R.layout.fragment_course_details_remark, null);
 
-        viewPager.setViewForPosition(view, 2);
+
 
         courseDetailsRemarkRv=(RecyclerView)view.findViewById(R.id.course_details_remark_rv);
 
@@ -90,15 +90,6 @@ public class CourseDetailsRemarkFragment extends BaseViewNeedSetFragment {
         courseDetailsRemarkRv.setAdapter(adapter);
     }
 
-
-    /**
-     * 用于自适应高度
-     *
-     * @param mViewPagerView
-     */
-    public void setWrapContentHeightViewPager(WrapContentHeightViewPager mViewPagerView) {
-        this.viewPager = mViewPagerView;
-    }
 
     @Override
     public void onDestroyView() {

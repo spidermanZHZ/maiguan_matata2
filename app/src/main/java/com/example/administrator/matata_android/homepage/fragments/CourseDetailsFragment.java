@@ -9,9 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.homepage.WrapContentHeightViewPager;
+import com.example.administrator.matata_android.zhzbase.base.BaseApplication;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragment;
 import com.example.administrator.matata_android.zhzbase.base.BaseViewNeedSetFragment;
 
@@ -25,7 +27,6 @@ public class CourseDetailsFragment extends BaseViewNeedSetFragment {
     private final String URLweb = "https://www.maiguanjy.com/api/app/view/details";
     private WebView webView;
 
-    private WrapContentHeightViewPager viewPager;
     private static CourseDetailsFragment newInstance(String urls){
         Bundle bundle=new Bundle();
         bundle.putString(BUNDLE_COURSEDETAILSFRAGMENT_URL,urls);
@@ -43,19 +44,13 @@ public class CourseDetailsFragment extends BaseViewNeedSetFragment {
             url =bundle.getString(BUNDLE_COURSEDETAILSFRAGMENT_URL);
         }
         View view =inflater.inflate( R.layout.fragment_course_details,null);
-        viewPager.setViewForPosition(view,0);
+
         webView= (WebView)view.findViewById(R.id.course_details_web);
         webView.loadUrl(URLweb+"?id="+url+"&type=course_online");
 
+        Toast.makeText(BaseApplication.getInstance(), "运行到这里了。。。。。。"+URLweb+"?id="+url+"&type=course_online", Toast.LENGTH_SHORT).show();
         return view;
     }
 
-    /**
-     * 用于自适应高度
-     * @param mViewPagerView
-     */
-    public void setWrapContentHeightViewPager(WrapContentHeightViewPager mViewPagerView) {
-        this.viewPager=mViewPagerView;
-    }
 
 }

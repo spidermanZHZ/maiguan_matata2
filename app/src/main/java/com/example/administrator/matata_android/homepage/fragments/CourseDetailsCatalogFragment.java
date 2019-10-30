@@ -28,7 +28,7 @@ public class CourseDetailsCatalogFragment  extends BaseViewNeedSetFragment {
 
     private RecyclerView rv;
     private CourseDetailsCatalogFragmentAdapter adapter;
-    private WrapContentHeightViewPager viewPager;
+
 
     private OnLineCourseBean onLineCourseBean;
 
@@ -41,7 +41,7 @@ public class CourseDetailsCatalogFragment  extends BaseViewNeedSetFragment {
 
         View view =inflater.inflate( R.layout.fragment_course_details_catalog,null);
         EventBus.getDefault().register(this);
-        viewPager.setViewForPosition(view,1);
+
         rv=(RecyclerView)view.findViewById(R.id.course_details_catalog_rv);
         adapter=new CourseDetailsCatalogFragmentAdapter(getContext(),R.layout.adapter_course_details_catalog,null);
 
@@ -56,13 +56,6 @@ public class CourseDetailsCatalogFragment  extends BaseViewNeedSetFragment {
         rv.setAdapter(adapter);
     }
 
-    /**
-     * 用于自适应高度
-     * @param mViewPagerView
-     */
-    public void setWrapContentHeightViewPager(WrapContentHeightViewPager mViewPagerView) {
-        this.viewPager=mViewPagerView;
-    }
 
     /**
      *接受数据
