@@ -1,61 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="@color/white"
-    >
- <ImageView
-     android:id="@+id/music_adapter_cover_iv"
-     android:layout_width="131dp"
-     android:layout_height="138dp"
-     android:layout_marginTop="9dp"
-     android:src="@mipmap/ic_launcher"
-     />
-<LinearLayout
-    android:layout_width="0dp"
-    android:layout_weight="1"
-    android:layout_marginTop="9dp"
-    android:layout_marginLeft="15dp"
-    android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <TextView
-        android:id="@+id/music_adapter_tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:textSize="14sp"
-        android:lines="1"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:textColor="@color/Tv_text"
-        android:includeFontPadding="true"
-        />
-    <TextView
-        android:id="@+id/music_adapter_tv_achievement"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="12sp"
-        android:lines="1"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:textColor="@color/Et_hintText"
-        android:includeFontPadding="true"
-        />
-    <TextView
-        android:id="@+id/music_adapter_tv_introduce"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="11sp"
-        android:maxLines="3"
-        android:singleLine="false"
-        android:ellipsize="end"
-        android:textColor="@color/black999"
-        android:includeFontPadding="true"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:background="@color/white"
+        >
+        <ImageView
+            android:id="@+id/music_adapter_cover_iv"
+            android:layout_width="131dp"
+            android:layout_height="138dp"
+            android:layout_marginTop="9dp"
+            android:src="@mipmap/ic_launcher"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="138dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_toRightOf="@+id/music_adapter_cover_iv"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/music_adapter_tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:textSize="14sp"
+                android:lines="1"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/Tv_text"
+                android:includeFontPadding="true"
+                />
+            <TextView
+                android:id="@+id/music_adapter_tv_achievement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="12sp"
+                android:lines="1"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="@color/Et_hintText"
+                android:includeFontPadding="true"
+                />
+            <TextView
+                android:id="@+id/music_adapter_tv_introduce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="11sp"
+                android:maxLines="3"
+                android:singleLine="false"
+                android:ellipsize="end"
+                android:textColor="@color/black999"
+                android:includeFontPadding="true"
+                />
 
-</LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
 </com.zhy.autolayout.AutoLinearLayout>

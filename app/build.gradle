@@ -84,4 +84,8 @@ dependencies {
     implementation 'com.shizhefei:CoolRefreshView:1.0.4'
     implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
-}
+    //vlayout
+    implementation('com.alibaba.android:vlayout:1.2.8@aar') {
+        transitive = true
+    }
+    }

@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.matata_android.R;
+import com.example.administrator.matata_android.bean.MusicOffLineBean;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
+import com.example.administrator.matata_android.homepage.adapters.MusicOfflineAdapter;
 import com.example.administrator.matata_android.homepage.adapters.MusicOnlineAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
@@ -31,8 +33,8 @@ public class MusicOfflineFragment extends BaseViewNeedSetFragment {
     @BindView(R.id.music_adapter_rv)
     RecyclerView musicAdapterRv;
     Unbinder unbinder;
-    private MusicOnlineAdapter adapter;
-    private BaseObserver<MusicOnlineBean> musicOnlineBeanBaseObserver;
+    private MusicOfflineAdapter adapter;
+    private BaseObserver<MusicOffLineBean> musicOnlineBeanBaseObserver;
 
     @Nullable
     @Override
@@ -40,7 +42,7 @@ public class MusicOfflineFragment extends BaseViewNeedSetFragment {
         View view = inflater.inflate(R.layout.fragment_music_offline, null);
         unbinder = ButterKnife.bind(this, view);
         musicAdapterRv = (RecyclerView) view.findViewById(R.id.music_adapter_rv);
-        adapter = new MusicOnlineAdapter(getContext(), R.layout.adapter_music_online, null);
+        adapter = new MusicOfflineAdapter(getContext(), R.layout.adapter_music_online, null);
         initData();
         getMusicOnline();
         return view;
@@ -55,17 +57,17 @@ public class MusicOfflineFragment extends BaseViewNeedSetFragment {
     }
 
     /**
-     * 获取线上课数据
+     * 获取线下课数据
      */
     private void getMusicOnline() {
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", MatataSPUtils.getToken());
-        musicOnlineBeanBaseObserver = new BaseObserver<MusicOnlineBean>(getContext(), false, false) {
+        musicOnlineBeanBaseObserver = new BaseObserver<MusicOffLineBean>(getContext(), false, false) {
             @Override
-            public void onSuccess(MusicOnlineBean musicOnlineBean) {
+            public void onSuccess(MusicOffLineBean musicOffLineBean) {
 
-                adapter.addData(musicOnlineBean.getData());
+                adapter.addData(musicOffLineBean.getData());
                 adapter.notifyDataSetChanged();
 
             }
