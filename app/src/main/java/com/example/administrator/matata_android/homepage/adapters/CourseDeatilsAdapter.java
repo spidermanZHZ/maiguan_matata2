@@ -20,10 +20,10 @@ import java.util.List;
 public class CourseDeatilsAdapter extends BaseQuickAdapter<OnLineCourseBean,BaseViewHolder> {
     private Context mContext;
     private final String URL="https://www.maiguanjy.com/";
+    private OnLineCourseBean onLineCourseBean;
 
-    public CourseDeatilsAdapter(Context mContext,int layoutResId, @Nullable List<OnLineCourseBean> data) {
+    public CourseDeatilsAdapter(int layoutResId, @Nullable List<OnLineCourseBean> data) {
         super(layoutResId, data);
-        this.mContext=mContext;
     }
 
 
@@ -31,7 +31,7 @@ public class CourseDeatilsAdapter extends BaseQuickAdapter<OnLineCourseBean,Base
     protected void convert(@NonNull BaseViewHolder helper, OnLineCourseBean item) {
             //加载图片
             Glide.with(mContext)
-                    .load(URL+item.getCover_pic())
+                    .load(URL+item.getDetail_pic().get(helper.getPosition()))
                     .into((ImageView)helper.getView(R.id.adapter_course_details_pic));
 
 

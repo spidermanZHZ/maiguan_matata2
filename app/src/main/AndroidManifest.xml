@@ -82,7 +82,8 @@
             android:label="@string/title_activity_course_details_off_line"
             android:theme="@style/AppTheme" />
         <activity android:name=".homepage.activitys.MusicCollagetwoActivity" />
-        <activity android:name=".homepage.activitys.MusicCollageThreeActivity"></activity>
+        <activity android:name=".homepage.activitys.MusicCollageThreeActivity" />
+        <activity android:name=".homepage.activitys.CourseDetailsTwoActivity"></activity>
     </application>
 
 </manifest>

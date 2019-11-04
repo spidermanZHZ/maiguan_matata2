@@ -31,15 +31,14 @@
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/title"
-        android:fillViewport="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
         >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <recycler.coverflow.RecyclerCoverFlow
@@ -124,35 +123,18 @@
                     />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="vertical"
-                android:layout_marginBottom="50dp"
-                android:layout_marginTop="17dp"
-                android:background="@color/white"
-                >
                 <com.shizhefei.view.indicator.ScrollIndicatorView
                     android:id="@+id/spring_indicator"
+                    android:layout_marginTop="17dp"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@color/white"
                     />
-                <android.support.v4.widget.NestedScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/title"
-                    android:fillViewport="true"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    >
-
                 <android.support.v4.view.ViewPager
                     android:id="@+id/spring_viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-                </android.support.v4.widget.NestedScrollView>
             </LinearLayout>
-        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
     <LinearLayout
         android:layout_alignParentBottom="true"

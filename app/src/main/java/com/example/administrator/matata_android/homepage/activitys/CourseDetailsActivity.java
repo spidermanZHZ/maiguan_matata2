@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
+import com.example.administrator.matata_android.homepage.adapters.ArtCampAtPicAdapter;
 import com.example.administrator.matata_android.homepage.adapters.CourseDeatilsAdapter;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsCatalogFragment;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsFragment;
@@ -76,7 +77,7 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
 
     private List<Fragment> fragmentList;
 
-    private CourseDeatilsAdapter adapter;
+    private ArtCampAtPicAdapter adapter;
     private BaseObserver<OnLineCourseBean> beanBaseObservers;
     private String onlineId;
 
@@ -111,7 +112,7 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
     @Override
     protected void initData() {
 
-        adapter = new CourseDeatilsAdapter(this, R.layout.adapter_course_details_pic, null);
+        adapter = new ArtCampAtPicAdapter(this, null);
         getCourseDetails();
         courseDetailsCoverflowRecycler.setAdapter(adapter);
 
@@ -162,7 +163,7 @@ public class CourseDetailsActivity extends BaseFragmentActivity {
             @Override
             public void onSuccess(OnLineCourseBean onLineCourseBean) {
 
-                adapter.addData(onLineCourseBean);
+                adapter.getData(onLineCourseBean.getDetail_pic());
                 adapter.notifyDataSetChanged();
 
                 //设置数据

@@ -5,7 +5,6 @@ import java.util.List;
 
 public class OnLineCourseBean implements Serializable {
 
-
     /**
      * id : 22
      * class_id : 51

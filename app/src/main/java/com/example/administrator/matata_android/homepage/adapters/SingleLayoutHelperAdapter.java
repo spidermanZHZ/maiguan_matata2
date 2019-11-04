@@ -14,6 +14,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.homepage.activitys.CourseDetailsActivity;
+import com.example.administrator.matata_android.homepage.activitys.CourseDetailsTwoActivity;
 import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class SingleLayoutHelperAdapter extends DelegateAdapter.Adapter<SingleLay
     private List<MusicHotBean> musicHotBeans;
     private LayoutHelper mHelper;
     private MusicHotAdapter hotAdapter;
-
+    private ArtCampAtPicAdapter adapter;//修改画廊布局的适配器
     public SingleLayoutHelperAdapter(Context mContext, List<MusicHotBean> musicHotBeans, LayoutHelper mHelper) {
         this.mContext = mContext;
         this.musicHotBeans = musicHotBeans;
@@ -62,11 +63,12 @@ public class SingleLayoutHelperAdapter extends DelegateAdapter.Adapter<SingleLay
     public void onBindViewHolder(@NonNull SingleLayoutHelperViewHolder holder, int position) {
 
         hotAdapter = new MusicHotAdapter(mContext, R.layout.adapter_music_hot, musicHotBeans);
+
         holder.recyclerCoverFlow.setAdapter(hotAdapter);
         hotAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(mContext, CourseDetailsActivity.class);
+                Intent intent = new Intent(mContext, CourseDetailsTwoActivity.class);
                 intent.putExtra("onlineId",musicHotBeans.get(position).getId());
                 startActivity(intent);
             }
