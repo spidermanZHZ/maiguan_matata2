@@ -36,50 +36,40 @@ public class CourseDetailsRemarkFragment extends BaseViewNeedSetFragment {
 
     private static final String BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE="CourseDetailsRemarkFragment_Online";
 
-    private static CourseDetailsRemarkFragment newInstance(OnLineCourseBean onLineCourseBean){
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        Bundle bundle=getArguments();
+//
+//        if (bundle!=null){
+//            onLineCourseBean =(OnLineCourseBean)bundle.getSerializable(BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE);
+//        }
 
-        CourseDetailsRemarkFragment courseDetailsRemarkFragment=new CourseDetailsRemarkFragment();
-
-        Bundle bundle=new Bundle();
-
-        bundle.putSerializable(BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE,onLineCourseBean);
-
-        if (courseDetailsRemarkFragment.isRemoving()) {
-
-            courseDetailsRemarkFragment.getArguments().putAll(bundle);
-
-        } else {
-
-            courseDetailsRemarkFragment.setArguments(bundle);
-
-        }
-
-        return courseDetailsRemarkFragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_course_details_remark, null);
-
-
+        View view = inflater.inflate(R.layout.fragment_course_details_remark,  container,false);
 
         courseDetailsRemarkRv=(RecyclerView)view.findViewById(R.id.course_details_remark_rv);
 
         adapter=new CourseDetailsRemarkFragmentAdapter(getContext(),R.layout.adapter_course_details_remark,null);
 
-        Bundle bundle=getArguments();
 
-        if (bundle!=null){
-            onLineCourseBean =(OnLineCourseBean)bundle.getSerializable(BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE);
-
-            adapter.addData(onLineCourseBean.getEvaluate());
-        }
-
+        adapter.addData(onLineCourseBean.getEvaluate());
+        adapter.notifyDataSetChanged();
         initData();
-
         return view;
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
 
     }
 

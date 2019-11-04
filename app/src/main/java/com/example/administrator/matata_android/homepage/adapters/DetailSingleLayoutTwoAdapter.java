@@ -1,6 +1,7 @@
 package com.example.administrator.matata_android.homepage.adapters;
 
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import android.support.v4.app.FragmentActivity;
@@ -13,12 +14,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.example.administrator.matata_android.R;
 
+import com.example.administrator.matata_android.bean.OnLineCourseBean;
+import com.example.administrator.matata_android.homepage.fragments.CourseDetailsCatalogFragment;
+import com.example.administrator.matata_android.homepage.fragments.CourseDetailsFragment;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsOneFragment;
+import com.example.administrator.matata_android.homepage.fragments.CourseDetailsRemarkFragment;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsThreeFragment;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsTwoFragment;
 import com.example.administrator.matata_android.homepage.fragments.MusicOfflineFragment;
@@ -34,14 +40,36 @@ public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<Detail
     private FragmentActivity mContext;
     private LayoutHelper mHelper;
     private int type;
+    private OnLineCourseBean  onLineCourseBean;
+    private  String onlineId;
+
+    private CourseDetailsFragment courseDetailsFragment ;
+    private CourseDetailsCatalogFragment courseDetailsCatalogFragment ;
+    private CourseDetailsRemarkFragment courseDetailsRemarkFragment ;
 
     private CourseDetailsOneFragment courseDetailsOneFragment;
-    private CourseDetailsTwoFragment courseDetailsTwoFragment;
-    private CourseDetailsThreeFragment courseDetailsThreeFragment;
 
-    public DetailSingleLayoutTwoAdapter(FragmentActivity mContext, LayoutHelper mHelper) {
+    /**
+     * 添加数据
+     * @param onLineCourseBean
+     */
+    public void addData(OnLineCourseBean onLineCourseBean){
+        this.onLineCourseBean=onLineCourseBean;
+        notifyDataSetChanged();
+    }
+
+    public DetailSingleLayoutTwoAdapter(FragmentActivity mContext, LayoutHelper mHelper,int type,OnLineCourseBean onLineCourseBean,String onlineId) {
         this.mContext = mContext;
         this.mHelper = mHelper;
+        this.type=type;
+        this.onLineCourseBean=onLineCourseBean;
+        this.onlineId=onlineId;
+
+
+    }
+    public void setType(int type){
+        this.type=type;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -57,7 +85,8 @@ public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<Detail
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DetailSingleLayoutTwoAdapterViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull DetailSingleLayoutTwoAdapterViewHolder holder, int position) {
+        onFragmentRbClick(type);
 
     }
 
@@ -88,6 +117,45 @@ public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<Detail
         hideFragment(fragmentTransaction);
         switch (type){
             case 0:
+                if (courseDetailsFragment==null){
+                    courseDetailsFragment=new CourseDetailsFragment();
+                    fragmentTransaction.add(R.id.sing_content_frame,courseDetailsFragment);
+
+                    //往fragment传递数据
+                    Bundle bundle1= new Bundle();
+                    bundle1.putString("CourseDetailsFragment_url", onlineId);
+                    courseDetailsFragment.setArguments(bundle1);
+
+                }else {
+                    fragmentTransaction.show(courseDetailsFragment);
+                }
+                break;
+            case 1:
+                if (courseDetailsCatalogFragment==null){
+                    courseDetailsCatalogFragment=new CourseDetailsCatalogFragment();
+                    fragmentTransaction.add(R.id.sing_content_frame,courseDetailsCatalogFragment);
+                    //往fragment传递数据
+                    Bundle bundle2= new Bundle();
+                    bundle2.putSerializable("CourseDetailsCatalogFragment_Online", onLineCourseBean);
+                    bundle2.putString("CourseDetailsCatalogFragment_Online","testss");
+                    courseDetailsCatalogFragment.setArguments(bundle2);
+
+                }else {
+                    fragmentTransaction.show(courseDetailsCatalogFragment);
+                }
+                break;
+            case 2:
+                if (courseDetailsRemarkFragment==null){
+                    courseDetailsRemarkFragment=new CourseDetailsRemarkFragment();
+                    fragmentTransaction.add(R.id.sing_content_frame,courseDetailsRemarkFragment);
+
+
+
+                }else {
+                    fragmentTransaction.show(courseDetailsRemarkFragment);
+                }
+                break;
+            case 3:
                 if (courseDetailsOneFragment==null){
                     courseDetailsOneFragment=new CourseDetailsOneFragment();
                     fragmentTransaction.add(R.id.sing_content_frame,courseDetailsOneFragment);
@@ -95,22 +163,8 @@ public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<Detail
                     fragmentTransaction.show(courseDetailsOneFragment);
                 }
                 break;
-            case 1:
-                if (courseDetailsTwoFragment==null){
-                    courseDetailsTwoFragment=new CourseDetailsTwoFragment();
-                    fragmentTransaction.add(R.id.sing_content_frame,courseDetailsTwoFragment);
-                }else {
-                    fragmentTransaction.show(courseDetailsTwoFragment);
-                }
-                break;
-            case 2:
-                if (courseDetailsThreeFragment==null){
-                    courseDetailsThreeFragment=new CourseDetailsThreeFragment();
-                    fragmentTransaction.add(R.id.sing_content_frame,courseDetailsThreeFragment);
-                }else {
-                    fragmentTransaction.show(courseDetailsThreeFragment);
-                }
-                break;
+
+
         }
         fragmentTransaction.commit();
     }
@@ -121,14 +175,17 @@ public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<Detail
      */
     private void hideFragment(FragmentTransaction fragmentTransaction){
         //不为空隐藏
+        if (courseDetailsFragment!=null){
+            fragmentTransaction.hide(courseDetailsFragment);
+        }
+        if (courseDetailsCatalogFragment!=null){
+            fragmentTransaction.hide(courseDetailsCatalogFragment);
+        }
+        if (courseDetailsRemarkFragment!=null){
+            fragmentTransaction.hide(courseDetailsRemarkFragment);
+        }
         if (courseDetailsOneFragment!=null){
             fragmentTransaction.hide(courseDetailsOneFragment);
-        }
-        if (courseDetailsTwoFragment!=null){
-            fragmentTransaction.hide(courseDetailsTwoFragment);
-        }
-        if (courseDetailsThreeFragment!=null){
-            fragmentTransaction.hide(courseDetailsThreeFragment);
         }
 
     }
