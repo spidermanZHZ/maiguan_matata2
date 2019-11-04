@@ -171,10 +171,10 @@ public class SignInActivity extends BaseActivity {
             showTextDialog("请输入验证码");
             return;
         } else {
-            if (registerCode.length()==4){
+            if (registerCode.length()>=4){
               confimCodeMap.put("code", registerCode);    //添加code
             }else {
-                showTextDialog("请输入4位验证码");
+                showTextDialog("请输入正确格式的验证码");
                 return;
             }
 

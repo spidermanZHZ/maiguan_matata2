@@ -18,10 +18,12 @@ import com.example.administrator.matata_android.bean.MusicOnlineBean;
 import com.example.administrator.matata_android.homepage.adapters.LinearHelperAdapter;
 import com.example.administrator.matata_android.homepage.adapters.LinearHelperTwoAdapter;
 import com.example.administrator.matata_android.homepage.adapters.SingleLayoutHelperAdapter;
+import com.example.administrator.matata_android.homepage.adapters.SingleLayoutHelperCollageAdapter;
 import com.example.administrator.matata_android.homepage.adapters.StickyLayoutHelperAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
+import com.example.administrator.matata_android.zhzbase.base.BaseFragmentActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Vlayout效果实现音乐学院页面
  */
-public class MusicCollageThreeActivity extends BaseActivity {
+public class MusicCollageThreeActivity extends BaseFragmentActivity {
 
     @BindView(R.id.music_three_rv)
     RecyclerView musicThreeRv;
@@ -49,6 +51,9 @@ public class MusicCollageThreeActivity extends BaseActivity {
     private StickyLayoutHelperAdapter stickyLayoutHelperAdapter;
 
     private LinearHelperAdapter linearHelperAdapter;
+
+    private SingleLayoutHelperCollageAdapter singleLayoutHelperCollageAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,26 +98,37 @@ public class MusicCollageThreeActivity extends BaseActivity {
         stickyLayoutHelperAdapter=new StickyLayoutHelperAdapter(this,stickyLayoutHelper);
         adapters.add(stickyLayoutHelperAdapter);
 
-        //垂直布局
-        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper(10);
-        linearHelperAdapter=new LinearHelperAdapter(this,linearLayoutHelper,true);
-        getMusicOnline();
-        adapters.add(linearHelperAdapter);
+//        //垂直布局
+//        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper(10);
+//        linearHelperAdapter=new LinearHelperAdapter(this,linearLayoutHelper,true);
+//        getMusicOnline();
+//        adapters.add(linearHelperAdapter);
+
+
+        //单独布局+Fragment 实现线上线下课程切换
+        SingleLayoutHelper singleLayoutHelper1=new SingleLayoutHelper();
+        singleLayoutHelperCollageAdapter=new SingleLayoutHelperCollageAdapter(this,singleLayoutHelper1,0);
+        adapters.add(singleLayoutHelperCollageAdapter);
+
 
 
         stickyLayoutHelperAdapter.setOnItemClickListener(new StickyLayoutHelperAdapter.OnItemClickListener() {
             @Override
             public void onOnLineClick(View v, int position) {
-                Toast.makeText(mContext, "点击了线上课程", Toast.LENGTH_SHORT).show();
-                getMusicOnline();
-                linearHelperAdapter.setOnline(true);
+               singleLayoutHelperCollageAdapter.setType(0);
+                delegateAdapter.notifyDataSetChanged();
+//                getMusicOnline();
+//                linearHelperAdapter.setOnline(true);
+
             }
 
             @Override
             public void onOffLineClick(View v, int position) {
-                Toast.makeText(mContext, "点击了线下课程", Toast.LENGTH_SHORT).show();
-                getMusicOffline();
-                linearHelperAdapter.setOnline(false);
+                singleLayoutHelperCollageAdapter.setType(1);
+                delegateAdapter.notifyDataSetChanged();
+//                getMusicOffline();
+//                linearHelperAdapter.setOnline(false);
+
             }
 
             @Override
@@ -125,9 +141,6 @@ public class MusicCollageThreeActivity extends BaseActivity {
 
             }
         });
-
-
-
 
         //delegateAdapter可以设置一个Adapter的list
          delegateAdapter.setAdapters(adapters);

@@ -28,6 +28,9 @@ import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * 线下课程
+ */
 public class MusicOfflineFragment extends BaseViewNeedSetFragment {
 
     @BindView(R.id.music_adapter_rv)
