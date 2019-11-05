@@ -58,13 +58,6 @@ public class StickyLayoutHelperTwoAdapter extends DelegateAdapter.Adapter<Sticky
                     mOnItemClickListener.onCourseComment(holder.itemView,pos);
                 }
             });
-            holder.tv_course_test.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int pos = holder.getLayoutPosition();
-                    mOnItemClickListener.onItemLongClick(holder.itemView,pos);
-                }
-            });
 
 
         }
@@ -100,13 +93,13 @@ public class StickyLayoutHelperTwoAdapter extends DelegateAdapter.Adapter<Sticky
             TextView tv_course;
             TextView course_tag;
             TextView course_comment;
-            TextView tv_course_test;
+
         public StickyLayoutHelperTwoAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             tv_course=(TextView)itemView.findViewById(R.id.tv_course);
             course_tag=(TextView)itemView.findViewById(R.id.course_tag);
             course_comment=(TextView)itemView.findViewById(R.id.course_comment);
-            tv_course_test=(TextView)itemView.findViewById(R.id.tv_course_test);
+
         }
     }
 

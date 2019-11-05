@@ -16,13 +16,22 @@ import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
 import com.example.administrator.matata_android.homepage.WrapContentHeightViewPager;
 import com.example.administrator.matata_android.homepage.adapters.CourseDetailsCatalogFragmentAdapter;
+import com.example.administrator.matata_android.httputils.BaseObserver;
+import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragment;
 import com.example.administrator.matata_android.zhzbase.base.BaseViewNeedSetFragment;
+import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.w3c.dom.Text;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 课程详情里课程目录
@@ -30,9 +39,8 @@ import org.w3c.dom.Text;
 public class CourseDetailsCatalogFragment  extends BaseViewNeedSetFragment {
 
     private RecyclerView rv;
-    private TextView textView;
+
     private CourseDetailsCatalogFragmentAdapter adapter;
-private String testsss;
 
     private OnLineCourseBean onLineCourseBean;
 
@@ -45,8 +53,6 @@ private String testsss;
         Bundle bundle=CourseDetailsCatalogFragment.this.getArguments();
         if (bundle!=null){
             onLineCourseBean=(OnLineCourseBean)bundle.getSerializable(BUNDLE_ONLINE);
-            testsss=bundle.getString(BUNDLE_ONLINE);
-            Toast.makeText(getContext(),"第2个fragment" +testsss, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -55,42 +61,18 @@ private String testsss;
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view =inflater.inflate( R.layout.fragment_course_details_catalog, container,false);
-        EventBus.getDefault().register(this);
 
         rv=(RecyclerView)view.findViewById(R.id.course_details_catalog_rv);
-        textView=(TextView)view.findViewById(R.id.test2222);
-        adapter=new CourseDetailsCatalogFragmentAdapter(getContext(),R.layout.adapter_course_details_catalog,null);
-        if (onLineCourseBean!=null){
-            adapter.addData(onLineCourseBean.getCatalog());
-            adapter.notifyDataSetChanged();
-        }
-        initData();
-        return view;
-    }
-
-    private void initData(){
+        adapter=new CourseDetailsCatalogFragmentAdapter(R.layout.adapter_course_details_catalog,onLineCourseBean.getCatalog());
+        adapter.addData(onLineCourseBean.getCatalog());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(adapter);
+
+        return view;
     }
 
 
-    /**
-     *接受数据
-     * @param onLineCourseBean
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void  Event(OnLineCourseBean onLineCourseBean) {
-       adapter.addData(onLineCourseBean.getCatalog());
-    }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if(EventBus.getDefault().isRegistered(this))
-        {
-            EventBus.getDefault().unregister(this);
-        }
-    }
 }

@@ -62,11 +62,7 @@ public class CourseDetailsTwoActivity extends SupportActivity {
 
     private StickyLayoutHelperTwoAdapter stickyLayoutHelperTwoAdapter;
 
-    private CourseDetailsFragment courseDetailsFragment =new CourseDetailsFragment();
-    private CourseDetailsCatalogFragment courseDetailsCatalogFragment=new CourseDetailsCatalogFragment();
-    private CourseDetailsRemarkFragment courseDetailsRemarkFragment =new CourseDetailsRemarkFragment();
 
-    private OnLineCourseBean onLineCourseBeans;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_course_details_two);
@@ -175,7 +171,6 @@ public class CourseDetailsTwoActivity extends SupportActivity {
         beanBaseObservers = new BaseObserver<OnLineCourseBean>(this, true, false) {
             @Override
             public void onSuccess(OnLineCourseBean onLineCourseBean) {
-                onLineCourseBeans=onLineCourseBean;
 
                 detailsSingleLayoutAdapter.addData(onLineCourseBean);
                 detailSingleLayoutTwoAdapter.addData(onLineCourseBean);

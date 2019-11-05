@@ -39,11 +39,11 @@ public class CourseDetailsRemarkFragment extends BaseViewNeedSetFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Bundle bundle=getArguments();
-//
-//        if (bundle!=null){
-//            onLineCourseBean =(OnLineCourseBean)bundle.getSerializable(BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE);
-//        }
+        Bundle bundle=getArguments();
+
+        if (bundle!=null){
+            onLineCourseBean =(OnLineCourseBean)bundle.getSerializable(BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE);
+        }
 
     }
 
@@ -65,14 +65,6 @@ public class CourseDetailsRemarkFragment extends BaseViewNeedSetFragment {
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-
-
-    }
-
     private void initData() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -80,12 +72,6 @@ public class CourseDetailsRemarkFragment extends BaseViewNeedSetFragment {
         courseDetailsRemarkRv.setAdapter(adapter);
     }
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-
-    }
 
 
 
