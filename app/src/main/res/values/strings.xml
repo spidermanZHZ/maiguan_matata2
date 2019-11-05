@@ -148,4 +148,9 @@
     <string name="my_news">我的消息</string>
 
     <string name="title_activity_course_details_off_line">CourseDetailsOffLineActivity</string>
+
+    <string name="theatre_name">戏剧学院</string>
+
+
+
 </resources>

@@ -14,6 +14,7 @@ import com.example.administrator.matata_android.homepage.activitys.ArtCampActivi
 import com.example.administrator.matata_android.homepage.activitys.MusicCollageActivity;
 import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
 import com.example.administrator.matata_android.homepage.activitys.MusicCollagetwoActivity;
+import com.example.administrator.matata_android.homepage.activitys.TheatreCollageActivity;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragment;
 
 import butterknife.BindView;
@@ -86,10 +87,10 @@ public class HomePageFragment extends BaseFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_homepage_music:
-                startActivity(new Intent(getActivity(), MusicCollagetwoActivity.class));
+                startActivity(new Intent(getActivity(), MusicCollageThreeActivity.class));
                 break;
             case R.id.ll_homepage_theatre:
-                startActivity(new Intent(getActivity(), MusicCollageThreeActivity.class));
+                startActivity(new Intent(getActivity(), TheatreCollageActivity.class));
                 break;
             case R.id.ll_homepage_art_camp:
                 startActivity(new Intent(getActivity(), ArtCampActivity.class));

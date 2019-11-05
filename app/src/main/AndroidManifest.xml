@@ -84,10 +84,11 @@
         <activity android:name=".homepage.activitys.MusicCollagetwoActivity" />
         <activity android:name=".homepage.activitys.MusicCollageThreeActivity" />
         <activity android:name=".homepage.activitys.CourseDetailsTwoActivity" />
-        <activity android:name=".homepage.activitys.PlayVideoActivity"
+        <activity
+            android:name=".homepage.activitys.PlayVideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".homepage.activitys.TheatreCollageActivity"></activity>
     </application>
 
 </manifest>
