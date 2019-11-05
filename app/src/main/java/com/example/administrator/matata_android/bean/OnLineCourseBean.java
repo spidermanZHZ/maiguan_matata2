@@ -379,7 +379,7 @@ public class OnLineCourseBean implements Serializable {
         this.catalog = catalog;
     }
 
-    public static class ClassifyBean {
+    public static class ClassifyBean implements Serializable  {
         /**
          * id : 51
          * name : 打击乐
@@ -405,7 +405,7 @@ public class OnLineCourseBean implements Serializable {
         }
     }
 
-    public static class EvaluateBean {
+    public static class EvaluateBean implements Serializable {
         /**
          * id : 256
          * is_anonymous : 1
@@ -601,7 +601,7 @@ public class OnLineCourseBean implements Serializable {
         }
     }
 
-    public static class CatalogBean {
+    public static class CatalogBean implements Serializable {
         /**
          * id : 13
          * album_id : 22

@@ -1,5 +1,6 @@
 package com.example.administrator.matata_android.homepage.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
 import com.example.administrator.matata_android.homepage.WrapContentHeightViewPager;
+import com.example.administrator.matata_android.homepage.activitys.PlayVideoActivity;
 import com.example.administrator.matata_android.homepage.adapters.CourseDetailsCatalogFragmentAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
@@ -69,6 +72,25 @@ public class CourseDetailsCatalogFragment  extends BaseViewNeedSetFragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(linearLayoutManager);
         rv.setAdapter(adapter);
+        //点击事件
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (onLineCourseBean.getCatalog().get(position).getIs_audition().equals("1")){
+                    //跳转到视频播放页面
+                    Intent intent = new Intent(getContext(), PlayVideoActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putSerializable("video_player_bundle",onLineCourseBean);
+                    bundle.putInt("position",position);
+                    intent.putExtra("video_player_intent",bundle);
+                    startActivity(intent);
+
+                }else {
+                    Toast.makeText(getContext(), "该视频需要购买课程后才可以观看哟", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
         return view;
     }

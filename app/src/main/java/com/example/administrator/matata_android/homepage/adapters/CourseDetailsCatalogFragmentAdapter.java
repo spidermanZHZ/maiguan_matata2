@@ -39,9 +39,6 @@ public class CourseDetailsCatalogFragmentAdapter extends BaseQuickAdapter<OnLine
             helper.setImageResource(R.id.course_details_catalog_iv, R.mipmap.video_false);
         }
 
+
     }
-
-
-
-
 }

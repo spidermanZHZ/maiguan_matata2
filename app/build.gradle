@@ -102,5 +102,7 @@ dependencies {
 
 // Activity作用域的EventBus，更安全，可有效避免after onSavenInstanceState()异常
     implementation 'me.yokeyword:eventbus-activity-scope:1.1.0'
-
+    
+//饺子播放器
+    implementation 'cn.jzvd:jiaozivideoplayer:7.0.5'
 }
