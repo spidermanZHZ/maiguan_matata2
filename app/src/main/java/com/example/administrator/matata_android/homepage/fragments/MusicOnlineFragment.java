@@ -1,6 +1,7 @@
 package com.example.administrator.matata_android.homepage.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,8 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
+import com.example.administrator.matata_android.homepage.activitys.CourseDetailsTwoActivity;
 import com.example.administrator.matata_android.homepage.adapters.MusicOnlineAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
@@ -72,7 +75,15 @@ public class MusicOnlineFragment extends BaseViewNeedSetFragment {
 
                 adapter.addData(musicOnlineBean.getData());
                 adapter.notifyDataSetChanged();
-
+                adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                        Intent intent = new Intent(getContext(), CourseDetailsTwoActivity.class);
+                        String id=String.valueOf(musicOnlineBean.getData().get(position).getId());
+                        intent.putExtra("onlineId",id);
+                        startActivity(intent);
+                    }
+                });
             }
         };
         RetrofitUtil.getInstance().getApiService().getMusicOnline(map)

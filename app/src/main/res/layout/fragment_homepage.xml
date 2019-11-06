@@ -20,9 +20,7 @@
             android:layout_height="44dp"
             android:background="@color/white"
             app:title="@string/home_page"
-            app:leftTitle="@string/homepage_location"
             app:leftColor="@color/Et_hintText"
-            app:leftIcon="@mipmap/homepage_location"
             app:rightIcon="@mipmap/homepage_search"
             app:rightColor="@color/Et_hintText"
             app:titleColor="#000000"
@@ -31,6 +29,11 @@
             app:lineColor="@color/white"
             />
     </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_pager_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <com.liaoinstan.springview.widget.SpringView
     android:layout_width="match_parent"
     android:layout_height="match_parent">

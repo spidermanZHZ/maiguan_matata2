@@ -41,6 +41,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import me.yokeyword.fragmentation.SupportActivity;
 
+/**
+ * 线上课程
+ */
 public class CourseDetailsTwoActivity extends SupportActivity {
 
     @BindView(R.id.title)

@@ -6,6 +6,7 @@ import com.example.administrator.matata_android.bean.ArtCampBean;
 import com.example.administrator.matata_android.bean.ArtCampInfoBean;
 import com.example.administrator.matata_android.bean.ChildDetailsBean;
 import com.example.administrator.matata_android.bean.ChildId;
+import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
 import com.example.administrator.matata_android.bean.LoginBean;
 import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.bean.MusicOffLineBean;
@@ -180,6 +181,14 @@ public interface APIService {
      */
     @GET("course/online/details")
     Observable<BaseBeanResponse<OnLineCourseBean>> getOnlineCourse(@QueryMap Map<String ,Object> map);
+
+    /**
+     * 首页信息
+     * @param map
+     * @return
+     */
+    @GET("index")
+    Observable<BaseBeanResponse<HomepagerTeacherBean>> getHomePagerInfo(@QueryMap Map<String ,Object> map);
 
 
 

@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -83,7 +84,14 @@ public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<Detail
 
     @Override
     public void onBindViewHolder(@NonNull DetailSingleLayoutTwoAdapterViewHolder holder, int position) {
-        onFragmentRbClick(type);
+        if (onlineId!=null){
+            Toast.makeText(mContext,"onlineId的值为："+String.valueOf(onlineId), Toast.LENGTH_SHORT).show();
+            onFragmentRbClick(type);
+
+        }else {
+            Toast.makeText(mContext,"onlineId的值为空", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 

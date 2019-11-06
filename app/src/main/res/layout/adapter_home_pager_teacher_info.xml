@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="23dp"
+    android:layout_marginRight="23dp"
+    android:layout_marginTop="20dp"
+    android:orientation="vertical"
+    >
+   <ImageView
+       android:id="@+id/adapter_teacher_info_iv"
+       android:layout_width="82dp"
+       android:layout_height="82dp"
+       android:layout_gravity="center"
+       />
+    <TextView
+        android:id="@+id/adapter_teacher_info_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:layout_gravity="center"
+        android:text="马它它"
+        android:textColor="@color/Tv_text"
+        android:textSize="14sp"
+        android:includeFontPadding="true"
+        />
+    <TextView
+        android:id="@+id/adapter_teacher_info_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="center"
+        android:text="乐器"
+        android:textColor="@color/tv_text_style"
+        android:textSize="14sp"
+        android:includeFontPadding="true"
+        />
+
+</com.zhy.autolayout.AutoLinearLayout>
