@@ -3,7 +3,7 @@
     <!-- 定义插件背景-->
 
     <!-- 指定内部填充色-->
-    <solid android:color="@color/white"/>
+    <solid android:color="@color/activity_bg"/>
 
     <!-- 定义圆角-->
     <corners

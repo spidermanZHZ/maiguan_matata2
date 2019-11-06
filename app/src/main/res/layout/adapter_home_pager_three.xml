@@ -2,11 +2,11 @@
 <com.zhy.autolayout.AutoLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
-    android:layout_marginTop="5dp"
+    android:layout_marginTop="10dp"
     android:background="@drawable/cornerbg_white_single"
+    android:orientation="vertical"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,23 +27,23 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="热门老师"
+            android:text="热门课程"
             android:textColor="@color/Tv_text"
             android:layout_gravity="center"
             />
         <TextView
-            android:id="@+id/home_pager_more_teacher"
+            android:id="@+id/home_pager_more_course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="更多老师..."
+            android:text="更多课程..."
             android:layout_marginRight="15dp"
             android:textColor="@color/Tv_text"
             android:layout_gravity="center"
             />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_homepage_teacher"
+        android:id="@+id/rv_homepage_course"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </com.zhy.autolayout.AutoLinearLayout>

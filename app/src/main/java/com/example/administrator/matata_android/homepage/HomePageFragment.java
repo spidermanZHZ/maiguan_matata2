@@ -13,11 +13,15 @@ import android.widget.LinearLayout;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
+import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
 import com.example.administrator.matata_android.homepage.activitys.ArtCampActivity;
 import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
 import com.example.administrator.matata_android.homepage.activitys.TheatreCollageActivity;
+import com.example.administrator.matata_android.homepage.adapters.HomepagerFourAdapter;
+import com.example.administrator.matata_android.homepage.adapters.HomepagerOneAdapter;
+import com.example.administrator.matata_android.homepage.adapters.HomepagerThreeAdapter;
 import com.example.administrator.matata_android.homepage.adapters.HomepagerTwoAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
@@ -60,9 +64,11 @@ public class HomePageFragment extends BaseViewNeedSetFragment {
     LinearLayout llHomepageGrade;
     @BindView(R.id.home_pager_rv)
     RecyclerView homePagerRv;
-
-    private HomepagerTwoAdapter homepagerTwoAdapter;
     private BaseObserver<HomepagerTeacherBean> teacherBeanBaseObserver;
+    private HomepagerOneAdapter homepagerOneAdapter;
+    private HomepagerTwoAdapter homepagerTwoAdapter;
+    private HomepagerThreeAdapter homepagerThreeAdapter;
+    private HomepagerFourAdapter homepagerFourAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -87,11 +93,31 @@ public class HomePageFragment extends BaseViewNeedSetFragment {
 
         //创建delegateadapter
         DelegateAdapter delegateAdapter = new DelegateAdapter(layoutManager, true);
-        //单独布局
+
+        //装载轮播图
+        SingleLayoutHelper singleLayoutHelper2=new SingleLayoutHelper();
+        homepagerOneAdapter=new HomepagerOneAdapter(getContext(),singleLayoutHelper2,null);
+
+        StickyLayoutHelper stickyLayoutHelper=new StickyLayoutHelper();
+        homepagerFourAdapter=new HomepagerFourAdapter(getContext(),stickyLayoutHelper);
+
+        //单独布局，热门老师
         SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
         homepagerTwoAdapter=new HomepagerTwoAdapter(getContext(),singleLayoutHelper,null);
+
+        //装载热门课程
+        SingleLayoutHelper singleLayoutHelper13=new SingleLayoutHelper();
+        homepagerThreeAdapter=new HomepagerThreeAdapter(getContext(),singleLayoutHelper13,null);
+
+
+
+        //加载资源
         getHomePagerInfo();
+
+        adapters.add(homepagerOneAdapter);
+        adapters.add(homepagerFourAdapter);
         adapters.add(homepagerTwoAdapter);
+        adapters.add(homepagerThreeAdapter);
 
         delegateAdapter.setAdapters(adapters);
         homePagerRv.setAdapter(delegateAdapter);
@@ -113,7 +139,9 @@ public class HomePageFragment extends BaseViewNeedSetFragment {
        teacherBeanBaseObserver=new BaseObserver<HomepagerTeacherBean>(getContext(),false,false) {
            @Override
            public void onSuccess(HomepagerTeacherBean homepagerTeacherBean) {
+               homepagerOneAdapter.addData(homepagerTeacherBean);
                homepagerTwoAdapter.addData(homepagerTeacherBean);
+               homepagerThreeAdapter.addData(homepagerTeacherBean);
            }
        };
         RetrofitUtil.getInstance().getApiService().getHomePagerInfo(map)

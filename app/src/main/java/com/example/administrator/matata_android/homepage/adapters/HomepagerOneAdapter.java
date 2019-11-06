@@ -1,7 +1,143 @@
 package com.example.administrator.matata_android.homepage.adapters;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.alibaba.android.vlayout.DelegateAdapter;
+import com.alibaba.android.vlayout.LayoutHelper;
+import com.bumptech.glide.Glide;
+import com.example.administrator.matata_android.R;
+import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
+import com.example.administrator.matata_android.homepage.activitys.ArtCampActivity;
+import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
+import com.example.administrator.matata_android.homepage.activitys.TheatreCollageActivity;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import cn.bingoogolapple.bgabanner.BGABanner;
+
+import static com.blankj.utilcode.util.ActivityUtils.startActivity;
+
 /**
- * 首页装载轮播图适配器
+ * 首页装载轮播图适配器,以及按钮
  */
-public class HomepagerOneAdapter {
+public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAdapter.HomepagerOneAdapterViewHolder> {
+    private Context mContext;
+    private LayoutHelper layoutHelper;
+    private HomepagerTeacherBean homepagerTeacherBean;
+
+    public void addData(HomepagerTeacherBean homepagerTeacherBean){
+        this.homepagerTeacherBean=homepagerTeacherBean;
+        notifyDataSetChanged();
+
+    }
+    public HomepagerOneAdapter(Context mContext, LayoutHelper layoutHelper, HomepagerTeacherBean homepagerTeacherBean) {
+        this.mContext = mContext;
+        this.layoutHelper = layoutHelper;
+        this.homepagerTeacherBean = homepagerTeacherBean;
+    }
+
+    @Override
+    public LayoutHelper onCreateLayoutHelper() {
+        return layoutHelper;
+    }
+
+    @NonNull
+    @Override
+    public HomepagerOneAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_home_pager_one_banner, parent, false);
+        return new HomepagerOneAdapterViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull HomepagerOneAdapterViewHolder holder, int position) {
+
+        holder.bannerGuideContent.setAdapter(new BGABanner.Adapter<ImageView,String>() {
+            @Override
+            public void fillBannerItem(BGABanner banner, ImageView itemView, @Nullable String model, int position) {
+                Glide.with(mContext)
+                        .load(model)
+                        .centerCrop()
+                        .dontAnimate()
+                        .into(itemView);
+            }
+        });
+
+        //添加网络图片
+
+        //holder.bannerGuideContent.setData();
+
+        //点击事件
+        holder.bannerGuideContent.setDelegate(new BGABanner.Delegate<ImageView, String>() {
+            @Override
+            public void onBannerItemClick(BGABanner banner, ImageView itemView, @Nullable String model, int position) {
+
+            }
+        });
+
+        //音乐学院
+        holder.llHomepageMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, MusicCollageThreeActivity.class));
+            }
+        });
+        //戏剧学院
+        holder.llHomepageTheatre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, TheatreCollageActivity.class));
+            }
+        });
+        //艺术营地
+        holder.llHomepageArtCamp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, ArtCampActivity.class));
+            }
+        });
+        //考级报名
+        holder.llHomepageGrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "该功能暂未开通", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return 1;
+    }
+
+    class HomepagerOneAdapterViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.banner_guide_content)
+        BGABanner bannerGuideContent;
+        @BindView(R.id.ll_homepage_music)
+        LinearLayout llHomepageMusic;
+        @BindView(R.id.ll_homepage_theatre)
+        LinearLayout llHomepageTheatre;
+        @BindView(R.id.ll_homepage_art_camp)
+        LinearLayout llHomepageArtCamp;
+        @BindView(R.id.ll_homepage_grade)
+        LinearLayout llHomepageGrade;
+
+        public HomepagerOneAdapterViewHolder(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
+    
 }
