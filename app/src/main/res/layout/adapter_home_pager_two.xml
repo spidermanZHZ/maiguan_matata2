@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="热门老师"
+            android:textSize="16sp"
             android:textColor="@color/Tv_text"
             android:layout_gravity="center"
             />
@@ -35,10 +36,12 @@
             android:id="@+id/home_pager_more_teacher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="13sp"
             android:layout_marginLeft="5dp"
-            android:text="更多老师..."
+            android:text="查看全部"
             android:layout_marginRight="15dp"
-            android:textColor="@color/Tv_text"
+            android:textColor="@color/Et_hintText"
             android:layout_gravity="center"
             />
     </LinearLayout>

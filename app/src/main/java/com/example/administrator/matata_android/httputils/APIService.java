@@ -12,6 +12,7 @@ import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.bean.MusicOffLineBean;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
+import com.example.administrator.matata_android.bean.TheatreHotInfoBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -190,6 +191,14 @@ public interface APIService {
     @GET("index")
     Observable<BaseBeanResponse<HomepagerTeacherBean>> getHomePagerInfo(@QueryMap Map<String ,Object> map);
 
+
+    /**
+     * 首页信息
+     * @param map
+     * @return
+     */
+    @GET("course/drama/new")
+    Observable<BaseBeanResponse<TheatreHotInfoBean>> getTheatreInfo(@QueryMap Map<String ,Object> map);
 
 
 }

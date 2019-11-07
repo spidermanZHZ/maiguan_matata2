@@ -65,7 +65,7 @@
     <string name="homepage_music">音乐学院</string>
     <string name="homepage_course">戏剧学院</string>
     <string name="homepage_art">艺术营地</string>
-    <string name="homepage_grade">等级报名</string>
+    <string name="homepage_grade">考级报名</string>
 
     <!--音乐课程-->
     <string name="music_course">音乐课程</string>

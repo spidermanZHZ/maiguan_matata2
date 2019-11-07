@@ -5,6 +5,7 @@ import java.util.List;
 
 public class HomepagerTeacherBean implements Serializable {
 
+
     private List<TeacherBean> teacher;
     private List<CourseBean> course;
     private List<BannerBean> banner;
@@ -417,6 +418,7 @@ public class HomepagerTeacherBean implements Serializable {
          * price : 0
          * cover_pic : storage/2019-07-30/kBuoXeaHj1Xotv5ZsPHmclFS1CxGxbEQHlOFnfji.jpeg
          * course_type : 15
+         * description : 架子鼓基础课程与演练
          * type : online
          */
 
@@ -426,6 +428,7 @@ public class HomepagerTeacherBean implements Serializable {
         private String price;
         private String cover_pic;
         private String course_type;
+        private String description;
         private String type;
 
         public int getId() {
@@ -476,6 +479,14 @@ public class HomepagerTeacherBean implements Serializable {
             this.course_type = course_type;
         }
 
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+
         public String getType() {
             return type;
         }
@@ -486,29 +497,32 @@ public class HomepagerTeacherBean implements Serializable {
     }
 
     public static class BannerBean {
+
         /**
-         * id : 391
+         * id : 393
          * main : BANNER
-         * sub : SC
-         * name : 泰国PBL高端亲子戏剧游学
-         * value : {"fk":"storage/2019-07-17/ZNpJvKACXOHlzAnBzmIjdMK8XM9Ni7b3SpdagVEB.jpeg","objName":"泰国清迈六天五夜|PBL高端亲子戏剧游学","urlType":"own","objId":"163","url":"泰国清迈六天五夜|PBL高端亲子戏剧游学"}
+         * sub : DRAMA
+         * name : 戏剧课程1
+         * value : {"fk":"storage/2019-11-01/EMgPmARSHn11iGVoxUsMfbaAXYAyxvUxCzYjSIMq.png","objName":"2236","urlType":"own","objId":"7","url":"2236"}
          * descp : null
          * sort : 1
          * status : 0
-         * createDt : 2019-07-17 16:21:54
-         * updateDt : 2019-07-17 16:21:54
+         * createDt : 2019-10-29 10:16:39
+         * updateDt : 2019-11-01 14:25:34
+         * img : storage/2019-11-01/EMgPmARSHn11iGVoxUsMfbaAXYAyxvUxCzYjSIMq.png
          */
 
         private int id;
         private String main;
         private String sub;
         private String name;
-        private String value;
+        private ValueBean value;
         private Object descp;
         private int sort;
         private String status;
         private String createDt;
         private String updateDt;
+        private String img;
 
         public int getId() {
             return id;
@@ -542,11 +556,11 @@ public class HomepagerTeacherBean implements Serializable {
             this.name = name;
         }
 
-        public String getValue() {
+        public ValueBean getValue() {
             return value;
         }
 
-        public void setValue(String value) {
+        public void setValue(ValueBean value) {
             this.value = value;
         }
 
@@ -588,6 +602,70 @@ public class HomepagerTeacherBean implements Serializable {
 
         public void setUpdateDt(String updateDt) {
             this.updateDt = updateDt;
+        }
+
+        public String getImg() {
+            return img;
+        }
+
+        public void setImg(String img) {
+            this.img = img;
+        }
+
+        public static class ValueBean {
+            /**
+             * fk : storage/2019-11-01/EMgPmARSHn11iGVoxUsMfbaAXYAyxvUxCzYjSIMq.png
+             * objName : 2236
+             * urlType : own
+             * objId : 7
+             * url : 2236
+             */
+
+            private String fk;
+            private String objName;
+            private String urlType;
+            private String objId;
+            private String url;
+
+            public String getFk() {
+                return fk;
+            }
+
+            public void setFk(String fk) {
+                this.fk = fk;
+            }
+
+            public String getObjName() {
+                return objName;
+            }
+
+            public void setObjName(String objName) {
+                this.objName = objName;
+            }
+
+            public String getUrlType() {
+                return urlType;
+            }
+
+            public void setUrlType(String urlType) {
+                this.urlType = urlType;
+            }
+
+            public String getObjId() {
+                return objId;
+            }
+
+            public void setObjId(String objId) {
+                this.objId = objId;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
         }
     }
 }

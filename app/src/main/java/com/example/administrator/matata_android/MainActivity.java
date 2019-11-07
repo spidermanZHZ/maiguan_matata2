@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.example.administrator.matata_android.growup.GrowUpFragment;
 import com.example.administrator.matata_android.homepage.HomePageFragment;
 import com.example.administrator.matata_android.my.MyFragment;
@@ -145,15 +146,19 @@ public class MainActivity extends BaseFragmentActivity {
                 if (homePageFragment==null){
                     homePageFragment=new HomePageFragment();
                     fragmentTransaction.add(R.id.content_frame,homePageFragment);
+                    BarUtils.setStatusBarColor(this,getResources().getColor(R.color.transparent),true);
                 }else {
                     fragmentTransaction.show(homePageFragment);
+                    BarUtils.setStatusBarColor(this,getResources().getColor(R.color.transparent),true);
                 }
                 break;
             case 1:
                 if (growUpFragment==null){
                     growUpFragment=new GrowUpFragment();
                     fragmentTransaction.add(R.id.content_frame,growUpFragment);
+                    BarUtils.setStatusBarColor(this,getResources().getColor(R.color.background_title),true);
                 }else {
+                    BarUtils.setStatusBarColor(this,getResources().getColor(R.color.background_title),true);
                     fragmentTransaction.show(growUpFragment);
                 }
                 break;
@@ -161,8 +166,10 @@ public class MainActivity extends BaseFragmentActivity {
                 if (myFragment==null){
                     myFragment=new MyFragment();
                     fragmentTransaction.add(R.id.content_frame,myFragment);
+                    BarUtils.setStatusBarColor(this,getResources().getColor(R.color.background_title),true);
                 }else {
                     fragmentTransaction.show(myFragment);
+                    BarUtils.setStatusBarColor(this,getResources().getColor(R.color.background_title),true);
                 }
                 break;
         }

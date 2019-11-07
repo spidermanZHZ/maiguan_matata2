@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
+import android.view.View;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.example.administrator.matata_android.R;
@@ -31,12 +32,21 @@ public abstract class BaseFragmentActivity extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
       unbinder= ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
-        BarUtils.setStatusBarColor(this,getResources().getColor(R.color.background_title),true);
+        BarUtils.setStatusBarColor(this,getResources().getColor(R.color.transparent),true);
+        setAndroidNativeLightStatusBar(this,true);
         //添加当前Activity
         this.mContext = this;
         getExras();
         initData();
         setListener();
+    }
+    private static void setAndroidNativeLightStatusBar(Activity activity, boolean dark) {
+        View decor = activity.getWindow().getDecorView();
+        if (dark) {
+            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+            decor.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        }
     }
     //获取Intent传递的数据
     protected abstract void getExras();

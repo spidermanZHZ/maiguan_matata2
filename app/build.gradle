@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.administrator.matata_android"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -35,7 +35,7 @@ dependencies {
     //鸿洋 适配框架
     implementation 'com.zhy:autolayout:1.4.5'
     //TitleBar框架
-    implementation 'com.hjq:titlebar:5.0'
+    implementation 'com.hjq:titlebar:6.0'
     //导入butterknife
     implementation 'com.jakewharton:butterknife:9.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
@@ -53,7 +53,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
     //轮播图
-    implementation 'cn.bingoogolapple:bga-banner:2.2.6@aar'
+    implementation 'cn.bingoogolapple:bga-banner:2.2.7@aar'
 
     //SpringView核心库 (只包含DefaultHeader/Footer)
     implementation 'com.liaoinstan.springview:library:1.5.1'
@@ -105,4 +105,7 @@ dependencies {
 
 //饺子播放器
     implementation 'cn.jzvd:jiaozivideoplayer:7.0.5'
+
+
+
 }

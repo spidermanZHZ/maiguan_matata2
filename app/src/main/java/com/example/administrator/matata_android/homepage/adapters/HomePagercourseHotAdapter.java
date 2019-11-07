@@ -44,7 +44,7 @@ public class HomePagercourseHotAdapter extends BaseQuickAdapter<HomepagerTeacher
             helper.setText(R.id.adapter_home_pager_course_hot_achievement,"戏剧课程");
         }
 
-        helper.setText(R.id.adapter_home_pager_course_hot_introduce,item.getPrice());
+        helper.setText(R.id.adapter_home_pager_course_hot_introduce,item.getDescription());
 
 
 

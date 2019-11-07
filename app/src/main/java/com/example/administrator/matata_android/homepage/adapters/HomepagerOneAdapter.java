@@ -15,13 +15,14 @@ import android.widget.Toast;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
 import com.example.administrator.matata_android.homepage.activitys.ArtCampActivity;
 import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
 import com.example.administrator.matata_android.homepage.activitys.TheatreCollageActivity;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import butterknife.BindView;
@@ -36,17 +37,19 @@ import static com.blankj.utilcode.util.ActivityUtils.startActivity;
 public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAdapter.HomepagerOneAdapterViewHolder> {
     private Context mContext;
     private LayoutHelper layoutHelper;
-    private HomepagerTeacherBean homepagerTeacherBean;
+    private HomepagerTeacherBean homepagerTeacherBeans;
+    private final static String URL = "https://www.maiguanjy.com/";
 
-    public void addData(HomepagerTeacherBean homepagerTeacherBean){
-        this.homepagerTeacherBean=homepagerTeacherBean;
-        notifyDataSetChanged();
-
-    }
     public HomepagerOneAdapter(Context mContext, LayoutHelper layoutHelper, HomepagerTeacherBean homepagerTeacherBean) {
         this.mContext = mContext;
         this.layoutHelper = layoutHelper;
-        this.homepagerTeacherBean = homepagerTeacherBean;
+        this.homepagerTeacherBeans = homepagerTeacherBean;
+    }
+
+    public void addData(HomepagerTeacherBean homepagerTeacherBean) {
+        this.homepagerTeacherBeans = homepagerTeacherBean;
+        notifyDataSetChanged();
+
     }
 
     @Override
@@ -64,26 +67,31 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
     @Override
     public void onBindViewHolder(@NonNull HomepagerOneAdapterViewHolder holder, int position) {
 
-        holder.bannerGuideContent.setAdapter(new BGABanner.Adapter<ImageView,String>() {
+        holder.bannerGuideContent.setAdapter(new BGABanner.Adapter<ImageView, String>() {
             @Override
-            public void fillBannerItem(BGABanner banner, ImageView itemView, @Nullable String model, int position) {
+            public void fillBannerItem(BGABanner banner, ImageView itemView, @Nullable String url, int position) {
+
+                //设置图片圆角角度
+                RoundedCorners roundedCorners = new RoundedCorners(10);
+                //通过RequestOptions扩展功能
+                RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
                 Glide.with(mContext)
-                        .load(model)
-                        .centerCrop()
-                        .dontAnimate()
+                        .load(url)
+                        .apply(options)
                         .into(itemView);
             }
         });
-
         //添加网络图片
-
-        //holder.bannerGuideContent.setData();
-
+        //List<String> urls=new ArrayList<String>();
+        if (homepagerTeacherBeans != null) {
+            //urls.add(URL+homepagerTeacherBeans.getBanner().get(0).getImg());
+            holder.bannerGuideContent.setData(Arrays.asList(URL + homepagerTeacherBeans.getBanner().get(0).getImg(), URL + homepagerTeacherBeans.getBanner().get(1).getImg(), URL + homepagerTeacherBeans.getBanner().get(2).getImg()), Arrays.asList(homepagerTeacherBeans.getBanner().get(0).getName(), homepagerTeacherBeans.getBanner().get(1).getName(), homepagerTeacherBeans.getBanner().get(2).getName()));
+        }
         //点击事件
         holder.bannerGuideContent.setDelegate(new BGABanner.Delegate<ImageView, String>() {
             @Override
             public void onBannerItemClick(BGABanner banner, ImageView itemView, @Nullable String model, int position) {
-
+                Toast.makeText(mContext, "点击了轮播图", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -115,6 +123,12 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
                 Toast.makeText(mContext, "该功能暂未开通", Toast.LENGTH_SHORT).show();
             }
         });
+        holder.homePagerSetArtIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "该功能暂未开放", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -133,11 +147,12 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
         LinearLayout llHomepageArtCamp;
         @BindView(R.id.ll_homepage_grade)
         LinearLayout llHomepageGrade;
-
+        @BindView(R.id.home_pager_set_art_iv)
+        ImageView homePagerSetArtIv;
         public HomepagerOneAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
-    
+
 }

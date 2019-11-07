@@ -15,25 +15,17 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:fitsSystemWindows="true"
         >
-        <com.zhy.autolayout.AutoFrameLayout
+        <com.example.administrator.matata_android.zhzbase.view.WindowInsetsFrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="true"
-            android:fitsSystemWindows="true"
-            android:layout_above="@+id/line"
+            android:layout_above="@+id/rg_tab"
             >
 
-        </com.zhy.autolayout.AutoFrameLayout>
+        </com.example.administrator.matata_android.zhzbase.view.WindowInsetsFrameLayout>
 
-        <View
-            android:id="@+id/line"
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_above="@+id/rg_tab"
-            android:background="#858585" />
         <RadioGroup
             android:id="@+id/rg_tab"
             android:layout_width="match_parent"
