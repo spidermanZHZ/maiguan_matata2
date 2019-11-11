@@ -1,5 +1,6 @@
 package com.example.administrator.matata_android.homepage.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,13 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.MusicOffLineBean;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
+import com.example.administrator.matata_android.homepage.activitys.TheatreCollageCourseDetailsActivity;
 import com.example.administrator.matata_android.homepage.adapters.MusicOfflineAdapter;
 import com.example.administrator.matata_android.homepage.adapters.MusicOnlineAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
+import com.example.administrator.matata_android.zhzbase.base.BaseApplication;
 import com.example.administrator.matata_android.zhzbase.base.BaseViewNeedSetFragment;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 
@@ -72,7 +76,15 @@ public class MusicOfflineFragment extends BaseViewNeedSetFragment {
 
                 adapter.addData(musicOffLineBean.getData());
                 adapter.notifyDataSetChanged();
-
+               adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                   @Override
+                   public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                       Intent intent = new Intent(getContext(), TheatreCollageCourseDetailsActivity.class);
+                       String id =String.valueOf(musicOffLineBean.getData().get(position).getId());
+                       intent.putExtra("offlineId",id);
+                       startActivity(intent);
+                   }
+               });
             }
         };
         RetrofitUtil.getInstance().getApiService().getMusicOffline(map)

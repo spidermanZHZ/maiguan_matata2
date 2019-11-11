@@ -2,7 +2,7 @@
 <com.zhy.autolayout.AutoLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="240dp"
     android:layout_marginRight="17dp"
     android:layout_marginLeft="17dp"
     android:orientation="vertical"
@@ -12,8 +12,7 @@
     <ImageView
         android:id="@+id/music_hot_iv"
         android:contentDescription="@string/music_course"
-        android:layout_marginTop="15dp"
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:src="@mipmap/ic_launcher"

@@ -11,7 +11,9 @@ import com.example.administrator.matata_android.bean.LoginBean;
 import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.bean.MusicOffLineBean;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
+import com.example.administrator.matata_android.bean.OffLineCourseBean;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
+import com.example.administrator.matata_android.bean.TheatreCourseDetailsBean;
 import com.example.administrator.matata_android.bean.TheatreHotInfoBean;
 
 import java.util.ArrayList;
@@ -199,6 +201,20 @@ public interface APIService {
      */
     @GET("course/drama/new")
     Observable<BaseBeanResponse<TheatreHotInfoBean>> getTheatreInfo(@QueryMap Map<String ,Object> map);
+    /**
+     * 戏剧学院课程列表
+     * @param map
+     * @return
+     */
+    @GET("course/drama")
+    Observable<BaseBeanResponse<TheatreCourseDetailsBean>> getTheatreCourseDetails(@QueryMap Map<String ,Object> map);
 
+    /**
+     * 音乐学院线下课程详情
+     * @param map
+     * @return
+     */
+    @GET("course/offline/details")
+    Observable<BaseBeanResponse<OffLineCourseBean>> getOfflineCourse(@QueryMap Map<String ,Object> map);
 
 }

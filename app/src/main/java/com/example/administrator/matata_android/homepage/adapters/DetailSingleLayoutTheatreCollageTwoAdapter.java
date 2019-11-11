@@ -3,65 +3,61 @@ package com.example.administrator.matata_android.homepage.adapters;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-
 import android.support.v4.app.FragmentActivity;
-
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.example.administrator.matata_android.R;
-
+import com.example.administrator.matata_android.bean.OffLineCourseBean;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsCatalogFragment;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsFragment;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsOneFragment;
 import com.example.administrator.matata_android.homepage.fragments.CourseDetailsRemarkFragment;
-
+import com.example.administrator.matata_android.homepage.fragments.TheatreCourseDetailsFragment;
+import com.example.administrator.matata_android.homepage.fragments.TheatreCourseDetailsRemarkFragment;
 import com.shizhefei.view.indicator.ScrollIndicatorView;
 
 
 /**
  * 课程详情适配器2
  */
-public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<DetailSingleLayoutTwoAdapter.DetailSingleLayoutTwoAdapterViewHolder> {
+public class DetailSingleLayoutTheatreCollageTwoAdapter extends DelegateAdapter.Adapter<DetailSingleLayoutTheatreCollageTwoAdapter.DetailSingleLayoutTwoAdapterViewHolder> {
 
     private FragmentActivity mContext;
     private LayoutHelper mHelper;
     private int type;
-    private OnLineCourseBean  onLineCourseBean;
-    private  String onlineId;
+    private OffLineCourseBean offLineCourseBean;
+    private  String offlineId;
 
-    private CourseDetailsFragment courseDetailsFragment ;
-    private CourseDetailsCatalogFragment courseDetailsCatalogFragment ;
-    private CourseDetailsRemarkFragment courseDetailsRemarkFragment ;
+    private TheatreCourseDetailsFragment courseDetailsFragment ;
 
-    private CourseDetailsOneFragment courseDetailsOneFragment;
+    private TheatreCourseDetailsRemarkFragment courseDetailsRemarkFragment ;
+
 
     /**
      * 添加数据
-     * @param onLineCourseBean
+     * @param offLineCourseBean
      */
-    public void addData(OnLineCourseBean onLineCourseBean){
-        this.onLineCourseBean=onLineCourseBean;
+    public void addData(OffLineCourseBean offLineCourseBean){
+        this.offLineCourseBean=offLineCourseBean;
         notifyDataSetChanged();
     }
 
-    public DetailSingleLayoutTwoAdapter(FragmentActivity mContext, LayoutHelper mHelper,int type,OnLineCourseBean onLineCourseBean,String onlineId) {
+    public DetailSingleLayoutTheatreCollageTwoAdapter(FragmentActivity mContext, LayoutHelper mHelper, int type, OffLineCourseBean offLineCourseBean, String offlineId) {
         this.mContext = mContext;
         this.mHelper = mHelper;
         this.type=type;
-        this.onLineCourseBean=onLineCourseBean;
-        this.onlineId=onlineId;
+        this.offLineCourseBean=offLineCourseBean;
+        this.offlineId=offlineId;
 
 
     }
@@ -84,11 +80,11 @@ public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<Detail
 
     @Override
     public void onBindViewHolder(@NonNull DetailSingleLayoutTwoAdapterViewHolder holder, int position) {
-        if (onlineId!=null){
+        if (offlineId!=null){
             onFragmentRbClick(type);
 
         }else {
-            Toast.makeText(mContext,"onlineId的值为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,"offlineId的值为空", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -122,38 +118,26 @@ public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<Detail
         switch (type){
             case 0:
                 if (courseDetailsFragment==null){
-                    courseDetailsFragment=new CourseDetailsFragment();
+                    courseDetailsFragment=new TheatreCourseDetailsFragment();
                     fragmentTransaction.add(R.id.sing_content_frame,courseDetailsFragment);
 
                     //往fragment传递数据
                     Bundle bundle1= new Bundle();
-                    bundle1.putString("CourseDetailsFragment_url", onlineId);
+                    bundle1.putString("CourseDetailsFragment_url", offlineId);
                     courseDetailsFragment.setArguments(bundle1);
 
                 }else {
                     fragmentTransaction.show(courseDetailsFragment);
                 }
                 break;
-            case 1:
-                if (courseDetailsCatalogFragment==null){
-                    courseDetailsCatalogFragment=new CourseDetailsCatalogFragment();
-                    fragmentTransaction.add(R.id.sing_content_frame,courseDetailsCatalogFragment);
-                    //往fragment传递数据
-                    Bundle bundle2= new Bundle();
-                    bundle2.putSerializable("CourseDetailsCatalogFragment_Online",onLineCourseBean);
-                    courseDetailsCatalogFragment.setArguments(bundle2);
 
-                }else {
-                    fragmentTransaction.show(courseDetailsCatalogFragment);
-                }
-                break;
             case 2:
                 if (courseDetailsRemarkFragment==null){
-                    courseDetailsRemarkFragment=new CourseDetailsRemarkFragment();
+                    courseDetailsRemarkFragment=new TheatreCourseDetailsRemarkFragment();
                     fragmentTransaction.add(R.id.sing_content_frame,courseDetailsRemarkFragment);
                     //往fragment传递数据
                     Bundle bundle3= new Bundle();
-                    bundle3.putSerializable("CourseDetailsRemarkFragment_Online",onLineCourseBean);
+                    bundle3.putSerializable("CourseDetailsRemarkFragment_Online",offLineCourseBean);
                     courseDetailsRemarkFragment.setArguments(bundle3);
 
                 }else {
@@ -175,9 +159,7 @@ public class DetailSingleLayoutTwoAdapter extends DelegateAdapter.Adapter<Detail
         if (courseDetailsFragment!=null){
             fragmentTransaction.hide(courseDetailsFragment);
         }
-        if (courseDetailsCatalogFragment!=null){
-            fragmentTransaction.hide(courseDetailsCatalogFragment);
-        }
+
         if (courseDetailsRemarkFragment!=null){
             fragmentTransaction.hide(courseDetailsRemarkFragment);
         }

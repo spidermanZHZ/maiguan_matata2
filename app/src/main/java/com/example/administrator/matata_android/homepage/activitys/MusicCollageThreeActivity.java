@@ -50,7 +50,6 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
 
     private StickyLayoutHelperAdapter stickyLayoutHelperAdapter;
 
-    private LinearHelperAdapter linearHelperAdapter;
 
     private SingleLayoutHelperCollageAdapter singleLayoutHelperCollageAdapter;
 
@@ -184,46 +183,5 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
                 .subscribe(baseMusicHotBeanObserver);
     }
 
-
-    /**
-     * 获取线上课数据
-     */
-    private void getMusicOnline() {
-
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("token", MatataSPUtils.getToken());
-        musicOnlineBeanBaseObserver = new BaseObserver<MusicOnlineBean>(this, true, false) {
-            @Override
-            public void onSuccess(MusicOnlineBean musicOnlineBean) {
-                linearHelperAdapter.addOnlineData(musicOnlineBean);
-            }
-        };
-        RetrofitUtil.getInstance().getApiService().getMusicOnline(map)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(musicOnlineBeanBaseObserver);
-    }
-
-    /**
-     * 获取线下课数据
-     */
-    private void getMusicOffline() {
-
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("token", MatataSPUtils.getToken());
-        musicOffLineBeanBaseObserver = new BaseObserver<MusicOffLineBean>(this,true,false) {
-            @Override
-            public void onSuccess(MusicOffLineBean musicOffLineBean) {
-                linearHelperAdapter.addOfflineData(musicOffLineBean);
-            }
-        };
-        RetrofitUtil.getInstance().getApiService().getMusicOffline(map)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(musicOffLineBeanBaseObserver);
-
-    }
 
 }

@@ -73,8 +73,8 @@
                         android:textColor="@color/black666"
                         />
                 </LinearLayout>
-                <recycler.coverflow.RecyclerCoverFlow
-                    android:id="@+id/coverflow_recycler"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/music_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="240dp" />
 

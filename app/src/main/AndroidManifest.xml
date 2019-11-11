@@ -89,6 +89,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity android:name=".homepage.activitys.TheatreCollageActivity"></activity>
+        <activity android:name=".homepage.activitys.TheatreCollageCourseDetailsActivity"/>
     </application>
 
 </manifest>

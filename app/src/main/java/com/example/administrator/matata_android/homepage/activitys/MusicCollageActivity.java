@@ -9,14 +9,13 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.MusicHotBean;
-import com.example.administrator.matata_android.homepage.WrapContentHeightViewPager;
 import com.example.administrator.matata_android.homepage.adapters.MusicHotAdapter;
 import com.example.administrator.matata_android.homepage.adapters.MusicPageAdapter;
 import com.example.administrator.matata_android.homepage.fragments.MusicOfflineFragment;
@@ -35,7 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import recycler.coverflow.RecyclerCoverFlow;
+import liang.lollipop.rvbannerlib.BannerUtil4J;
 
 /**
  * 首页二级页面，音乐学院页面
@@ -44,12 +43,14 @@ public class MusicCollageActivity extends BaseFragmentActivity {
 
     @BindView(R.id.music_tv_refresh_hot)
     TextView musicTvRefreshHot;
-    @BindView(R.id.coverflow_recycler)
-    RecyclerCoverFlow coverflowRecycler;
+
     @BindView(R.id.viewpager)
     ViewPager viewpager;
     @BindView(R.id.abl_bar)
     AppBarLayout ablBar;
+    @BindView(R.id.music_recycler)
+    RecyclerView musicRecycler;
+
 
     private TabLayout tabLayout;
     private BaseObserver<List<MusicHotBean>> baseMusicHotBeanObserver;
@@ -57,8 +58,9 @@ public class MusicCollageActivity extends BaseFragmentActivity {
     private List<Fragment> fragmentList;
     private List<String> list_Title;
 
-    private MusicOnlineFragment musicOnlineFragment=new MusicOnlineFragment();
-    private MusicOfflineFragment musicOfflineFragment=new MusicOfflineFragment();
+    private MusicOnlineFragment musicOnlineFragment = new MusicOnlineFragment();
+    private MusicOfflineFragment musicOfflineFragment = new MusicOfflineFragment();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_music_collage);
@@ -78,9 +80,9 @@ public class MusicCollageActivity extends BaseFragmentActivity {
         ablBar.post(new Runnable() {
             @Override
             public void run() {
-                CoordinatorLayout.LayoutParams params =(CoordinatorLayout.LayoutParams)ablBar.getLayoutParams();
-                AppBarLayout.Behavior behavior=(AppBarLayout.Behavior) params.getBehavior();
-                if (behavior!=null){
+                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) ablBar.getLayoutParams();
+                AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
+                if (behavior != null) {
                     behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
                         @Override
                         public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
@@ -96,9 +98,14 @@ public class MusicCollageActivity extends BaseFragmentActivity {
     @Override
     protected void initData() {
         tabLayout = (TabLayout) findViewById(R.id.tablelayout);
-        getMusicHot();
         hotAdapter = new MusicHotAdapter(this, R.layout.adapter_music_hot, null);
-        coverflowRecycler.setAdapter(hotAdapter);
+
+        getMusicHot();
+
+        //如果使用默认设置，那么可以像下方这样，3行代码
+        BannerUtil4J.with(musicRecycler)//关联一个RecyclerView
+                .attachAdapter(hotAdapter )//传入RecyclerView的Adapter
+                .init();//执行初始化
 
         fragmentList = new ArrayList<>();
         fragmentList.add(musicOnlineFragment);
@@ -143,7 +150,7 @@ public class MusicCollageActivity extends BaseFragmentActivity {
                     @Override
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                         Intent intent = new Intent(MusicCollageActivity.this, CourseDetailsActivity.class);
-                        intent.putExtra("onlineId",musicHotBean.get(position).getId());
+                        intent.putExtra("onlineId", musicHotBean.get(position).getId());
                         startActivity(intent);
                     }
                 });

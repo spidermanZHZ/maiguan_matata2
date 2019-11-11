@@ -106,6 +106,9 @@ dependencies {
 //饺子播放器
     implementation 'cn.jzvd:jiaozivideoplayer:7.0.5'
 
-
+//recyclerView实现轮播图
+    implementation 'liang.lollipop.rvbannerlib:rvbannerlib:1.1.0'
+    //recyclerView轮播图效果2
+    implementation 'com.github.loonggg:RecyclerViewBanner:v1.2.3'
 
 }

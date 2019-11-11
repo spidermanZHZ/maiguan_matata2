@@ -1,17 +1,26 @@
 package com.example.administrator.matata_android.homepage.activitys;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
+import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
+import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
+import com.example.administrator.matata_android.bean.TheatreCourseDetailsBean;
 import com.example.administrator.matata_android.bean.TheatreHotInfoBean;
+import com.example.administrator.matata_android.homepage.adapters.SingleLayoutHelperCollageAdapter;
+import com.example.administrator.matata_android.homepage.adapters.StickyLayoutHelperAdapter;
 import com.example.administrator.matata_android.homepage.adapters.TheatreCollageOneAdapter;
+import com.example.administrator.matata_android.homepage.adapters.TheatreCollageStickyLayoutHelperAdapter;
 import com.example.administrator.matata_android.homepage.adapters.TheatreCollageTwoAdapter;
+import com.example.administrator.matata_android.homepage.adapters.TheatreCollageTwoSingleLayoutHelperAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
@@ -27,6 +36,8 @@ import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.blankj.utilcode.util.ActivityUtils.startActivity;
+
 public class TheatreCollageActivity extends BaseActivity {
 
     @BindView(R.id.theatre_collage_rv)
@@ -35,7 +46,9 @@ public class TheatreCollageActivity extends BaseActivity {
     private TheatreCollageOneAdapter theatreCollageOneAdapter;
     private TheatreCollageTwoAdapter theatreCollageTwoAdapter;
     private BaseObserver<TheatreHotInfoBean> theatreHotInfoBeanBaseObserver;
-
+    private BaseObserver<TheatreCourseDetailsBean> beanBaseObservers;
+    private  TheatreCollageStickyLayoutHelperAdapter theatreCollageStickyLayoutHelperAdapter;
+    private TheatreCollageTwoSingleLayoutHelperAdapter theatreCollageTwoSingleLayoutHelperAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_theatre_collage);
@@ -72,8 +85,38 @@ public class TheatreCollageActivity extends BaseActivity {
         //绑定数据
         getTheatreHotInfo();
 
+        //吸顶布局。实现分类功能
+        StickyLayoutHelper stickyLayoutHelper=new StickyLayoutHelper();
+        theatreCollageStickyLayoutHelperAdapter=new TheatreCollageStickyLayoutHelperAdapter(this,stickyLayoutHelper);
+
+
+        //戏剧课程列表
+        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper();
+        theatreCollageTwoSingleLayoutHelperAdapter=new TheatreCollageTwoSingleLayoutHelperAdapter(this,linearLayoutHelper,null);
+        getCourseDetails();
+
+
+        //分类点击事件
+        theatreCollageStickyLayoutHelperAdapter.setOnItemClickListener(new TheatreCollageStickyLayoutHelperAdapter.OnItemClickListener() {
+            @Override
+            public void onOnLineClick(View v, int position) {
+
+            }
+
+            @Override
+            public void onItemClick(View v, int position) {
+
+            }
+
+            @Override
+            public void onItemLongClick(View v, int position) {
+
+            }
+        });
 
         adapters.add(theatreCollageOneAdapter);
+        adapters.add(theatreCollageStickyLayoutHelperAdapter);
+        adapters.add(theatreCollageTwoSingleLayoutHelperAdapter);
 
         delegateAdapter.setAdapters(adapters);
         theatreCollageRv.setAdapter(delegateAdapter);
@@ -98,6 +141,50 @@ public class TheatreCollageActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(theatreHotInfoBeanBaseObserver);
     }
+    /**
+     * 获取戏剧全部课程列表
+     */
+    private void getCourseDetails() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", MatataSPUtils.getToken());
+
+
+        beanBaseObservers = new BaseObserver<TheatreCourseDetailsBean>(this, true, false) {
+            @Override
+            public void onSuccess(TheatreCourseDetailsBean theatreCourseDetailsBean) {
+
+                theatreCollageTwoSingleLayoutHelperAdapter.addData(theatreCourseDetailsBean);
+                theatreCollageTwoSingleLayoutHelperAdapter.setOnItemClickListener(new TheatreCollageTwoSingleLayoutHelperAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(mContext, TheatreCollageCourseDetailsActivity.class);
+                        String id ;
+                        if (theatreCourseDetailsBean.getData().size()==1){
+                           id =String.valueOf(theatreCourseDetailsBean.getData().get(0).getId());
+                        }else {
+                            id =String.valueOf(theatreCourseDetailsBean.getData().get(position).getId());
+                        }
+                        intent.putExtra("offlineId",id);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+                });
+            }
+
+        };
+        RetrofitUtil.getInstance().getApiService().getTheatreCourseDetails(map)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(beanBaseObservers);
+
+
+    }
+
     @Override
     protected void setListener() {
 

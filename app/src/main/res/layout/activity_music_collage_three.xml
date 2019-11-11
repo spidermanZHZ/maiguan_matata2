@@ -27,5 +27,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/music_three_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        />
 </com.zhy.autolayout.AutoLinearLayout>
