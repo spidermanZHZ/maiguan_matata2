@@ -37,7 +37,7 @@ public class CourseDetailsFragment extends BaseViewNeedSetFragment {
         Bundle bundle = this.getArguments();
         if (bundle != null) {
             url = bundle.getString(BUNDLE_COURSEDETAILSFRAGMENT_URL);
-            Toast.makeText(BaseApplication.getInstance(), url, Toast.LENGTH_SHORT).show();
+
         }
 
     }

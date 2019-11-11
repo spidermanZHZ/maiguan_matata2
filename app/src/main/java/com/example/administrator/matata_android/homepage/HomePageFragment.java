@@ -10,14 +10,10 @@ import android.view.ViewGroup;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
-import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
-import com.blankj.utilcode.util.BarUtils;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
-import com.example.administrator.matata_android.homepage.activitys.ArtCampActivity;
-import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
+import com.example.administrator.matata_android.homepage.activitys.HomePagerSearchActivity;
 import com.example.administrator.matata_android.homepage.activitys.TheatreCollageActivity;
-import com.example.administrator.matata_android.homepage.adapters.HomepagerFourAdapter;
 import com.example.administrator.matata_android.homepage.adapters.HomepagerOneAdapter;
 import com.example.administrator.matata_android.homepage.adapters.HomepagerThreeAdapter;
 import com.example.administrator.matata_android.homepage.adapters.HomepagerTwoAdapter;
@@ -26,6 +22,8 @@ import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseApplication;
 import com.example.administrator.matata_android.zhzbase.base.BaseViewNeedSetFragment;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +32,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import butterknife.Unbinder;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -48,11 +45,13 @@ public class HomePageFragment extends BaseViewNeedSetFragment {
     @BindView(R.id.home_pager_rv)
     RecyclerView homePagerRv;
     Unbinder unbinder;
+    @BindView(R.id.home_pager_title_bar)
+    TitleBar homePagerTitleBar;
     private BaseObserver<HomepagerTeacherBean> teacherBeanBaseObserver;
     private HomepagerOneAdapter homepagerOneAdapter;
     private HomepagerTwoAdapter homepagerTwoAdapter;
     private HomepagerThreeAdapter homepagerThreeAdapter;
-    private HomepagerFourAdapter homepagerFourAdapter;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +63,22 @@ public class HomePageFragment extends BaseViewNeedSetFragment {
     }
 
     public void initData() {
+        homePagerTitleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+                startActivity(new Intent(getContext(), HomePagerSearchActivity.class));
+            }
+        });
         //创建VirtuaLayoutManager
         VirtualLayoutManager layoutManager = new VirtualLayoutManager(BaseApplication.getInstance());
         homePagerRv.setLayoutManager(layoutManager);
@@ -81,7 +96,7 @@ public class HomePageFragment extends BaseViewNeedSetFragment {
 
         //装载轮播图
         SingleLayoutHelper singleLayoutHelper2 = new SingleLayoutHelper();
-        homepagerOneAdapter = new HomepagerOneAdapter(getContext(), singleLayoutHelper2,null);
+        homepagerOneAdapter = new HomepagerOneAdapter(getContext(), singleLayoutHelper2, null);
 
 //        StickyLayoutHelper stickyLayoutHelper = new StickyLayoutHelper();
 //        homepagerFourAdapter = new HomepagerFourAdapter(getContext(), stickyLayoutHelper);
@@ -99,7 +114,7 @@ public class HomePageFragment extends BaseViewNeedSetFragment {
         getHomePagerInfo();
 
         adapters.add(homepagerOneAdapter);
-      //  adapters.add(homepagerFourAdapter);
+        //  adapters.add(homepagerFourAdapter);
         adapters.add(homepagerTwoAdapter);
         adapters.add(homepagerThreeAdapter);
 

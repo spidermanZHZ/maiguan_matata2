@@ -16,15 +16,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/Tv_text"
+            android:text="@string/hot_camp"/>
 
-            android:text="@string/hot_camp"
-            android:textColor="#333333"
-            android:layout_gravity="center"
-            />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_artcamp_camp"
-        android:layout_marginLeft="7dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <LinearLayout
@@ -35,13 +36,18 @@
         android:orientation="horizontal"
         >
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hot_activity"
-            android:textColor="#333333"
-            android:layout_gravity="center"
-            />
+            android:layout_marginLeft="15dp"
+            android:textSize="16sp"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/Tv_text"
+            android:text="@string/hot_activity"/>
+
+
     </LinearLayout>
 
 

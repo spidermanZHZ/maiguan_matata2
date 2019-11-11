@@ -88,8 +88,10 @@
             android:name=".homepage.activitys.PlayVideoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
-        <activity android:name=".homepage.activitys.TheatreCollageActivity"></activity>
-        <activity android:name=".homepage.activitys.TheatreCollageCourseDetailsActivity"/>
+        <activity android:name=".homepage.activitys.TheatreCollageActivity" />
+        <activity android:name=".homepage.activitys.TheatreCollageCourseDetailsActivity" />
+        <activity android:name=".homepage.activitys.AllTeacherActivity" />
+        <activity android:name=".homepage.activitys.HomePagerSearchActivity"></activity>
     </application>
 
 </manifest>

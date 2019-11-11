@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.ArtCampATListBean;
 import com.example.administrator.matata_android.homepage.adapters.ArtCampAtListAdapter;
@@ -121,10 +123,11 @@ public class ArtCampListActivity extends BaseActivity {
         artCampATListBeanBaseObserver = new BaseObserver<ArtCampATListBean>(this, true, false) {
             @Override
             public void onSuccess(ArtCampATListBean artCampATListBean) {
-                Toast.makeText(ArtCampListActivity.this, "列表请求成功", Toast.LENGTH_SHORT).show();
+
                 if (firstSpringView != null) {
                     firstSpringView.onFinishFreshAndLoadDelay();
                 }
+
                 if (artCampATListBean.getData().size() > 0 && artCampATListBean.getData() != null) {
                     mPageNumber++;
                     if (page == 1) {
@@ -142,6 +145,15 @@ public class ArtCampListActivity extends BaseActivity {
                         }
                     }
                 }
+                adapterhot.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                        Intent intent=new Intent(ArtCampListActivity.this,ArtCampAtActivity.class);
+                        intent.putExtra("campsite_id",artCampATListBean.getData().get(position).getId());
+                        startActivity(intent);
+                    }
+                });
+
             }
         };
         RetrofitUtil.getInstance().getApiService().getArtCampAllList(campAtMap)

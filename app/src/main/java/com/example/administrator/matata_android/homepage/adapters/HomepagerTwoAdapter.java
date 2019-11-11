@@ -1,6 +1,7 @@
 package com.example.administrator.matata_android.homepage.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +14,12 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
+import com.example.administrator.matata_android.homepage.activitys.AllTeacherActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.blankj.utilcode.util.ActivityUtils.startActivity;
 
 /**
  * 首页装载推荐老师适配器
@@ -53,7 +57,14 @@ public class HomepagerTwoAdapter extends DelegateAdapter.Adapter<HomepagerTwoAda
 
     @Override
     public void onBindViewHolder(@NonNull HomepagerTwoAdapterViewHolder holder, int i) {
-
+        holder.homePagerMoreTeacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转到全部老师页面
+                Intent intent = new Intent(mContext, AllTeacherActivity.class);
+                startActivity(intent);
+            }
+        });
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         holder.rvHomepageTeacher.setLayoutManager(linearLayoutManager);

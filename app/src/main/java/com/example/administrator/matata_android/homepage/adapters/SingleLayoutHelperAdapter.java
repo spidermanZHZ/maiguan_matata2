@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
@@ -18,6 +19,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.homepage.activitys.CourseDetailsTwoActivity;
+import com.example.administrator.matata_android.homepage.activitys.TheatreCollageCourseDetailsActivity;
 import com.loonggg.rvbanner.lib.RecyclerViewBanner;
 
 import java.util.ArrayList;
@@ -95,9 +97,16 @@ public class SingleLayoutHelperAdapter extends DelegateAdapter.Adapter<SingleLay
             holder.recyclerCoverFlow.setOnRvBannerClickListener(new RecyclerViewBanner.OnRvBannerClickListener() {
                 @Override
                 public void onClick(int position) {
-                    Intent intent = new Intent(mContext, CourseDetailsTwoActivity.class);
-                    intent.putExtra("onlineId",musicHotBeans.get(position).getId());
-                    startActivity(intent);
+                   if (musicHotBeans.get(position).getType().equals("online")){
+                       Intent intent = new Intent(mContext, CourseDetailsTwoActivity.class);
+                       intent.putExtra("onlineId",musicHotBeans.get(position).getId());
+                       startActivity(intent);
+                   }else {
+                       Intent intent = new Intent(mContext, TheatreCollageCourseDetailsActivity.class);
+                       intent.putExtra("offlineId",musicHotBeans.get(position).getId());
+                       startActivity(intent);
+                   }
+
                 }
             });
 

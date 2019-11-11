@@ -50,7 +50,7 @@ public class ArtCampHotListAdapter  extends  BaseQuickAdapter<ArtCampBean.hot,Ba
             int a= Integer.parseInt(pricestr);
             int b=a/100;
             String pricestr2=String.valueOf(b);
-            String price="¥"+pricestr2+"("+item.getAttribute().get(0)+")";
+            String price="热销价：¥"+pricestr2+"("+item.getAttribute().get(0)+")";
             helper.setText(R.id.tv_art_camp_hot_price,price);
         }catch (Exception e){
 

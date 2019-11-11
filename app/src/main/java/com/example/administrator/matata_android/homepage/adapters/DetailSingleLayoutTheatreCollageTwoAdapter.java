@@ -96,12 +96,10 @@ public class DetailSingleLayoutTheatreCollageTwoAdapter extends DelegateAdapter.
     }
 
     class  DetailSingleLayoutTwoAdapterViewHolder extends RecyclerView.ViewHolder{
-        private ScrollIndicatorView spring_indicator;
-        private ViewPager viewPager;
+
         public DetailSingleLayoutTwoAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
-            spring_indicator=(ScrollIndicatorView) itemView.findViewById(R.id.spring_indicator);
-            viewPager=(ViewPager)itemView.findViewById(R.id.spring_viewPager);
+
         }
     }
 

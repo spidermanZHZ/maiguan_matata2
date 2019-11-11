@@ -1,6 +1,7 @@
 package com.example.administrator.matata_android.homepage.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +12,17 @@ import android.widget.TextView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
+import com.example.administrator.matata_android.homepage.activitys.CourseDetailsTwoActivity;
+import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
+import com.example.administrator.matata_android.homepage.activitys.TheatreCollageCourseDetailsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.blankj.utilcode.util.ActivityUtils.startActivity;
 
 /**
  * 首页装载推荐课程适配器
@@ -50,6 +57,14 @@ public class HomepagerThreeAdapter extends DelegateAdapter.Adapter<HomepagerThre
 
     @Override
     public void onBindViewHolder(@NonNull HomepagerThreeAdapterViewHolder holder, int i) {
+        holder.homePagerMoreCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, MusicCollageThreeActivity.class));
+            }
+        });
+
+
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         holder.rvHomepageCourse.setLayoutManager(linearLayoutManager);
@@ -57,7 +72,25 @@ public class HomepagerThreeAdapter extends DelegateAdapter.Adapter<HomepagerThre
         holder.rvHomepageCourse.setAdapter(adapter);
         if (homepagerTeacherBean!=null){
             adapter.addData(homepagerTeacherBean.getCourse());
+            adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    if (homepagerTeacherBean.getCourse().get(position).getType().equals("online")){
+                        Intent intent = new Intent(mContext, CourseDetailsTwoActivity.class);
+                        String id=String.valueOf(homepagerTeacherBean.getCourse().get(position).getId());
+                        intent.putExtra("onlineId",id);
+                        startActivity(intent);
+                    }else {
+                        Intent intent = new Intent(mContext, TheatreCollageCourseDetailsActivity.class);
+                        String id =String.valueOf(homepagerTeacherBean.getCourse().get(position).getId());
+                        intent.putExtra("offlineId",id);
+                        startActivity(intent);
+
+                    }
+                }
+            });
         }
+
 
     }
 

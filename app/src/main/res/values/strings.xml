@@ -59,7 +59,7 @@
     <string name="art_camp">艺术营地</string>
     <string name="my">我的</string>
     <string name="back">返回</string>
-
+    <string name="home_search">搜索</string>
     <!-- 首页-->
     <string name="homepage_location">济南</string>
     <string name="homepage_music">音乐学院</string>
@@ -151,6 +151,6 @@
 
     <string name="theatre_name">戏剧学院</string>
 
-
+    <string name="all_teacher_name">老师</string>
 
 </resources>

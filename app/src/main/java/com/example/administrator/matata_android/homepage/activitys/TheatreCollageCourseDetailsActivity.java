@@ -160,6 +160,15 @@ public class TheatreCollageCourseDetailsActivity extends SupportActivity {
             public void onSuccess(OffLineCourseBean offLineCourseBean) {
                 theatreCollageDetailsSingleLayoutAdapter.addData(offLineCourseBean);
                 detailSingleLayoutTheatreCollageTwoAdapter.addData(offLineCourseBean);
+                //价格后台返回数据需处理
+                courseDetailsPrice.setText(String.valueOf("月卡：500元(4次)"));
+                courseDetailsJoin.setText("购买课程");
+                courseDetailsJoin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //跳转到购买页面
+                    }
+                });
             }
 
         };

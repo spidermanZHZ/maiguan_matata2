@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:textSize="13sp"
-            android:text="查看全部"
+            android:text="查看更多"
             android:layout_marginRight="15dp"
             android:textColor="@color/Et_hintText"
             android:layout_gravity="center"
