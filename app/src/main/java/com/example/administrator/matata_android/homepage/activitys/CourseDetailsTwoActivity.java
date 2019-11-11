@@ -177,6 +177,13 @@ public class CourseDetailsTwoActivity extends SupportActivity {
 
                 detailsSingleLayoutAdapter.addData(onLineCourseBean);
                 detailSingleLayoutTwoAdapter.addData(onLineCourseBean);
+                courseDetailsPrice.setText(String.valueOf("¥"+onLineCourseBean.getOriginal_price()));
+                if (onLineCourseBean.isIs_purchase()){
+                    courseDetailsJoin.setText("已购买本课程");
+                    Toast.makeText(CourseDetailsTwoActivity.this, "已购买本课程，可以永久观看，无需再次购买", Toast.LENGTH_SHORT).show();
+                }else{
+                    courseDetailsJoin.setText("购买课程");
+                }
             }
 
         };
