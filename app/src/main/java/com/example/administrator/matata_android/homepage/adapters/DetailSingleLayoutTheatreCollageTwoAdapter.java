@@ -135,7 +135,7 @@ public class DetailSingleLayoutTheatreCollageTwoAdapter extends DelegateAdapter.
                     fragmentTransaction.add(R.id.sing_content_frame,courseDetailsRemarkFragment);
                     //往fragment传递数据
                     Bundle bundle3= new Bundle();
-                    bundle3.putSerializable("CourseDetailsRemarkFragment_Online",offLineCourseBean);
+                    bundle3.putSerializable("TheatreCourseDetailsRemarkFragment",offLineCourseBean);
                     courseDetailsRemarkFragment.setArguments(bundle3);
 
                 }else {

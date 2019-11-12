@@ -91,7 +91,9 @@
         <activity android:name=".homepage.activitys.TheatreCollageActivity" />
         <activity android:name=".homepage.activitys.TheatreCollageCourseDetailsActivity" />
         <activity android:name=".homepage.activitys.AllTeacherActivity" />
-        <activity android:name=".homepage.activitys.HomePagerSearchActivity"></activity>
+        <activity android:name=".homepage.activitys.HomePagerSearchActivity" />
+        <activity android:name=".homepage.activitys.TeacherDetailsActivity" />
+        <activity android:name=".homepage.activitys.ArtSetActivity"></activity>
     </application>
 
 </manifest>

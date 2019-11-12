@@ -94,14 +94,14 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-                    <TextView
+                    <ImageView
                         android:id="@+id/stu_edit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
                         android:layout_marginRight="22dp"
                         android:layout_marginTop="27dp"
                         android:includeFontPadding="false"
-                        android:text="@string/up_stu_change_info"
+                        android:src="@mipmap/shezhir_highlightx"
                         android:textColor="@color/black666"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -126,7 +126,7 @@
                     android:layout_height="19dp"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/wujiaox_defaultx"
                     />
                 <TextView
                     android:layout_width="0dp"
@@ -143,7 +143,7 @@
                     android:layout_height="12dp"
                     android:layout_marginRight="14dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
 
@@ -160,7 +160,7 @@
                     android:layout_height="19dp"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/dingdan_x"
                     />
                 <TextView
                     android:layout_width="0dp"
@@ -177,7 +177,7 @@
                     android:layout_height="12dp"
                     android:layout_marginRight="14dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
             <LinearLayout
@@ -193,7 +193,7 @@
                     android:layout_height="19dp"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/shocang_defaultx"
                     />
                 <TextView
                     android:layout_width="0dp"
@@ -210,7 +210,7 @@
                     android:layout_height="12dp"
                     android:layout_marginRight="14dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
             <LinearLayout
@@ -226,7 +226,7 @@
                     android:layout_height="19dp"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/guanzhu_defaultx"
                     />
                 <TextView
                     android:layout_width="0dp"
@@ -243,7 +243,7 @@
                     android:layout_height="12dp"
                     android:layout_marginRight="14dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
             <LinearLayout
@@ -259,7 +259,7 @@
                     android:layout_height="19dp"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/xiaoxi_defaultx"
                     />
                 <TextView
                     android:layout_width="0dp"
@@ -276,7 +276,7 @@
                     android:layout_height="12dp"
                     android:layout_marginRight="14dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
             <LinearLayout
@@ -292,7 +292,7 @@
                     android:layout_height="19dp"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/kefu_defaultx"
                     />
                 <TextView
                     android:layout_width="0dp"
@@ -309,7 +309,7 @@
                     android:layout_height="12dp"
                     android:layout_marginRight="14dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
             <LinearLayout
@@ -324,7 +324,7 @@
                     android:layout_height="19dp"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/fuzhu_defaultx"
                     />
                 <TextView
                     android:layout_width="0dp"
@@ -341,7 +341,7 @@
                     android:layout_height="12dp"
                     android:layout_marginRight="14dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
             <LinearLayout
@@ -356,7 +356,7 @@
                     android:layout_height="19dp"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/yaoqing_defaultx"
                     />
                 <TextView
                     android:layout_width="0dp"
@@ -373,7 +373,7 @@
                     android:layout_height="12dp"
                     android:layout_marginRight="14dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
             <LinearLayout
@@ -388,7 +388,7 @@
                     android:layout_height="19dp"
                     android:layout_marginLeft="20dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/shehzi_defaultx"
                     />
                 <TextView
                     android:layout_width="0dp"
@@ -405,7 +405,7 @@
                     android:layout_height="12dp"
                     android:layout_marginRight="14dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
             <Button

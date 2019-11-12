@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class MyFragment extends BaseFragment {
     @BindView(R.id.stu_sign)
     TextView stuSign;
     @BindView(R.id.stu_edit)
-    TextView stuEdit;
+    ImageView stuEdit;
     @BindView(R.id.my_ll_vip)
     LinearLayout myLlVip;
     @BindView(R.id.my_ll_extension)

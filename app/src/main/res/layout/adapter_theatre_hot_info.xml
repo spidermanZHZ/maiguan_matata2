@@ -1,43 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoLinearLayout
+<com.zhy.autolayout.AutoRelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="23dp"
-    android:layout_marginRight="23dp"
-    android:layout_marginTop="20dp"
+    android:layout_gravity="center"
     android:orientation="vertical"
     android:background="@drawable/cornerbg_white_single"
     >
    <ImageView
        android:id="@+id/adapter_theatre_info_iv"
-       android:layout_width="165dp"
+       android:layout_width="match_parent"
        android:layout_height="200dp"
        android:layout_gravity="center"
        />
-    <TextView
-    android:id="@+id/adapter_theatre_info_title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_gravity="center"
-    android:text="乐器"
-    android:textColor="@color/tv_service_code"
-    android:textSize="12sp"
-    android:includeFontPadding="true"
-    />
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@color/activity_bg"
+        android:layout_below="@+id/adapter_theatre_info_iv"
+        >
+        <TextView
         android:id="@+id/adapter_theatre_info_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
         android:layout_gravity="center"
-        android:text="马它它"
+        android:lines="1"
+        android:singleLine="true"
+       android:ellipsize="end"
         android:textColor="@color/Tv_text"
         android:textSize="14sp"
         android:includeFontPadding="true"
         />
+        <TextView
+            android:id="@+id/adapter_theatre_info_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center"
+            android:maxLines="3"
+            android:singleLine="false"
+            android:ellipsize="end"
+            android:textColor="@color/tv_service_code"
+            android:textSize="12sp"
+            android:includeFontPadding="true"
+            />
 
 
-</com.zhy.autolayout.AutoLinearLayout>
+    </LinearLayout>
+
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

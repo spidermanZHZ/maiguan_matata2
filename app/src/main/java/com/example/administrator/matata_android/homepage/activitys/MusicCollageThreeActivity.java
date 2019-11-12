@@ -44,8 +44,7 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
     @BindView(R.id.music_three_rv)
     RecyclerView musicThreeRv;
     private BaseObserver<List<MusicHotBean>> baseMusicHotBeanObserver;
-    private BaseObserver<MusicOnlineBean> musicOnlineBeanBaseObserver;
-    private BaseObserver<MusicOffLineBean> musicOffLineBeanBaseObserver;
+
     private SingleLayoutHelperAdapter singleLayoutHelperAdapter;
 
     private StickyLayoutHelperAdapter stickyLayoutHelperAdapter;
@@ -97,11 +96,6 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
         stickyLayoutHelperAdapter=new StickyLayoutHelperAdapter(this,stickyLayoutHelper);
         adapters.add(stickyLayoutHelperAdapter);
 
-//        //垂直布局
-//        LinearLayoutHelper linearLayoutHelper=new LinearLayoutHelper(10);
-//        linearHelperAdapter=new LinearHelperAdapter(this,linearLayoutHelper,true);
-//        getMusicOnline();
-//        adapters.add(linearHelperAdapter);
 
 
         //单独布局+Fragment 实现线上线下课程切换
@@ -116,8 +110,6 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
             public void onOnLineClick(View v, int position) {
                singleLayoutHelperCollageAdapter.setType(0);
                 delegateAdapter.notifyDataSetChanged();
-//                getMusicOnline();
-//                linearHelperAdapter.setOnline(true);
 
             }
 
@@ -125,8 +117,6 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
             public void onOffLineClick(View v, int position) {
                 singleLayoutHelperCollageAdapter.setType(1);
                 delegateAdapter.notifyDataSetChanged();
-//                getMusicOffline();
-//                linearHelperAdapter.setOnline(false);
 
             }
 

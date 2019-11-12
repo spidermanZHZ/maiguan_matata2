@@ -30,7 +30,7 @@ public class TheatreCourseDetailsRemarkFragment extends BaseViewNeedSetFragment 
 
     private OffLineCourseBean offLineCourseBean;
 
-    private static final String BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE="CourseDetailsRemarkFragment_Online";
+    private static final String BUNDLE_COURSEDETAILSFREMARKRAGMENT_ONLINE="TheatreCourseDetailsRemarkFragment";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,9 +53,10 @@ public class TheatreCourseDetailsRemarkFragment extends BaseViewNeedSetFragment 
 
         adapter=new TheatreCourseDetailsRemarkFragmentAdapter(getContext(),R.layout.adapter_course_details_remark,null);
 
-
-        adapter.addData(offLineCourseBean.getEvaluate());
-        adapter.notifyDataSetChanged();
+        if (offLineCourseBean!=null){
+            adapter.addData(offLineCourseBean.getEvaluate());
+            adapter.notifyDataSetChanged();
+        }
         initData();
         return view;
 
