@@ -10,6 +10,7 @@
 
 
     <color name="background_title">#ffcc2a</color>
+    <color name="background_art_set">#F5D751</color>
     <color name="background_fragment">#eaeaea</color>
     <!--半透明-->
     <color name="translucent">#80000000</color>

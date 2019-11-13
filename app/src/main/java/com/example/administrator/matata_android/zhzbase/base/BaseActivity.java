@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.example.administrator.matata_android.R;
@@ -36,8 +37,11 @@ import butterknife.Unbinder;
                 unbinder= ButterKnife.bind(this);
 
                 super.onCreate(savedInstanceState);
-
-              BarUtils.setStatusBarColor(this,getResources().getColor(R.color.transparent),true);
+                //EditText在Activity的onCrate()方法中添加
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                //如果是在Fragment的onCreateView()中添加：
+                //  getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                BarUtils.setStatusBarColor(this,getResources().getColor(R.color.transparent),true);
                 setAndroidNativeLightStatusBar(this,true);
 
               //  StatusBarCompat.translucentStatusBar(this,true);

@@ -8,7 +8,7 @@
         <ImageView
             android:contentDescription="@string/atinformation"
             android:id="@+id/adapter_at_pic"
-            android:layout_width="329dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:src="@mipmap/ic_launcher"

@@ -135,7 +135,7 @@ public class HomePageFragment extends BaseViewNeedSetFragment {
     private void getHomePagerInfo() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", MatataSPUtils.getToken());
-        teacherBeanBaseObserver = new BaseObserver<HomepagerTeacherBean>(getContext(), false, false) {
+        teacherBeanBaseObserver = new BaseObserver<HomepagerTeacherBean>(getContext(), true, false) {
             @Override
             public void onSuccess(HomepagerTeacherBean homepagerTeacherBean) {
                 homepagerOneAdapter.addData(homepagerTeacherBean);

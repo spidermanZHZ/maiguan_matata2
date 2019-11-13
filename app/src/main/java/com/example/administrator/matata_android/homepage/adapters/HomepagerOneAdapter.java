@@ -20,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
 import com.example.administrator.matata_android.homepage.activitys.ArtCampActivity;
+import com.example.administrator.matata_android.homepage.activitys.ArtSetActivity;
 import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
 import com.example.administrator.matata_android.homepage.activitys.TheatreCollageActivity;
 
@@ -126,7 +127,8 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
         holder.homePagerSetArtIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "该功能暂未开放", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, ArtSetActivity.class);
+                startActivity(intent);
             }
         });
     }

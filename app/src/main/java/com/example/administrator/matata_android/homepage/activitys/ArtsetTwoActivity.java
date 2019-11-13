@@ -1,12 +1,16 @@
 package com.example.administrator.matata_android.homepage.activitys;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,12 +57,15 @@ public class ArtsetTwoActivity extends BaseActivity {
     RadioGroup rgStudentAction;
     @BindView(R.id.art_set_iv1)
     ImageView artSetIv1;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_artset_two);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
+        BarUtils.setStatusBarColor(this, getResources().getColor(R.color.background_art_set), true);
 
     }
 
@@ -69,6 +76,22 @@ public class ArtsetTwoActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
 
     }
 

@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".homepage.activitys.ArtsetTwoActivity">
-    <?xml version="1.0" encoding="utf-8"?>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,22 +20,64 @@
                 android:id="@+id/title_bar"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
-                android:background="@color/white"
+                android:background="@color/background_art_set"
                 app:title="@string/art_set"
                 app:titleColor="#000000"
                 app:titleSize="17sp"
-                app:lineColor="@color/white"
+                app:lineColor="@color/background_art_set"
                 app:rightTitle="确认提交"
+                app:rightSize="16sp"
                 app:rightColor="@color/Tv_text"
                 />
         </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/activity_bg"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@mipmap/art_bg"
+        android:orientation="vertical"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ll_bg_corners"
+            >
+
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="60dp"
+                        android:layout_marginRight="30dp"
+                        android:src="@mipmap/ym_x"
+                        />
+                </LinearLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -43,7 +85,6 @@
                     android:textSize="17sp"
                     android:layout_gravity="center"
                     android:textColor="@color/Tv_text"
-                    android:layout_marginTop="43dp"
                     />
                 <RadioGroup
                     android:id="@+id/rg_department"
@@ -54,35 +95,47 @@
                     android:background="@color/white">
                     <RadioButton
                         android:id="@+id/rb_department1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="吉他"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                     <RadioButton
                         android:id="@+id/rb_department2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="钢琴"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                     <RadioButton
                         android:id="@+id/rb_department3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="架子鼓"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                     <RadioButton
                         android:id="@+id/rb_department4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="葫芦丝"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
+                        android:text="小提琴"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                 </RadioGroup>
                 <TextView
@@ -103,35 +156,47 @@
                     android:background="@color/white">
                     <RadioButton
                         android:id="@+id/rb_want1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="培养终生的兴趣爱好"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                     <RadioButton
                     android:id="@+id/rb_want4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="提高自己的艺术水平"
-                    android:textSize="14sp"
-                    android:layout_marginTop="21dp"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
+                        android:text="提高自己的艺术水平"
+                        android:textSize="14sp"
+                        android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                     />
                     <RadioButton
                         android:id="@+id/rb_want2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="考取艺术类等级证书"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                     <RadioButton
                         android:id="@+id/rb_want3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="考取知名艺术院校"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
 
                 </RadioGroup>
@@ -149,37 +214,41 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     android:layout_marginTop="21dp"
                     >
                     <RadioButton
                         android:id="@+id/rb_price1"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="500元以下"
                         android:textSize="14sp"
-                        android:textColor="@color/black666"
+                        android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                     <RadioButton
                     android:id="@+id/rb_price2"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                    android:text="500-1000元"
-                    android:textSize="14sp"
-                    android:textColor="@color/black666"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
+                        android:text="500-1000元"
+                        android:textSize="14sp"
+                        android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                     />
                     <RadioButton
                         android:id="@+id/rb_price3"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="1000元及以上"
                         android:textSize="14sp"
-                        android:textColor="@color/black666"
+                        android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                 </RadioGroup>
                 <TextView
@@ -200,35 +269,47 @@
                     android:background="@color/white">
                     <RadioButton
                         android:id="@+id/rb_action1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="亲子艺术营地活动"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                     <RadioButton
                         android:id="@+id/rb_action2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="艺术沙龙分享会"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                     <RadioButton
                         android:id="@+id/rb_action3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="海内外艺术类游学"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
                     <RadioButton
                         android:id="@+id/rb_action4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="220dp"
+                        android:layout_height="28dp"
                         android:text="艺术类展出或展览"
                         android:textSize="14sp"
                         android:layout_marginTop="21dp"
+                        android:gravity="center"
+                        android:button="@null"
+                        android:background="@drawable/rg_btn_change"
                         />
 
                 </RadioGroup>
@@ -236,13 +317,13 @@
                     android:id="@+id/art_set_iv1"
                     android:layout_marginTop="43dp"
                     android:layout_marginBottom="21dp"
-                    android:layout_width="179dp"
-                    android:layout_height="115dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:scaleType="fitXY"
-                    android:src="@mipmap/ic_launcher"
+                    android:src="@mipmap/dz4_defaultx"
                     />
             </LinearLayout>
         </ScrollView>
-
+        </LinearLayout>
+    </RelativeLayout>
 </com.zhy.autolayout.AutoLinearLayout>

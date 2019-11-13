@@ -94,7 +94,8 @@
         <activity android:name=".homepage.activitys.HomePagerSearchActivity" />
         <activity android:name=".homepage.activitys.TeacherDetailsActivity" />
         <activity android:name=".homepage.activitys.ArtSetActivity" />
-        <activity android:name=".homepage.activitys.ArtsetTwoActivity"></activity>
+        <activity android:name=".homepage.activitys.ArtsetTwoActivity" />
+        <activity android:name=".homepage.activitys.ArtSetThreeActivity"></activity>
     </application>
 
 </manifest>

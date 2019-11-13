@@ -458,7 +458,7 @@ public class TeacherDetailsInfoBean implements Serializable {
          * teacher_id : 130
          * theme_id : 0
          * num : 7
-         * original_price : 0
+         *   : 0
          * discount_price : 0
          * deductible_virtual_currency : 0
          * deductible_real_currency : 0

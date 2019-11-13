@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/activity_bg"
     android:orientation="vertical"
     tools:context=".homepage.activitys.ArtSetActivity">
     <LinearLayout
@@ -18,23 +18,64 @@
             android:id="@+id/title_bar"
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:background="@color/white"
+            android:background="@color/background_art_set"
             app:title="@string/art_set"
             app:titleColor="#000000"
             app:titleSize="17sp"
-            app:lineColor="@color/white"
+            app:lineColor="@color/background_art_set"
             app:rightTitle="下一步"
+            app:rightSize="16sp"
             app:rightColor="@color/Tv_text"
             />
     </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/activity_bg"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@mipmap/art_bg"
+            android:orientation="vertical"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/ll_bg_corners"
+            >
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="30dp"
+                android:src="@mipmap/ym_x"
+                />
+        </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -42,7 +83,6 @@
             android:textSize="17sp"
             android:layout_gravity="center"
             android:textColor="@color/Tv_text"
-            android:layout_marginTop="56dp"
             />
         <RadioGroup
             android:id="@+id/rg_gender"
@@ -82,14 +122,14 @@
         <EditText
             android:id="@+id/student_age"
             android:layout_width="60dp"
-            android:layout_height="25dp"
+            android:layout_height="28dp"
             android:layout_marginTop="21dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:textSize="14sp"
             android:inputType="number"
             android:textColor="@color/black666"
-            android:background="@drawable/bg_button_pass"
+            android:background="@drawable/rg_btn_bg"
             />
 
         <TextView
@@ -110,35 +150,47 @@
             android:background="@color/white">
             <RadioButton
                 android:id="@+id/rb_department1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
                 android:text="戏剧表演"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
             <RadioButton
                 android:id="@+id/rb_department2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
                 android:text="乐器演奏"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
             <RadioButton
                 android:id="@+id/rb_department3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
                 android:text="声乐表演"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
             <RadioButton
                 android:id="@+id/rb_department4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
                 android:text="音乐剧表演"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
         </RadioGroup>
 
@@ -171,7 +223,7 @@
                 android:id="@+id/rb_jichu_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="83dp"
+                android:layout_marginLeft="73dp"
                 android:text="有基础"
                 android:textSize="14sp"
                 android:textColor="@color/black666"
@@ -195,27 +247,36 @@
             android:background="@color/white">
             <RadioButton
                 android:id="@+id/rb_type1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
                 android:text="在线学习"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
             <RadioButton
                 android:id="@+id/rb_type2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="线下老师一对一"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
+                android:text="线下一对一"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
             <RadioButton
                 android:id="@+id/rb_type3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
                 android:text="线下多人课堂"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
 
         </RadioGroup>
@@ -237,27 +298,36 @@
             android:background="@color/white">
             <RadioButton
                 android:id="@+id/rb_time1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="工作日傍晚"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
+                android:text="工作日"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
             <RadioButton
                 android:id="@+id/rb_time2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
                 android:text="周末/节假日"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
             <RadioButton
                 android:id="@+id/rb_time3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
                 android:text="自由安排"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
                 />
 
         </RadioGroup>
@@ -266,12 +336,13 @@
            android:id="@+id/art_set_iv1"
            android:layout_marginTop="43dp"
            android:layout_marginBottom="21dp"
-           android:layout_width="179dp"
-           android:layout_height="115dp"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
            android:layout_gravity="center"
-           android:scaleType="fitXY"
-           android:src="@mipmap/ic_launcher"
+           android:src="@mipmap/dz_defaultx"
            />
     </LinearLayout>
     </ScrollView>
+        </LinearLayout>
+        </RelativeLayout>
    </com.zhy.autolayout.AutoLinearLayout>

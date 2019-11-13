@@ -23,4 +23,8 @@
             app:lineColor="@color/background_title"
             />
     </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_vip_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </com.zhy.autolayout.AutoLinearLayout>

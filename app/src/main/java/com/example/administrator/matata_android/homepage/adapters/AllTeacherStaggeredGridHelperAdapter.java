@@ -13,6 +13,8 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.TeacherInfoBean;
 
@@ -69,6 +71,13 @@ public class AllTeacherStaggeredGridHelperAdapter extends DelegateAdapter.Adapte
 
     @Override
     public void onBindViewHolder(@NonNull LinearHelperAdapterViewHolder helper, int position) {
+        ViewGroup.LayoutParams layoutParams =  helper.adapterTheatreInfoTitle.getLayoutParams();
+        if (position % 2==0){
+
+        }else {
+            layoutParams.height = 100 + position % 7 * 20;
+        }
+        helper.adapterTheatreInfoTitle.setLayoutParams(layoutParams);
 
         if (mOnItemClickListenre!=null){
             helper.itemView.setOnClickListener(new View.OnClickListener() {
@@ -80,18 +89,16 @@ public class AllTeacherStaggeredGridHelperAdapter extends DelegateAdapter.Adapte
         }
 
 
-        ViewGroup.LayoutParams layoutParams =  helper.adapterTheatreInfoTitle.getLayoutParams();
-        if (position % 2==0){
-
-        }else {
-            layoutParams.height = 100 + position % 7 * 20;
-        }
-        helper.adapterTheatreInfoTitle.setLayoutParams(layoutParams);
-
         if (teacherInfoBean!=null){
+            //设置图片圆角角度
+            RoundedCorners roundedCorners = new RoundedCorners(10);
+            //通过RequestOptions扩展功能
+            RequestOptions options = RequestOptions.bitmapTransform(roundedCorners).override(300, 300);
+
             //加载图片
             Glide.with(mContext)
                     .load(URL + teacherInfoBean.getData().get(position).getIntroduction_images())
+                    .apply(options)
                     .into(helper.adapterTheatreInfoIv);
             helper.adapterTheatreInfoName.setText( teacherInfoBean.getData().get(position).getName());
             helper.adapterTheatreInfoTitle.setText( teacherInfoBean.getData().get(position).getDescription());

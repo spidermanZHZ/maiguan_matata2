@@ -11,6 +11,7 @@
        android:id="@+id/adapter_theatre_info_iv"
        android:layout_width="match_parent"
        android:layout_height="200dp"
+       android:scaleType="fitXY"
        android:layout_gravity="center"
        />
     <LinearLayout

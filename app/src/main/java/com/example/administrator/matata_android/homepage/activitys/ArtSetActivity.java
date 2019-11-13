@@ -4,11 +4,13 @@ package com.example.administrator.matata_android.homepage.activitys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.blankj.utilcode.util.BarUtils;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.hjq.bar.OnTitleBarListener;
@@ -72,6 +74,7 @@ public class ArtSetActivity extends BaseActivity {
         setContentView(R.layout.activity_art_set);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
+        BarUtils.setStatusBarColor(this,getResources().getColor(R.color.background_art_set),true);
 
     }
 
