@@ -26,7 +26,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * 首页艺术营地页面
+ * 首页艺术营地页面1
  */
 public class ArtCampActivity extends BaseActivity {
 
