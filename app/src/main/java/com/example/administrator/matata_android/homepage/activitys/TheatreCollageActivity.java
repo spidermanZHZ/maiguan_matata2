@@ -159,11 +159,12 @@ public class TheatreCollageActivity extends BaseActivity {
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(mContext, TheatreCollageCourseDetailsActivity.class);
                         String id ;
-                        if (theatreCourseDetailsBean.getData().size()==1){
-                           id =String.valueOf(theatreCourseDetailsBean.getData().get(0).getId());
-                        }else {
-                            id =String.valueOf(theatreCourseDetailsBean.getData().get(position).getId());
-                        }
+//                        if (theatreCourseDetailsBean.getData().size()==1){
+//                           id =String.valueOf(theatreCourseDetailsBean.getData().get(0).getId());
+//                        }else {
+//                            id =String.valueOf(theatreCourseDetailsBean.getData().get(position).getId());
+//                        }
+                        id =String.valueOf(theatreCourseDetailsBean.getData().get(position).getId());
                         intent.putExtra("offlineId",id);
                         startActivity(intent);
                     }

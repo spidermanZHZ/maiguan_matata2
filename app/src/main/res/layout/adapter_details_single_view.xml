@@ -64,7 +64,7 @@
                     android:layout_height="18dp"
                     android:layout_marginRight="9dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@mipmap/wujiaox_defaultx" />
                 <TextView
                     android:id="@+id/course_details_collect_tv"
                     android:layout_width="wrap_content"

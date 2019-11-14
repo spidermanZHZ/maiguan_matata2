@@ -106,11 +106,13 @@ public class TheatreCollageCourseDetailsActivity extends SupportActivity {
         SingleLayoutHelper singleLayoutHelper1=new SingleLayoutHelper();
         detailSingleLayoutTheatreCollageTwoAdapter=new DetailSingleLayoutTheatreCollageTwoAdapter(TheatreCollageCourseDetailsActivity.this,singleLayoutHelper1,0,null,offlineId);
        
-        getCourseDetails();
+
 
         //吸顶布局
         StickyLayoutHelper stickyLayoutHelper=new StickyLayoutHelper();
         stickyLayoutHelperTwoAdapter=new StickyLayoutHelperTheatreTwoAdapter(this,stickyLayoutHelper);
+
+        getCourseDetails();
 
         adapters.add(theatreCollageDetailsSingleLayoutAdapter);
         adapters.add(stickyLayoutHelperTwoAdapter);
@@ -158,15 +160,24 @@ public class TheatreCollageCourseDetailsActivity extends SupportActivity {
         offLineCourseBeanBaseObserver = new BaseObserver<OffLineCourseBean>(this, true, false) {
             @Override
             public void onSuccess(OffLineCourseBean offLineCourseBean) {
-                theatreCollageDetailsSingleLayoutAdapter.addData(offLineCourseBean);
+                  theatreCollageDetailsSingleLayoutAdapter.addData(offLineCourseBean);
                 detailSingleLayoutTheatreCollageTwoAdapter.addData(offLineCourseBean);
                 //价格后台返回数据需处理
-                courseDetailsPrice.setText(String.valueOf("月卡：500元(4次)"));
+                courseDetailsPrice.setText(String.valueOf("22800元(48次)"));
                 courseDetailsJoin.setText("购买课程");
                 courseDetailsJoin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         //跳转到购买页面
+
+//                        intent.putStringArrayListExtra("data",data);
+//                        intent.putStringArrayListExtra("mDate",mdate);
+//                        intent.putStringArrayListExtra("priceData",priceData);
+//                        intent.putStringArrayListExtra("vip_priceData",vip_priceData);
+//                        intent.putExtra("is_vip",is_vip);
+//                        intent.putExtra("cover_pic",cover_pic);
+//                        intent.putExtra("campsite_id",campsite_id);
+//                        startActivity( new Intent(TheatreCollageCourseDetailsActivity.this,ArtBuyActivity.class));
                     }
                 });
             }

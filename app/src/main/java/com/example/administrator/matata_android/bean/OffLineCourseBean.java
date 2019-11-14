@@ -4,37 +4,38 @@ import java.io.Serializable;
 import java.util.List;
 
 public class OffLineCourseBean implements Serializable {
+
     /**
-     * id : 7
-     * class_id : 52
-     * name : 2236
-     * teacher_id : 84
+     * id : 9
+     * class_id : 50
+     * name : PBL双语教育戏剧
+     * teacher_id : 149
      * theme_id : null
-     * num : 3
-     * price : {"month":{"name":"\u6708\u5361","price":300,"num":"3","day":"3"},"season":{"name":"\u5b63\u5361","price":300,"num":"3","day":"3"},"year":{"name":"\u5e74\u5361","price":300,"num":"3","day":"3"}}
-     * deductible_virtual_currency : 3
+     * num : 48
+     * price : [{"name":"年卡","price":2280000,"num":"48","day":null,"type":"year"}]
+     * deductible_virtual_currency : 0
      * deductible_real_currency : 0
-     * largess_virtual_currency : 3
-     * profile : <p>3</p>
-     * description : 3
-     * cover_pic : storage/2019-10-10/yQplMFKYvHkJiDITDTbfkKnReNBF9N8vkXp1nsdK.png
-     * detail_pic : ["storage/2019-10-10/kxilTnQm2dips8EHqljsBVQhtP2OM1XN3Ska9BxJ.png"]
+     * largess_virtual_currency : 0
+     * profile : <p>PBL双语教育戏剧以寓教于乐的戏剧项目为载体，融合文化、探险、科学、地理四大主题，打造全英语戏剧环境，让孩子们通过玩戏剧的方式学习或练习英语。</p><p data-f-id="pbf" style="text-align: center; font-size: 14px; margin-top: 30px; opacity: 0.65; font-family: sans-serif;">Powered by <a href="https://www.froala.com/wysiwyg-editor?pb=1" title="Froala Editor">Froala Editor</a></p>
+     * description : 玩着学英语，培养孩子适应未来社会的必要能力
+     * cover_pic : storage/2019-11-14/ttXEi4nhQnjmzp5EGAGUuVB0RrIt9tk8e05VWpGa.jpeg
+     * detail_pic : ["storage/2019-11-14/wrOj9LZQfcrKYaYV5DXEjL44iCGBwvr2Y3QaoRyX.jpeg","storage/2019-11-14/iSkyGoX1yNh1DS4W6wgzclkIw5erX2PVHfiopZdr.jpeg","storage/2019-11-14/jO8RHtt2Zz52Fs5Xtw3MVVMLjbTtOYZpLMymnJR7.jpeg"]
      * distribution_ratio1 : null
      * distribution_ratio2 : null
      * distribution_ratio3 : null
      * click_rate : null
      * sort : 1
      * status : 0
-     * createDt : 2019-10-10 14:50:32
-     * updateDt : 2019-10-10 14:51:07
+     * createDt : 2019-11-14 14:35:33
+     * updateDt : 2019-11-14 14:35:33
      * stars : 0
-     * discount : 3
+     * discount : 0
      * course_type : drama
      * isFavorite : false
      * evaluate : []
      * catalog : []
      * pay_num : 0
-     * classify : {"id":52,"name":"弦乐"}
+     * classify : {"id":50,"name":"更多"}
      */
 
     private int id;
@@ -43,7 +44,6 @@ public class OffLineCourseBean implements Serializable {
     private int teacher_id;
     private Object theme_id;
     private int num;
-    private String price;
     private int deductible_virtual_currency;
     private int deductible_real_currency;
     private int largess_virtual_currency;
@@ -64,10 +64,27 @@ public class OffLineCourseBean implements Serializable {
     private boolean isFavorite;
     private int pay_num;
     private ClassifyBean classify;
+    private List<PriceBean> price;
     private List<String> detail_pic;
-    private List<EvaluateBean> evaluate;
     private List<?> catalog;
 
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
+
+    public List<EvaluateBean> getEvaluate() {
+        return evaluate;
+    }
+
+    public void setEvaluate(List<EvaluateBean> evaluate) {
+        this.evaluate = evaluate;
+    }
+
+    private List<EvaluateBean> evaluate;
     public int getId() {
         return id;
     }
@@ -114,14 +131,6 @@ public class OffLineCourseBean implements Serializable {
 
     public void setNum(int num) {
         this.num = num;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
     }
 
     public int getDeductible_virtual_currency() {
@@ -284,20 +293,20 @@ public class OffLineCourseBean implements Serializable {
         this.classify = classify;
     }
 
+    public List<PriceBean> getPrice() {
+        return price;
+    }
+
+    public void setPrice(List<PriceBean> price) {
+        this.price = price;
+    }
+
     public List<String> getDetail_pic() {
         return detail_pic;
     }
 
     public void setDetail_pic(List<String> detail_pic) {
         this.detail_pic = detail_pic;
-    }
-
-    public List<EvaluateBean> getEvaluate() {
-        return evaluate;
-    }
-
-    public void setEvaluate(List<EvaluateBean> evaluate) {
-        this.evaluate = evaluate;
     }
 
     public List<?> getCatalog() {
@@ -307,6 +316,7 @@ public class OffLineCourseBean implements Serializable {
     public void setCatalog(List<?> catalog) {
         this.catalog = catalog;
     }
+
     public static class EvaluateBean implements Serializable {
         /**
          * id : 256
@@ -502,10 +512,11 @@ public class OffLineCourseBean implements Serializable {
             this.fd_user_head = fd_user_head;
         }
     }
+
     public static class ClassifyBean {
         /**
-         * id : 52
-         * name : 弦乐
+         * id : 50
+         * name : 更多
          */
 
         private int id;
@@ -525,6 +536,62 @@ public class OffLineCourseBean implements Serializable {
 
         public void setName(String name) {
             this.name = name;
+        }
+    }
+
+    public static class PriceBean {
+        /**
+         * name : 年卡
+         * price : 2280000
+         * num : 48
+         * day : null
+         * type : year
+         */
+
+        private String name;
+        private int price;
+        private String num;
+        private Object day;
+        private String type;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getPrice() {
+            return price;
+        }
+
+        public void setPrice(int price) {
+            this.price = price;
+        }
+
+        public String getNum() {
+            return num;
+        }
+
+        public void setNum(String num) {
+            this.num = num;
+        }
+
+        public Object getDay() {
+            return day;
+        }
+
+        public void setDay(Object day) {
+            this.day = day;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
         }
     }
 }

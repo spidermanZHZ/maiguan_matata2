@@ -67,7 +67,7 @@ public class TheatreCollageTwoSingleLayoutHelperAdapter extends DelegateAdapter.
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListenre.onItemClick(holder.itemView,holder.getAdapterPosition());
+                    mOnItemClickListenre.onItemClick(holder.itemView,position);
                 }
             });
         }
