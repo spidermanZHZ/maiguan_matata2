@@ -106,10 +106,32 @@ public class MatataSPUtils {
     public static  String getPassword(){
         return SPUtils.getInstance("UserParts").getString("pwd");
     }
+    /**
+     * 保存用户是否是会员
+     * @param isVip 0：不是;1:是
+     */
+    public static void saveIsVip(String isVip){
+        SPUtils.getInstance("UserParts").put("isVip",isVip);
+    }
+    public static  String getIsVip(){
+        return SPUtils.getInstance("UserParts").getString("isVip");
+    }
+    /**
+     * 保存用户id
+     * @param userId
+     */
+    public static void saveUserId(String userId){
+        SPUtils.getInstance("UserParts").put("userId",userId);
+    }
+    public static  String getUserId(){
+        return SPUtils.getInstance("UserParts").getString("userId");
+    }
 
-/**
- * 保存用户选择价格position
- */
+
+
+    /**
+      * 保存用户选择价格position
+     */
     public static void savePricePosition(int position){
         SPUtils.getInstance("UserParts").put("position",position);
     }

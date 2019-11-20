@@ -154,4 +154,7 @@
     <string name="all_teacher_name">老师</string>
     <string name="all_teacher_details">老师详情</string>
     <string name="art_set">定制艺术教育</string>
+    <string name="theatre_buy">购买课程</string>
+    <string name="theatre_buy_attribute">请选择课程属性</string>
+    <string name="theatre_buy_type">课程类型</string>
 </resources>

@@ -65,7 +65,7 @@ public class ArtBuyActivity extends BaseActivity {
     @BindView(R.id.art_buy_iv)
     ImageView artBuyIv;
 
-    final String URL="https://www.maiguanjy.com/";
+    private static final String URL="https://www.maiguanjy.com/";
     private ArrayList<String> mData;
     private ArrayList<String> mDate;
     private ArrayList<String> priceData;

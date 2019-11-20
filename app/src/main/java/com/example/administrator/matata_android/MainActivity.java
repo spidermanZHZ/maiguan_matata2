@@ -13,14 +13,24 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
+import com.example.administrator.matata_android.bean.UserInfoBean;
 import com.example.administrator.matata_android.growup.GrowUpFragment;
 import com.example.administrator.matata_android.homepage.HomePageFragment;
+import com.example.administrator.matata_android.httputils.BaseObserver;
+import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.my.MyFragment;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragmentActivity;
+import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * app主页面
@@ -38,6 +48,7 @@ public class MainActivity extends BaseFragmentActivity {
     private HomePageFragment homePageFragment;
     private GrowUpFragment growUpFragment;
     private MyFragment myFragment;
+    private BaseObserver<UserInfoBean> userInfoBeanBaseObserver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +65,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     @Override
     protected void initData() {
+        getUserInfo();
         onFragmentRbClick(0);
     }
 
@@ -193,5 +205,23 @@ public class MainActivity extends BaseFragmentActivity {
         }
 
     }
+    /**
+     * 获取用户个人信息
+     */
+    private void getUserInfo() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("token", MatataSPUtils.getToken());
+        userInfoBeanBaseObserver = new BaseObserver<UserInfoBean>(this, true, false) {
+            @Override
+            public void onSuccess(UserInfoBean userInfoBean) {
+                MatataSPUtils.saveIsVip(userInfoBean.getIs_vip());
+            }
+        };
 
+        RetrofitUtil.getInstance().getApiService().getUserInfo(map)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(userInfoBeanBaseObserver);
+    }
 }

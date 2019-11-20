@@ -96,6 +96,7 @@
         <activity android:name=".homepage.activitys.ArtSetActivity" />
         <activity android:name=".homepage.activitys.ArtsetTwoActivity" />
         <activity android:name=".homepage.activitys.ArtSetThreeActivity"></activity>
+        <activity android:name=".homepage.activitys.ThetreaBuyActivity"/>
     </application>
 
 </manifest>

@@ -513,7 +513,7 @@ public class OffLineCourseBean implements Serializable {
         }
     }
 
-    public static class ClassifyBean {
+    public static class ClassifyBean  implements Serializable{
         /**
          * id : 50
          * name : 更多
@@ -539,7 +539,7 @@ public class OffLineCourseBean implements Serializable {
         }
     }
 
-    public static class PriceBean {
+    public static class PriceBean  implements Serializable{
         /**
          * name : 年卡
          * price : 2280000

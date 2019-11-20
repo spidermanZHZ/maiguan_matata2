@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="@color/white"
-            app:title="@string/at_join_buy"
+            app:title="@string/theatre_buy"
             app:leftColor="@color/Et_hintText"
             app:titleColor="#000000"
             app:titleSize="17sp"
@@ -33,10 +33,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
-        android:scrollbars="none"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         >
 
         <LinearLayout
@@ -121,7 +120,7 @@
                 android:layout_marginLeft="5dp"
                 android:textColor="@color/Tv_text"
                 android:textSize="15sp"
-                android:text="@string/at_attribute"
+                android:text="@string/theatre_buy_attribute"
                 />
             <LinearLayout
                 android:id="@+id/but_ll_shuxing_one"
@@ -137,7 +136,7 @@
                 android:layout_marginLeft="12dp"
                 android:textColor="@color/Tv_text"
                 android:textSize="15sp"
-                android:text="@string/at_type_people"
+                android:text="@string/theatre_buy_type"
                 />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_join_people"
@@ -147,161 +146,7 @@
                 android:layout_marginTop="14dp"
                 />
             </LinearLayout>
-        <LinearLayout
-            android:id="@+id/but_ll_shuxing_two"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/buy_title_three"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="12dp"
-                android:textColor="@color/Tv_text"
-                android:textSize="15sp"
-                android:text="@string/at_date"
-                />
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_join_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="14dp"
-                />
-        </LinearLayout>
-            <LinearLayout
-                android:id="@+id/buy_ll_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="12dp"
-                android:textColor="@color/Tv_text"
-                android:textSize="15sp"
-                android:text="@string/at_bug_num"
-                />
-            <LinearLayout
-                android:layout_width="175dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="39dp"
-                android:orientation="horizontal"
-                >
-                <Button
-                    android:id="@+id/btn_buy_subtract"
-                    android:layout_width="42dp"
-                    android:layout_height="22dp"
-                    android:background="@mipmap/subtract"
-                    />
 
-                <TextView
-                    android:id="@+id/tv_buy_number"
-                    android:layout_width="91dp"
-                    android:background="@drawable/tv_num_background"
-                    android:layout_height="32dp"
-                    android:gravity="center"
-                    android:textColor="@color/Tv_text"
-                    android:textSize="15sp"
-                    />
-                <Button
-                    android:id="@+id/btn_buy_add"
-                    android:layout_width="42dp"
-                    android:layout_height="32dp"
-                    android:background="@mipmap/add"
-                    />
-
-            </LinearLayout>
-            </LinearLayout>
-        <LinearLayout
-            android:id="@+id/but_ll_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="12dp"
-                android:textColor="@color/Tv_text"
-                android:textSize="15sp"
-                android:text="@string/at_bug_people_info"
-                />
-            <LinearLayout
-                android:layout_width="337dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="14dp"
-                android:orientation="horizontal"
-                android:background="@drawable/ll_background"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginBottom="13dp"
-                    android:layout_gravity="center"
-                    android:textColor="@color/Tv_text"
-                    android:textSize="15sp"
-                    android:text="@string/at_bug_people"
-                    />
-                <EditText
-                    android:id="@+id/et_art_bug_people"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:maxLength="18"
-                    android:inputType="text"
-                    android:textSize="14sp"
-                    android:textColor="@color/Et_hintText"
-                    android:background="@drawable/login_linearlayout_style"
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="337dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:background="@drawable/ll_background"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginBottom="13dp"
-                    android:layout_gravity="center"
-                    android:textColor="@color/Tv_text"
-                    android:textSize="15sp"
-                    android:text="@string/at_bug_phone_number"
-                    />
-
-                <EditText
-                    android:id="@+id/et_art_bug_phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:inputType="phone"
-                    android:maxLength="11"
-                    android:textSize="14sp"
-                    android:textColor="@color/Et_hintText"
-                    android:background="@drawable/login_linearlayout_style"
-                    />
-            </LinearLayout>
-        </LinearLayout>
             <Button
                 android:id="@+id/art_btn_buy_confirm"
                 android:layout_width="match_parent"

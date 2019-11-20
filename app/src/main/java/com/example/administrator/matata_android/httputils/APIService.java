@@ -17,6 +17,7 @@ import com.example.administrator.matata_android.bean.TeacherDetailsInfoBean;
 import com.example.administrator.matata_android.bean.TeacherInfoBean;
 import com.example.administrator.matata_android.bean.TheatreCourseDetailsBean;
 import com.example.administrator.matata_android.bean.TheatreHotInfoBean;
+import com.example.administrator.matata_android.bean.UserInfoBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -234,5 +235,12 @@ public interface APIService {
      */
     @GET("teacher/details")
     Observable<BaseBeanResponse<TeacherDetailsInfoBean>> getTeacherDetails(@QueryMap Map<String ,Object> map);
+    /**
+     * 获取用户个人信息
+     * @param map
+     * @return
+     */
+    @GET("user")
+    Observable<BaseBeanResponse<UserInfoBean>> getUserInfo(@QueryMap Map<String ,Object> map);
 
 }

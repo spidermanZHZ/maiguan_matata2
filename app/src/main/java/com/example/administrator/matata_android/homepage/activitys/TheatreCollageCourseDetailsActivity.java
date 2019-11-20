@@ -163,23 +163,26 @@ public class TheatreCollageCourseDetailsActivity extends SupportActivity {
                   theatreCollageDetailsSingleLayoutAdapter.addData(offLineCourseBean);
                 detailSingleLayoutTheatreCollageTwoAdapter.addData(offLineCourseBean);
                 //价格后台返回数据需处理
-                courseDetailsPrice.setText(String.valueOf("22800元(48次)"));
-                courseDetailsJoin.setText("购买课程");
-                courseDetailsJoin.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        //跳转到购买页面
+                if (offLineCourseBean.getPrice()!=null){
+                    String price ="¥"+getPrice(String.valueOf(offLineCourseBean.getPrice().get(0).getPrice()))+"("+offLineCourseBean.getPrice().get(0).getNum()+"次)";
+                    courseDetailsPrice.setText(price);
+                    courseDetailsJoin.setText("购买课程");
+                    courseDetailsJoin.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            //跳转到课程购买页面
+                            Intent intent = new Intent(TheatreCollageCourseDetailsActivity.this,ThetreaBuyActivity.class);
+                            Bundle bundle=new Bundle();
+                            bundle.putSerializable("offLineCourseBean",offLineCourseBean);
+                            intent.putExtra("info_bundle",bundle);
+                            startActivity(intent);
+                        }
+                    });
+                }else {
+                    courseDetailsPrice.setText("价格待定");
+                    courseDetailsJoin.setText("课程暂未上架");
+                }
 
-//                        intent.putStringArrayListExtra("data",data);
-//                        intent.putStringArrayListExtra("mDate",mdate);
-//                        intent.putStringArrayListExtra("priceData",priceData);
-//                        intent.putStringArrayListExtra("vip_priceData",vip_priceData);
-//                        intent.putExtra("is_vip",is_vip);
-//                        intent.putExtra("cover_pic",cover_pic);
-//                        intent.putExtra("campsite_id",campsite_id);
-//                        startActivity( new Intent(TheatreCollageCourseDetailsActivity.this,ArtBuyActivity.class));
-                    }
-                });
             }
 
         };
@@ -190,5 +193,13 @@ public class TheatreCollageCourseDetailsActivity extends SupportActivity {
                 .subscribe(offLineCourseBeanBaseObserver);
 
 
+    }
+    /**
+     * 处理接口返回String类型价格
+     */
+    public String getPrice(String price) {
+        int a = Integer.parseInt(price);
+        int b = a / 100;
+        return String.valueOf(b);
     }
 }
