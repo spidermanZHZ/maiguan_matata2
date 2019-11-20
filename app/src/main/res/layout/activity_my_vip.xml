@@ -23,8 +23,75 @@
             app:lineColor="@color/background_title"
             />
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="36dp"
+        android:background="@color/white"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="177dp"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="fitXY"
+            />
+        <TextView
+            android:id="@+id/tv_my_is_vip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="立即续费会员"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="100dp"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:background="@drawable/cornerbg_white_single"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年费会员9项专属权益"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="15sp"
+            android:textColor="@color/Tv_text"
+            android:background="@drawable/cornerbg_white_single"
+            android:layout_alignParentRight="true"
+            />
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="17dp"
+        android:textSize="16sp"
+        android:textColor="@color/Tv_text"
+        android:text="会员课程"
+        />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_vip_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
 </com.zhy.autolayout.AutoLinearLayout>
