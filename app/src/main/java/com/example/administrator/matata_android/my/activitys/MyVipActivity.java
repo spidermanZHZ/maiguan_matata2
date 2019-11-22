@@ -2,32 +2,47 @@ package com.example.administrator.matata_android.my.activitys;
 
 
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.alibaba.android.vlayout.DelegateAdapter;
-import com.alibaba.android.vlayout.VirtualLayoutManager;
-import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
-import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
 import com.example.administrator.matata_android.R;
-import com.example.administrator.matata_android.homepage.adapters.TeacherDetailsSingleLayoutAdapter;
-import com.example.administrator.matata_android.homepage.adapters.TeacherStickyLayoutHelperAdapter;
-import com.example.administrator.matata_android.homepage.adapters.TeacherTwoDetailSingleLayoutAdapter;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
- * VIP会员页面，git123
- * VIP会员页面，git测试一下
+ * VIP会员页面
+ *'
  */
 public class MyVipActivity extends BaseActivity {
 
-    @BindView(R.id.my_vip_rv)
-    RecyclerView myVipRv;
+
+    @BindView(R.id.iv_vip_card)
+    ImageView ivVipCard;
+    @BindView(R.id.tv_my_is_vip)
+    TextView tvMyIsVip;
+    @BindView(R.id.ll_vip_one)
+    LinearLayout llVipOne;
+    @BindView(R.id.ll_vip_two)
+    LinearLayout llVipTwo;
+    @BindView(R.id.ll_vip_three)
+    LinearLayout llVipThree;
+    @BindView(R.id.ll_vip_four)
+    LinearLayout llVipFour;
+    @BindView(R.id.ll_vip_five)
+    LinearLayout llVipFive;
+    @BindView(R.id.ll_vip_six)
+    LinearLayout llVipSix;
+    @BindView(R.id.ll_vip_seven)
+    LinearLayout llVipSeven;
+    @BindView(R.id.ll_vip_eight)
+    LinearLayout llVipEight;
+    @BindView(R.id.ll_vip_nine)
+    LinearLayout llVipNine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,40 +59,7 @@ public class MyVipActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        //创建VirtuaLayoutManager
-        VirtualLayoutManager layoutManager = new VirtualLayoutManager(this);
-        myVipRv.setLayoutManager(layoutManager);
 
-        //设置服用池设置回收复用池大小，（如果一屏内相同类型的 View 个数比较多，需要设置一个合适的大小，防止来回滚动时重新创建 View）：
-        RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
-        viewPool.setMaxRecycledViews(0, 10);
-        myVipRv.setRecycledViewPool(viewPool);
-
-        //创建一个adapter的list
-        List<DelegateAdapter.Adapter> adapters = new ArrayList<>();
-
-        //创建delegateadapter
-        DelegateAdapter delegateAdapter = new DelegateAdapter(layoutManager, true);
-        //单独布局
-        SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
- //       teacherDetailsSingleLayoutAdapter=new TeacherDetailsSingleLayoutAdapter(this,singleLayoutHelper,null);
-
-        //底部ViewPager+Fragment
-        SingleLayoutHelper singleLayoutHelper1 = new SingleLayoutHelper();
-       // teacherTwoDetailSingleLayoutAdapter = new TeacherTwoDetailSingleLayoutAdapter(this, singleLayoutHelper1, 0, null, teacher_id);
-
-
-
-        //吸顶布局
-        StickyLayoutHelper stickyLayoutHelper = new StickyLayoutHelper();
-//        stickyLayoutHelperTwoAdapter = new TeacherStickyLayoutHelperAdapter(this, stickyLayoutHelper);
-
-//        adapters.add(teacherDetailsSingleLayoutAdapter);
-//        adapters.add(stickyLayoutHelperTwoAdapter);
-//        adapters.add(teacherTwoDetailSingleLayoutAdapter);
-
-        delegateAdapter.setAdapters(adapters);
-        myVipRv.setAdapter(delegateAdapter);
     }
 
     @Override
@@ -93,5 +75,31 @@ public class MyVipActivity extends BaseActivity {
     @Override
     protected boolean onKeyMenu() {
         return false;
+    }
+
+    @OnClick({R.id.tv_my_is_vip, R.id.ll_vip_one, R.id.ll_vip_two, R.id.ll_vip_three, R.id.ll_vip_four, R.id.ll_vip_five, R.id.ll_vip_six, R.id.ll_vip_seven, R.id.ll_vip_eight, R.id.ll_vip_nine})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_my_is_vip:
+                break;
+            case R.id.ll_vip_one:
+                break;
+            case R.id.ll_vip_two:
+                break;
+            case R.id.ll_vip_three:
+                break;
+            case R.id.ll_vip_four:
+                break;
+            case R.id.ll_vip_five:
+                break;
+            case R.id.ll_vip_six:
+                break;
+            case R.id.ll_vip_seven:
+                break;
+            case R.id.ll_vip_eight:
+                break;
+            case R.id.ll_vip_nine:
+                break;
+        }
     }
 }
