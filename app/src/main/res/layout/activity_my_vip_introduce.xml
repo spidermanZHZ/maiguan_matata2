@@ -31,12 +31,7 @@
         android:layout_height="50dp"
         android:background="@color/background_title"
         android:layout_marginBottom="25dp"
-        app:tabMode="scrollable"
-        app:tabTextColor="@color/black_66"
-        app:tabSelectedTextColor="@color/black"
-        app:tabIndicatorHeight="2dp"
-        app:tabIndicatorColor="@color/background_title"
-        app:tabGravity="fill">
+       >
 
     </android.support.design.widget.TabLayout>
 
