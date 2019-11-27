@@ -243,4 +243,14 @@ public interface APIService {
     @GET("user")
     Observable<BaseBeanResponse<UserInfoBean>> getUserInfo(@QueryMap Map<String ,Object> map);
 
+
+    /**
+     * 收藏课程丶教师
+     * @param
+     * @return
+     */
+    @POST("/favorite")
+    @FormUrlEncoded
+    Observable<BaseBeanResponse<Object>>favoriteProject(@FieldMap Map<String, Object> map);
+
 }

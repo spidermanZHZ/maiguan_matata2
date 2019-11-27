@@ -24,7 +24,6 @@
             />
     </LinearLayout>
 
-    <!-- 使用design提供的TabLayout app:tabPadding="14dp"-->
     <android.support.design.widget.TabLayout
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
@@ -32,13 +31,10 @@
         android:background="@color/background_title"
         android:layout_marginBottom="25dp"
        >
-
     </android.support.design.widget.TabLayout>
 
-    <!--&lt;!&ndash; ViewPager里存放碎片的集合&ndash;&gt;-->
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/tablayout" />
