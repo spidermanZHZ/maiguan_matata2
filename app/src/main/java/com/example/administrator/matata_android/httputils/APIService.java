@@ -11,6 +11,7 @@ import com.example.administrator.matata_android.bean.LoginBean;
 import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.bean.MusicOffLineBean;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
+import com.example.administrator.matata_android.bean.MyFollowBean;
 import com.example.administrator.matata_android.bean.OffLineCourseBean;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
 import com.example.administrator.matata_android.bean.TeacherDetailsInfoBean;
@@ -249,8 +250,16 @@ public interface APIService {
      * @param
      * @return
      */
-    @POST("/favorite")
+    @POST("favorite")
     @FormUrlEncoded
     Observable<BaseBeanResponse<Object>>favoriteProject(@FieldMap Map<String, Object> map);
+
+    /**
+     * 获取我的收藏列表
+     * @param map
+     * @return
+     */
+    @GET("user/favorite")
+    Observable<BaseBeanResponse<MyFollowBean>> getFavoriteProject(@QueryMap Map<String ,Object> map);
 
 }

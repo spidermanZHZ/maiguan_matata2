@@ -54,7 +54,7 @@ public class CourseDetailsTwoActivity extends SupportActivity {
     TextView courseDetailsPrice;
     @BindView(R.id.course_details_join)
     TextView courseDetailsJoin;
-
+    private BaseObserver<Object> baseObserver;
     private String onlineId;
 
     private BaseObserver<OnLineCourseBean> beanBaseObservers;
@@ -177,6 +177,29 @@ public class CourseDetailsTwoActivity extends SupportActivity {
 
                 detailsSingleLayoutAdapter.addData(onLineCourseBean);
                 detailSingleLayoutTwoAdapter.addData(onLineCourseBean);
+                detailsSingleLayoutAdapter.setOnItemClickListener(new DetailsSingleLayoutAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onFavoriteClick(View view, int position) {
+                        setFavorite(onLineCourseBean,"已成功收藏");
+                    }
+
+                    @Override
+                    public void onCanleFavoriteClick(View view, int position) {
+                        setFavorite(onLineCourseBean,"已取消收藏");
+                    }
+                });
+
+
                 courseDetailsPrice.setText(String.valueOf("¥"+onLineCourseBean.getOriginal_price()));
                 if (onLineCourseBean.isIs_purchase()){
                     courseDetailsJoin.setText("已购买本课程");
@@ -195,4 +218,28 @@ public class CourseDetailsTwoActivity extends SupportActivity {
 
 
     }
+    /**
+     * 设置收藏按钮
+     */
+    private void setFavorite(OnLineCourseBean onLineCourseBean, String string){
+        Map<String,Object> map =new HashMap<String, Object>();
+        map.put("token",MatataSPUtils.getToken());
+        map.put("type","onlineCourse");
+        map.put("obj_id",String.valueOf(onLineCourseBean.getId()));
+        baseObserver=new BaseObserver<Object>(this,false,false) {
+            @Override
+            public void onSuccess(Object o) {
+                Toast.makeText(CourseDetailsTwoActivity.this, string, Toast.LENGTH_SHORT).show();
+            }
+        };
+        RetrofitUtil.getInstance().getApiService().favoriteProject(map)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(baseObserver);
+
+
+
+    }
+
 }

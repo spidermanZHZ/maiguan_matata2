@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
@@ -43,6 +44,7 @@ public class TeacherDetailsActivity extends BaseFragmentActivity {
     RecyclerView teacherRv;
     private BaseObserver<TeacherDetailsInfoBean> teacherInfoBeanBaseObserver;
     private String teacher_id;
+    private BaseObserver<Object> baseObserver;
 
     private TeacherDetailsSingleLayoutAdapter teacherDetailsSingleLayoutAdapter;
     private TeacherStickyLayoutHelperAdapter stickyLayoutHelperTwoAdapter;
@@ -128,6 +130,27 @@ public class TeacherDetailsActivity extends BaseFragmentActivity {
             public void onSuccess(TeacherDetailsInfoBean teacherDetailsInfoBean) {
                 teacherDetailsSingleLayoutAdapter.addData(teacherDetailsInfoBean);
                 teacherTwoDetailSingleLayoutAdapter.addData(teacherDetailsInfoBean);
+                teacherDetailsSingleLayoutAdapter.setOnItemClickListener(new TeacherDetailsSingleLayoutAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onFavoriteClick(View view, int position) {
+                        setFavorite(teacherDetailsInfoBean,"已成功收藏");
+                    }
+
+                    @Override
+                    public void onCanleFavoriteClick(View view, int position) {
+                        setFavorite(teacherDetailsInfoBean,"已取消收藏");
+                    }
+                });
             }
 
 
@@ -137,6 +160,30 @@ public class TeacherDetailsActivity extends BaseFragmentActivity {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(teacherInfoBeanBaseObserver);
+    }
+
+    /**
+     * 设置收藏按钮
+     */
+    private void setFavorite(TeacherDetailsInfoBean teacherDetailsInfoBean, String string){
+        Map<String,Object> map =new HashMap<String, Object>();
+        map.put("token",MatataSPUtils.getToken());
+        map.put("type","teacher");
+        map.put("obj_id",String.valueOf(teacherDetailsInfoBean.getId()));
+        baseObserver=new BaseObserver<Object>(this,false,false) {
+            @Override
+            public void onSuccess(Object o) {
+                Toast.makeText(TeacherDetailsActivity.this, string, Toast.LENGTH_SHORT).show();
+            }
+        };
+        RetrofitUtil.getInstance().getApiService().favoriteProject(map)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(baseObserver);
+
+
+
     }
 
 }

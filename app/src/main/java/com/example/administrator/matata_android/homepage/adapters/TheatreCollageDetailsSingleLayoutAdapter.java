@@ -39,7 +39,18 @@ public class TheatreCollageDetailsSingleLayoutAdapter extends DelegateAdapter.Ad
 
     private OffLineCourseBean offLineCourseBean;
     private ArtCampAtPicAdapter adapter;
-    private BaseObserver<Object> baseObserver;
+
+    public interface  OnItemClickListener{
+        void onItemClick(View view,int position);
+        void onLongItemClick(View view,int position);
+        void onFavoriteClick(View view,int position);
+        void onCanleFavoriteClick(View view,int position);
+    }
+    public OnItemClickListener mOnItemClickListenre;//设置点击事件
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.mOnItemClickListenre=onItemClickListener;
+    }
 
     public TheatreCollageDetailsSingleLayoutAdapter(Context mContext, LayoutHelper mHelper, OffLineCourseBean offLineCourseBean) {
         this.mContext = mContext;
@@ -81,28 +92,34 @@ public class TheatreCollageDetailsSingleLayoutAdapter extends DelegateAdapter.Ad
             holder.course_details_title.setText(offLineCourseBean.getName());
             holder.course_details_label.setText(String.valueOf("共" + offLineCourseBean.getNum() + "节"));
             holder.course_details_work_off.setText(String.valueOf("已售出" + offLineCourseBean.getPay_num()));
-            if (offLineCourseBean.isFavorite()) {
+            if (offLineCourseBean.isIsFavorite()) {
                 holder.courseDetailsCollectTv.setText("已收藏");
                 holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang1);
-                holder.courseDetailsCollect.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                    setFavorite(offLineCourseBean,mContext,"已取消收藏");
-                        holder.courseDetailsCollectTv.setText("收藏");
-                        holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang2);
-                    }
-                });
+                if (mOnItemClickListenre!=null){
+                    holder.courseDetailsCollect.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mOnItemClickListenre.onCanleFavoriteClick(holder.courseDetailsCollect,holder.getAdapterPosition());
+                            holder.courseDetailsCollectTv.setText("收藏");
+                            holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang2);
+                        }
+                    });
+                }
+
             } else {
                 holder.courseDetailsCollectTv.setText("收藏");
                 holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang2);
-                holder.courseDetailsCollect.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        setFavorite(offLineCourseBean,mContext,"已成功收藏");
-                        holder.courseDetailsCollectTv.setText("已收藏");
-                        holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang1);
-                    }
-                });
+                if (mOnItemClickListenre!=null){
+                    holder.courseDetailsCollect.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mOnItemClickListenre.onFavoriteClick(holder.courseDetailsCollect,holder.getAdapterPosition());
+                            holder.courseDetailsCollectTv.setText("已收藏");
+                            holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang1);
+                        }
+                    });
+                }
+
             }
         }
 
@@ -112,34 +129,6 @@ public class TheatreCollageDetailsSingleLayoutAdapter extends DelegateAdapter.Ad
     public int getItemCount() {
         return 1;
     }
-
-    /**
-     * 设置收藏按钮
-     */
-    private void setFavorite(OffLineCourseBean offLineCourseBean,Context context,String string){
-        Map<String,Object> map =new HashMap<String, Object>();
-        map.put("token",MatataSPUtils.getToken());
-        map.put("type","offlineCourse");
-        map.put("obj_id",offLineCourseBean.getClass_id());
-        baseObserver=new BaseObserver<Object>(context,false,false) {
-            @Override
-            public void onSuccess(Object o) {
-                Toast.makeText(context, string, Toast.LENGTH_SHORT).show();
-            }
-        };
-        RetrofitUtil.getInstance().getApiService().favoriteProject(map)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(baseObserver);
-
-
-
-    }
-
-
-
-
 
 
     class DetailsSingleLayoutAdapterViewHolder extends RecyclerView.ViewHolder {

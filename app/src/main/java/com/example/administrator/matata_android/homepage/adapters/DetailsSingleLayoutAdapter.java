@@ -6,16 +6,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.example.administrator.matata_android.R;
-import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
 
-import java.util.List;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import recycler.coverflow.RecyclerCoverFlow;
 
 /**
@@ -26,8 +27,24 @@ public class DetailsSingleLayoutAdapter extends DelegateAdapter.Adapter<DetailsS
     private Context mContext;
     private LayoutHelper mHelper;
 
-    private OnLineCourseBean  onLineCourseBean;
+    private OnLineCourseBean onLineCourseBean;
     private ArtCampAtPicAdapter adapter;
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+
+        void onLongItemClick(View view, int position);
+
+        void onFavoriteClick(View view, int position);
+
+        void onCanleFavoriteClick(View view, int position);
+    }
+
+    public OnItemClickListener mOnItemClickListenre;//设置点击事件
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListenre = onItemClickListener;
+    }
 
     public DetailsSingleLayoutAdapter(Context mContext, LayoutHelper mHelper, OnLineCourseBean onLineCourseBean) {
         this.mContext = mContext;
@@ -37,10 +54,11 @@ public class DetailsSingleLayoutAdapter extends DelegateAdapter.Adapter<DetailsS
 
     /**
      * 添加数据
+     *
      * @param onLineCourseBean
      */
-    public void addData(OnLineCourseBean  onLineCourseBean){
-        this.onLineCourseBean=onLineCourseBean;
+    public void addData(OnLineCourseBean onLineCourseBean) {
+        this.onLineCourseBean = onLineCourseBean;
         notifyDataSetChanged();
     }
 
@@ -53,7 +71,7 @@ public class DetailsSingleLayoutAdapter extends DelegateAdapter.Adapter<DetailsS
     @NonNull
     @Override
     public DetailsSingleLayoutAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View view= LayoutInflater.from(mContext).inflate(R.layout.adapter_details_single_view,parent,false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_details_single_view, parent, false);
         return new DetailsSingleLayoutAdapterViewHolder(view);
     }
 
@@ -62,12 +80,43 @@ public class DetailsSingleLayoutAdapter extends DelegateAdapter.Adapter<DetailsS
         adapter = new ArtCampAtPicAdapter(mContext, null);
         holder.recyclerCoverFlow.setAdapter(adapter);
 
-        if (onLineCourseBean!=null){
+        if (onLineCourseBean != null) {
             adapter.getData(onLineCourseBean.getDetail_pic());
             //设置数据
-            holder. course_details_title.setText(onLineCourseBean.getName());
+            holder.course_details_title.setText(onLineCourseBean.getName());
             holder.course_details_label.setText(String.valueOf("共" + onLineCourseBean.getNum() + "节"));
-            holder. course_details_work_off.setText(String.valueOf("已售出" + onLineCourseBean.getPay_num()));
+            holder.course_details_work_off.setText(String.valueOf("已售出" + onLineCourseBean.getPay_num()));
+            if (onLineCourseBean.isIsFavorite()) {
+                holder.courseDetailsCollectTv.setText("已收藏");
+                holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang1);
+                if (mOnItemClickListenre != null) {
+                    holder.courseDetailsCollect.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mOnItemClickListenre.onCanleFavoriteClick(holder.courseDetailsCollect, holder.getAdapterPosition());
+                            holder.courseDetailsCollectTv.setText("收藏");
+                            holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang2);
+                        }
+                    });
+                }
+
+            } else {
+                holder.courseDetailsCollectTv.setText("收藏");
+                holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang2);
+                if (mOnItemClickListenre != null) {
+                    holder.courseDetailsCollect.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mOnItemClickListenre.onFavoriteClick(holder.courseDetailsCollect, holder.getAdapterPosition());
+                            holder.courseDetailsCollectTv.setText("已收藏");
+                            holder.courseDetailsCollectIv.setImageResource(R.mipmap.shoucang1);
+                        }
+                    });
+                }
+
+            }
+
+
         }
 
     }
@@ -77,17 +126,26 @@ public class DetailsSingleLayoutAdapter extends DelegateAdapter.Adapter<DetailsS
         return 1;
     }
 
-    class DetailsSingleLayoutAdapterViewHolder extends RecyclerView.ViewHolder{
+    class DetailsSingleLayoutAdapterViewHolder extends RecyclerView.ViewHolder {
         private RecyclerCoverFlow recyclerCoverFlow;
         private TextView course_details_title;
         private TextView course_details_label;
         private TextView course_details_work_off;
+        @BindView(R.id.course_details_collect_iv)
+        ImageView courseDetailsCollectIv;
+        @BindView(R.id.course_details_collect_tv)
+        TextView courseDetailsCollectTv;
+        @BindView(R.id.course_details_collect)
+        LinearLayout courseDetailsCollect;
+
         public DetailsSingleLayoutAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
-            recyclerCoverFlow=(RecyclerCoverFlow)itemView.findViewById(R.id.music_three_cover_flow_rv);
-            course_details_title=(TextView)itemView.findViewById(R.id.course_details_title);
-            course_details_label=(TextView)itemView.findViewById(R.id.course_details_label);
-            course_details_work_off=(TextView)itemView.findViewById(R.id.course_details_work_off);
+            ButterKnife.bind(this, itemView);
+            recyclerCoverFlow = (RecyclerCoverFlow) itemView.findViewById(R.id.music_three_cover_flow_rv);
+            course_details_title = (TextView) itemView.findViewById(R.id.course_details_title);
+            course_details_label = (TextView) itemView.findViewById(R.id.course_details_label);
+            course_details_work_off = (TextView) itemView.findViewById(R.id.course_details_work_off);
         }
     }
+
 }

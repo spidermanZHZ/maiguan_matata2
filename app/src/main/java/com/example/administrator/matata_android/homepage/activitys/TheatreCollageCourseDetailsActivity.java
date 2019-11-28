@@ -1,6 +1,7 @@
 package com.example.administrator.matata_android.homepage.activitys;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
@@ -51,6 +52,7 @@ public class TheatreCollageCourseDetailsActivity extends SupportActivity {
     TextView courseDetailsPrice;
     @BindView(R.id.course_details_join)
     TextView courseDetailsJoin;
+    private BaseObserver<Object> baseObserver;
 
     private String offlineId;
 
@@ -101,6 +103,7 @@ public class TheatreCollageCourseDetailsActivity extends SupportActivity {
         //单独布局
         SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
         theatreCollageDetailsSingleLayoutAdapter=new TheatreCollageDetailsSingleLayoutAdapter(this,singleLayoutHelper,null);
+
 
         //底部ViewPager+Fragment
         SingleLayoutHelper singleLayoutHelper1=new SingleLayoutHelper();
@@ -160,8 +163,32 @@ public class TheatreCollageCourseDetailsActivity extends SupportActivity {
         offLineCourseBeanBaseObserver = new BaseObserver<OffLineCourseBean>(this, true, false) {
             @Override
             public void onSuccess(OffLineCourseBean offLineCourseBean) {
-                  theatreCollageDetailsSingleLayoutAdapter.addData(offLineCourseBean);
+                theatreCollageDetailsSingleLayoutAdapter.addData(offLineCourseBean);
                 detailSingleLayoutTheatreCollageTwoAdapter.addData(offLineCourseBean);
+
+                theatreCollageDetailsSingleLayoutAdapter.setOnItemClickListener(new TheatreCollageDetailsSingleLayoutAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+
+                    }
+
+                    @Override
+                    public void onFavoriteClick(View view, int position) {
+                        setFavorite(offLineCourseBean,"已成功收藏");
+                    }
+
+                    @Override
+                    public void onCanleFavoriteClick(View view, int position) {
+                        setFavorite(offLineCourseBean,"已取消收藏");
+                    }
+                });
+
+
                 //价格后台返回数据需处理
                 if (offLineCourseBean.getPrice()!=null){
                     String price ="¥"+getPrice(String.valueOf(offLineCourseBean.getPrice().get(0).getPrice()))+"("+offLineCourseBean.getPrice().get(0).getNum()+"次)";
@@ -194,6 +221,31 @@ public class TheatreCollageCourseDetailsActivity extends SupportActivity {
 
 
     }
+
+    /**
+     * 设置收藏按钮
+     */
+    private void setFavorite(OffLineCourseBean offLineCourseBean, String string){
+        Map<String,Object> map =new HashMap<String, Object>();
+        map.put("token",MatataSPUtils.getToken());
+        map.put("type","offlineCourse");
+        map.put("obj_id",String.valueOf(offLineCourseBean.getId()));
+        baseObserver=new BaseObserver<Object>(this,false,false) {
+            @Override
+            public void onSuccess(Object o) {
+                Toast.makeText(TheatreCollageCourseDetailsActivity.this, string, Toast.LENGTH_SHORT).show();
+            }
+        };
+        RetrofitUtil.getInstance().getApiService().favoriteProject(map)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(baseObserver);
+
+
+
+    }
+
     /**
      * 处理接口返回String类型价格
      */
