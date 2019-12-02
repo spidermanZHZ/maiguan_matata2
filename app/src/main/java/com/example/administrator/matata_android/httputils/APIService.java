@@ -19,6 +19,7 @@ import com.example.administrator.matata_android.bean.TeacherInfoBean;
 import com.example.administrator.matata_android.bean.TheatreCourseDetailsBean;
 import com.example.administrator.matata_android.bean.TheatreHotInfoBean;
 import com.example.administrator.matata_android.bean.UserInfoBean;
+import com.example.administrator.matata_android.bean.WXPayBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -261,5 +262,14 @@ public interface APIService {
      */
     @GET("user/favorite")
     Observable<BaseBeanResponse<MyFollowBean>> getFavoriteProject(@QueryMap Map<String ,Object> map);
+
+    /**
+     * 购买营地接口
+     * @param
+     * @return
+     */
+    @POST("campsite/pay")
+    @FormUrlEncoded
+    Observable<BaseBeanResponse<WXPayBean>>payCampsite(@FieldMap Map<String, Object> map);
 
 }

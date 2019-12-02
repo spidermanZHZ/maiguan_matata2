@@ -112,7 +112,7 @@ public class ArtBuyActivity extends BaseActivity {
     protected void initData() {
       HashMap<String, Object> dataMap =new HashMap<String ,Object>();
 
-        dataMap.put("campsite_id",campsite_id);
+        //dataMap.put("campsite_id",campsite_id);
 
         Glide.with(mContext).load(URL+cover_pic)
                 .into(artBuyIv);
@@ -268,6 +268,7 @@ public class ArtBuyActivity extends BaseActivity {
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("myMap",myMap);
                 intent.putExtra("mBundle",bundle);
+                intent.putExtra("campsite_id",campsite_id);
                 startActivity(intent);
             }
         });

@@ -2,14 +2,18 @@ package com.example.administrator.matata_android.homepage.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.ArtBuyCompleteBean;
+import com.example.administrator.matata_android.bean.WXPayBean;
 import com.example.administrator.matata_android.homepage.SerializableMap;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
+import com.example.administrator.matata_android.wxapi.WXPayEntryActivity;
+import com.example.administrator.matata_android.wxapi.WXPayUtils;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 
@@ -21,6 +25,9 @@ import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * 营地购买页面---订单页面
+ */
 public class ArtBuyCompleteActivity extends BaseActivity {
 
     @BindView(R.id.tv_art_buy_no)
@@ -57,6 +64,7 @@ public class ArtBuyCompleteActivity extends BaseActivity {
 
     private BaseObserver<ArtBuyCompleteBean> buyCompleteBeanBaseObserver;
     private HashMap<String, Object> campBuyInfoMap ;
+    private BaseObserver<WXPayBean> wxPayBeanBaseObserver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_art_buy_complete);
@@ -68,11 +76,12 @@ public class ArtBuyCompleteActivity extends BaseActivity {
     protected void getExras() {
 
         Intent intent = getIntent();
+        campsite_id=intent.getStringExtra("campsite_id");
         Bundle bundle = intent.getBundleExtra("mBundle");
         dataMap = (SerializableMap)bundle.getSerializable("myMap");
 
         if (dataMap != null) {
-            campsite_id=dataMap.get("campsite_id").toString().trim();
+
             attribute=dataMap.get("attribute").toString().trim();
             date=dataMap.get("date").toString().trim();
             num=dataMap.get("num").toString().trim();
@@ -88,6 +97,7 @@ public class ArtBuyCompleteActivity extends BaseActivity {
     @Override
     protected void initData() {
         getCampOrder();
+
     }
 
     @Override
@@ -125,6 +135,16 @@ public class ArtBuyCompleteActivity extends BaseActivity {
                 artBuyPriceAll.setText(getPrice(artBuyCompleteBean.getPrice()));
 
                 Toast.makeText(ArtBuyCompleteActivity.this, "获取成功", Toast.LENGTH_SHORT).show();
+
+                artConfirmBuy.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        getpayInfo(artBuyCompleteBean.getId());
+
+                    }
+                });
+
             }
         };
 
@@ -135,9 +155,62 @@ public class ArtBuyCompleteActivity extends BaseActivity {
                 .subscribe(buyCompleteBeanBaseObserver);
         
     }
-    
-    
-    
+    /**
+     * 调用微信购买商品
+     *
+     *         "appid": "wx0c29113c18ba2dfc",
+     *         "partnerid": "1540786021",
+     *         "prepayid": "wx0215103882185636b00407e81547265700",
+     *         "noncestr": "5de4b8eedb612",
+     *         "timestamp": 1575270638,
+     *         "package": "Sign=WXPay",
+     *         "sign": "51EE3611FA7253DC36A2278186A8E5B9"
+     *
+     */
+    private void getpayInfo(String id){
+        Map<String,Object> map =new HashMap<String, Object>();
+        map.put("token",MatataSPUtils.getToken());
+        map.put("campsite_order_id",id);
+        map.put("pay_type","wx");
+        wxPayBeanBaseObserver=new BaseObserver<WXPayBean>(this,false,false) {
+            @Override
+            public void onSuccess(WXPayBean wXPayBean) {
+
+                Intent intent = new Intent(ArtBuyCompleteActivity.this,WXPayEntryActivity.class);
+                intent.putExtra("partnerid",wXPayBean.getPartnerid());
+                intent.putExtra("prepayid",wXPayBean.getPrepayid());
+                intent.putExtra("noncestr",wXPayBean.getNoncestr());
+                intent.putExtra("timestamp",String.valueOf(wXPayBean.getTimestamp()));
+                intent.putExtra("package",wXPayBean.getPackageX());
+                intent.putExtra("sign",wXPayBean.getSign());
+                startActivity(intent);
+//                if (wXPayBean!=null){
+//                    WXPayUtils.WXPayBuilder builder =new WXPayUtils.WXPayBuilder();
+//                    builder.setAppId("wx0c29113c18ba2dfc")
+//                            .setPartnerId(wXPayBean.getPartnerid())
+//                            .setPrepayId(wXPayBean.getPrepayid())
+//                            .setPackageValue(wXPayBean.getPackageX())
+//                            .setNonceStr(wXPayBean.getNoncestr())
+//                            .setTimeStamp(String.valueOf(wXPayBean.getTimestamp()))
+//                            .setSign(wXPayBean.getSign())
+//                            .build()
+//                            .toWXPayNotSign(ArtBuyCompleteActivity.this,"wx0c29113c18ba2dfc");
+//                }
+                    finishActivity();
+            }
+        };
+        RetrofitUtil.getInstance().getApiService().payCampsite(map)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(wxPayBeanBaseObserver);
+
+
+
+    }
+
+
+
     @Override
     protected boolean onKeyBack() {
         return false;
@@ -156,4 +229,5 @@ public class ArtBuyCompleteActivity extends BaseActivity {
         int b = a / 100;
         return  String.valueOf(b);
     }
+
 }

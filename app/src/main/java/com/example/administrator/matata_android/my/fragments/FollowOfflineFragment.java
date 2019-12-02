@@ -48,7 +48,7 @@ public class FollowOfflineFragment extends BaseViewNeedSetFragment {
         musicAdapterRv = (RecyclerView) view.findViewById(R.id.music_adapter_rv);
         adapter = new MusicOfflineAdapter(getContext(), R.layout.adapter_music_online, null);
         initData();
-        getMusicOnline();
+
         return view;
     }
 
@@ -59,40 +59,6 @@ public class FollowOfflineFragment extends BaseViewNeedSetFragment {
         musicAdapterRv.setLayoutManager(linearLayoutManager);
         musicAdapterRv.setAdapter(adapter);
     }
-
-    /**
-     * 获取线下课数据
-     */
-    private void getMusicOnline() {
-
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("token", MatataSPUtils.getToken());
-        musicOnlineBeanBaseObserver = new BaseObserver<MusicOffLineBean>(getContext(), false, false) {
-            @Override
-            public void onSuccess(MusicOffLineBean musicOffLineBean) {
-
-                adapter.addData(musicOffLineBean.getData());
-                adapter.notifyDataSetChanged();
-               adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-                   @Override
-                   public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                       Intent intent = new Intent(getContext(), TheatreCollageCourseDetailsActivity.class);
-                       String id =String.valueOf(musicOffLineBean.getData().get(position).getId());
-                       intent.putExtra("offlineId",id);
-                       startActivity(intent);
-                   }
-               });
-            }
-        };
-        RetrofitUtil.getInstance().getApiService().getMusicOffline(map)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(musicOnlineBeanBaseObserver);
-
-
-    }
-
 
     @Override
     public void onDestroyView() {

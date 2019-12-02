@@ -19,7 +19,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" /> <!-- 相机权限 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
+    <!-- 微信支付权限 -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <application
         android:name=".zhzbase.base.BaseApplication"
         android:allowBackup="true"
@@ -97,7 +100,18 @@
         <activity android:name=".homepage.activitys.ArtsetTwoActivity" />
         <activity android:name=".homepage.activitys.ArtSetThreeActivity" />
         <activity android:name=".homepage.activitys.ThetreaBuyActivity" />
-        <activity android:name=".my.activitys.MyVipIntroduceActivity"></activity>
+        <activity android:name=".my.activitys.MyVipIntroduceActivity" />
+
+        <activity android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wx0c29113c18ba2dfc"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

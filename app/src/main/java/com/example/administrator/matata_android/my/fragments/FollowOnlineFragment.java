@@ -14,10 +14,12 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
+import com.example.administrator.matata_android.bean.MyFollowBean;
 import com.example.administrator.matata_android.homepage.activitys.CourseDetailsTwoActivity;
 import com.example.administrator.matata_android.homepage.adapters.MusicOnlineAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
+import com.example.administrator.matata_android.my.adapters.MyFollowOnlineAdapter;
 import com.example.administrator.matata_android.zhzbase.base.BaseViewNeedSetFragment;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 
@@ -39,8 +41,18 @@ public class FollowOnlineFragment extends BaseViewNeedSetFragment {
     RecyclerView musicAdapterOnlineRv;
     Unbinder unbinder;
 
-    private BaseObserver<MusicOnlineBean> musicOnlineBeanBaseObserver;
-    private MusicOnlineAdapter adapter;
+    private MyFollowBean myFollowBean;
+    private MyFollowOnlineAdapter adapter;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle=getArguments();
+        if (bundle!=null){
+            myFollowBean =(MyFollowBean)bundle.getSerializable("FollowOnlineFragment");
+        }
+    }
 
     @Nullable
     @Override
@@ -48,7 +60,6 @@ public class FollowOnlineFragment extends BaseViewNeedSetFragment {
         View view = inflater.inflate(R.layout.fragment_music_online, null);
         unbinder = ButterKnife.bind(this, view);
         initData();
-        getMusicOnline();
         return view;
     }
 
@@ -57,43 +68,13 @@ public class FollowOnlineFragment extends BaseViewNeedSetFragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         musicAdapterOnlineRv.setLayoutManager(linearLayoutManager);
-        adapter = new MusicOnlineAdapter(getContext(), R.layout.adapter_music_online, null);
+
+        adapter = new MyFollowOnlineAdapter(getContext(), R.layout.adapter_music_online, null);
+        if (myFollowBean!=null){
+            adapter.addData(myFollowBean.getOnline_course());
+        }
         musicAdapterOnlineRv.setAdapter(adapter);
     }
-
-    /**
-     * 获取线上课数据
-     */
-    private void getMusicOnline() {
-
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("token", MatataSPUtils.getToken());
-        musicOnlineBeanBaseObserver = new BaseObserver<MusicOnlineBean>(getContext(), true, true) {
-            @Override
-            public void onSuccess(MusicOnlineBean musicOnlineBean) {
-
-                adapter.addData(musicOnlineBean.getData());
-                adapter.notifyDataSetChanged();
-                adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                        Intent intent = new Intent(getContext(), CourseDetailsTwoActivity.class);
-                        String id=String.valueOf(musicOnlineBean.getData().get(position).getId());
-                        intent.putExtra("onlineId",id);
-                        startActivity(intent);
-                    }
-                });
-            }
-        };
-        RetrofitUtil.getInstance().getApiService().getMusicOnline(map)
-                .subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(musicOnlineBeanBaseObserver);
-
-    }
-
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

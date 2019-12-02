@@ -110,6 +110,10 @@ public class MyFollowSingleLayoutAdapter extends DelegateAdapter.Adapter<MyFollo
                 if (followTeacherFragment==null){
                     followTeacherFragment=new FollowTeacherFragment();
                     fragmentTransaction.add(R.id.sing_content_frame,followTeacherFragment);
+                    //往fragment传递数据
+                    Bundle bundle1= new Bundle();
+                    bundle1.putSerializable("FollowTeacherFragment",myFollowBean);
+                    followTeacherFragment.setArguments(bundle1);
                 }else {
                     fragmentTransaction.show(followTeacherFragment);
                 }
@@ -119,6 +123,10 @@ public class MyFollowSingleLayoutAdapter extends DelegateAdapter.Adapter<MyFollo
                 if (followOnlineFragment==null){
                     followOnlineFragment=new FollowOnlineFragment();
                     fragmentTransaction.add(R.id.sing_content_frame,followOnlineFragment);
+                    //往fragment传递数据
+                    Bundle bundle1= new Bundle();
+                    bundle1.putSerializable("FollowOnlineFragment",myFollowBean);
+                    followOnlineFragment.setArguments(bundle1);
                 }else {
                     fragmentTransaction.show(followOnlineFragment);
                 }
@@ -127,6 +135,10 @@ public class MyFollowSingleLayoutAdapter extends DelegateAdapter.Adapter<MyFollo
                 if (followOfflineFragment==null){
                     followOfflineFragment=new FollowOfflineFragment();
                     fragmentTransaction.add(R.id.sing_content_frame,followOfflineFragment);
+                    //往fragment传递数据
+                    Bundle bundle1= new Bundle();
+                    bundle1.putSerializable("followOfflineFragment",myFollowBean);
+                    followOfflineFragment.setArguments(bundle1);
                 }else {
                     fragmentTransaction.show(followOfflineFragment);
                 }
