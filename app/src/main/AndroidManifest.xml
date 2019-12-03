@@ -78,7 +78,7 @@
         <activity android:name=".growup.activity.ChangChildInfoActivity" />
         <activity android:name=".homepage.activitys.CourseDetailsActivity" />
         <activity android:name=".my.activitys.MyVipActivity" />
-        <activity android:name=".my.activitys.MyExtensionActivity" />
+        <activity android:name=".my.activitys.MyOrdersActivity" />
         <activity android:name=".my.activitys.MyOrderActivity" />
         <activity android:name=".my.activitys.MyFollowActivity" />
         <activity android:name=".my.activitys.MyMessageActivity" />

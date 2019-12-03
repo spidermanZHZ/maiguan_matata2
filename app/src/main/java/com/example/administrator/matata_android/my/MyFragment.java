@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.login.activitys.LoginActivity;
-import com.example.administrator.matata_android.my.activitys.MyExtensionActivity;
+import com.example.administrator.matata_android.my.activitys.MyOrdersActivity;
 import com.example.administrator.matata_android.my.activitys.MyFollowActivity;
 import com.example.administrator.matata_android.my.activitys.MyFriendActivity;
 import com.example.administrator.matata_android.my.activitys.MyMessageActivity;
@@ -39,7 +39,7 @@ public class MyFragment extends BaseFragment {
     ImageView stuEdit;
     @BindView(R.id.my_ll_vip)
     LinearLayout myLlVip;
-    @BindView(R.id.my_ll_extension)
+    @BindView(R.id.my_ll_orders)
     LinearLayout myLlExtension;
     @BindView(R.id.my_ll_order)
     LinearLayout myLlOrder;
@@ -91,14 +91,14 @@ public class MyFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.my_ll_vip, R.id.my_ll_extension, R.id.my_ll_order, R.id.my_ll_follow, R.id.my_btn_offlogin,R.id.my_ll_message, R.id.my_ll_friend})
+    @OnClick({R.id.my_ll_vip, R.id.my_ll_orders, R.id.my_ll_order, R.id.my_ll_follow, R.id.my_btn_offlogin,R.id.my_ll_message, R.id.my_ll_friend})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.my_ll_vip:
                 startActivity(new Intent(getContext(), MyVipActivity.class));
                 break;
-            case R.id.my_ll_extension:
-                startActivity(new Intent(getContext(), MyExtensionActivity.class));
+            case R.id.my_ll_orders:
+                startActivity(new Intent(getContext(), MyOrdersActivity.class));
                 break;
             case R.id.my_ll_order:
                 startActivity(new Intent(getContext(), MyOrderActivity.class));
