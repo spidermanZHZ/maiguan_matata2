@@ -57,6 +57,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_gravity="center"
                         android:orientation="horizontal"
                         android:layout_marginTop="21dp"
@@ -91,6 +93,56 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginTop="28dp"
+                android:background="@color/activity_bg"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/light_black"
+                    android:text="@string/change_child_sex"
+                    android:textSize="15sp"
+                    />
+                <RadioGroup
+                    android:id="@+id/rg_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="43dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    >
+                    <RadioButton
+                        android:id="@+id/rb_man"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="男"
+                        android:textSize="14sp"
+                        android:checked="true"
+                        android:textColor="@color/black666"
+                        />
+                    <RadioButton
+                        android:id="@+id/rb_woman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="女"
+                        android:textSize="14sp"
+                        android:textColor="@color/black666"
+                        />
+                </RadioGroup>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
                 android:layout_marginTop="28dp"
@@ -105,21 +157,32 @@
                     android:textColor="@color/light_black"
                     android:text="@string/change_child_date"
                     android:textSize="15sp"
-
                     />
-       <DatePicker
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginLeft="14dp"
-           />
+                <EditText
+                    android:id="@+id/change_child_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="43dp"
+                    android:layout_gravity="center"
+                    android:hint="@string/change_child_age"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:textColor="@color/Et_hintText"
+                    android:background="@drawable/login_linearlayout_style"
+                    />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
                 android:layout_marginTop="28dp"
+                android:layout_marginBottom="28dp"
                 android:background="@color/activity_bg"
                 >
                 <TextView
@@ -137,6 +200,7 @@
                     android:id="@+id/change_child_sign"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:layout_marginLeft="14dp"
                     android:layout_gravity="center"
                     android:hint="@string/change_child_et_sign"
@@ -147,28 +211,6 @@
                     android:background="@drawable/login_linearlayout_style"
                     />
             </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="28dp"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:includeFontPadding="false"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="10dp"
-                            android:textColor="@color/light_black"
-                            android:text="@string/change_child_sex"
-                            android:textSize="15sp"
-                            />
-
-                    </LinearLayout>
-
-
-
 
         </LinearLayout>
 

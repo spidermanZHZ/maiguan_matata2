@@ -75,7 +75,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/up_stu_change_info"
                 android:textColor="@color/black666"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <View
@@ -91,8 +91,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/cornerbg_white_single"
         android:orientation="vertical">
 
         <LinearLayout
@@ -120,7 +120,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/up_stu_more_time"
                 android:textColor="@color/black666"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -165,6 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
+                    android:layout_gravity="center"
                     android:text="@string/up_stu_test_second"
                     android:textColor="@color/Tv_text"
                     android:textSize="13sp" />
@@ -173,7 +174,7 @@
                     android:id="@+id/stu_test_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:includeFontPadding="false"
                     android:textColor="@color/black666"
@@ -201,7 +202,7 @@
                     android:id="@+id/stu_all_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:includeFontPadding="false"
                     android:textColor="@color/black666"
@@ -219,7 +220,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center"
                     android:includeFontPadding="false"
                     android:text="@string/up_stu_day"
                     android:textColor="@color/Tv_text"
@@ -229,7 +230,7 @@
                     android:id="@+id/stu_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:includeFontPadding="false"
                     android:textColor="@color/black666"
@@ -244,14 +245,14 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_gravity="center"
-        android:layout_marginTop="21dp"
-        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/cornerbg_white_single"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:background="@color/background_title"
+            android:background="@drawable/cornerbg_yellow_single"
             android:orientation="horizontal">
 
             <TextView
@@ -274,7 +275,7 @@
                 android:includeFontPadding="false"
                 android:text="@string/up_stu_adjust"
                 android:textColor="@color/black666"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

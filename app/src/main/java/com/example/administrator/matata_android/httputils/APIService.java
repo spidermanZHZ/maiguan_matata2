@@ -27,10 +27,14 @@ import java.util.Map;
 
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.QueryMap;
 
 
@@ -131,12 +135,12 @@ public interface APIService {
 
     /**
      *  添加一名学员
-     * @param map
+     *  图片文件上传，需要添加@Multipart注解
      * @return
      */
-      @POST("child/add")
-    @FormUrlEncoded
-    Observable<BaseBeanResponse<ChildId>>addStudent(@FieldMap Map<String ,Object> map);
+    @Multipart
+    @POST("child/add")
+    Observable<BaseBeanResponse<Object>>addStudent(@Part("token")RequestBody token,@Part("name")RequestBody name,@Part("sex")RequestBody sex,@Part("age")RequestBody age,@Part("signature")RequestBody signature,@Part MultipartBody.Part image);
 
 
     /**
