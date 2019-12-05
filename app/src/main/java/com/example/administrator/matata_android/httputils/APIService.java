@@ -140,7 +140,7 @@ public interface APIService {
      */
     @Multipart
     @POST("child/add")
-    Observable<BaseBeanResponse<Object>>addStudent(@Part("token")RequestBody token,@Part("name")RequestBody name,@Part("sex")RequestBody sex,@Part("age")RequestBody age,@Part("signature")RequestBody signature,@Part MultipartBody.Part image);
+    Observable<BaseBeanResponse<ChildId>>addStudent(@Part("token")RequestBody token,@Part("name")RequestBody name,@Part("sex")RequestBody sex,@Part("age")RequestBody age,@Part("signature")RequestBody signature,@Part MultipartBody.Part image);
 
 
     /**

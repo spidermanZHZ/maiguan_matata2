@@ -215,6 +215,13 @@ public class MainActivity extends BaseFragmentActivity {
             @Override
             public void onSuccess(UserInfoBean userInfoBean) {
                 MatataSPUtils.saveIsVip(userInfoBean.getIs_vip());
+                //保存用户是否添加学员
+                if (userInfoBean.getUser_child()==null){
+                    MatataSPUtils.saveIsHaveStudent("0");
+                }else {
+                    MatataSPUtils.saveIsHaveStudent("1");
+                    MatataSPUtils.saveBean2Sp(MainActivity.this,userInfoBean.getUser_child(),"UserInfo","User_child");
+                }
             }
         };
 

@@ -84,6 +84,9 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
         //创建delegateadapter
         DelegateAdapter delegateAdapter = new DelegateAdapter(layoutManager, true);
 
+        //检查是否有学院列表
+        if (MatataSPUtils.getIsHaveStudent().equals("1")){
+
         //装载成长陪伴个人信息，总学习时间，周计划
         SingleLayoutHelper singleLayoutHelper2 = new SingleLayoutHelper();
         growUpSingleLayoutHelperAdapter=new GrowUpSingleLayoutHelperAdapter(getContext(),singleLayoutHelper2,null);
@@ -104,8 +107,13 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
 //        adapters.add(homepagerThreeAdapter);
 
         delegateAdapter.setAdapters(adapters);
+        }else{
+            //当没有添加学员时，加载添加学员页面
+            SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
 
+        }
         rvGrowUpFragment.setAdapter(delegateAdapter);
+
     }
 
 
