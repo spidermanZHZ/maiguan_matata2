@@ -1,5 +1,6 @@
 package com.example.administrator.matata_android.homepage.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -79,7 +80,7 @@ public class ArtsetTwoActivity extends BaseActivity {
         titleBar.setOnTitleBarListener(new OnTitleBarListener() {
             @Override
             public void onLeftClick(View v) {
-
+                finishActivity();
             }
 
             @Override
@@ -89,6 +90,8 @@ public class ArtsetTwoActivity extends BaseActivity {
 
             @Override
             public void onRightClick(View v) {
+                Intent intent = new Intent(ArtsetTwoActivity.this,ArtSetThreeActivity.class);
+                startActivity(intent);
 
             }
         });

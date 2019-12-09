@@ -11,6 +11,7 @@ import com.example.administrator.matata_android.bean.LoginBean;
 import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.bean.MusicOffLineBean;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
+import com.example.administrator.matata_android.bean.MyExtendBean;
 import com.example.administrator.matata_android.bean.MyFollowBean;
 import com.example.administrator.matata_android.bean.OffLineCourseBean;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
@@ -275,5 +276,13 @@ public interface APIService {
     @POST("campsite/pay")
     @FormUrlEncoded
     Observable<BaseBeanResponse<WXPayBean>>payCampsite(@FieldMap Map<String, Object> map);
+
+    /**
+     * 获取推广中心资源
+     * @param map
+     * @return
+     */
+    @GET("user/popularize")
+    Observable<BaseBeanResponse<MyExtendBean>> getExtendInfo(@QueryMap Map<String ,Object> map);
 
 }

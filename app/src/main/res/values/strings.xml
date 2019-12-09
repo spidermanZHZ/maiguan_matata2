@@ -142,7 +142,7 @@
     <string name="my_vip">我的会员</string>
     <string name="my_center">我的订单</string>
     <string name="my_offline">退出登录</string>
-    <string name="my_order">我的课程</string>
+    <string name="my_order">推广中心</string>
     <string name="my_friend">联系客服</string>
     <string name="my_follow">我的收藏</string>
     <string name="my_news">我的消息</string>
@@ -157,4 +157,5 @@
     <string name="theatre_buy">购买课程</string>
     <string name="theatre_buy_attribute">请选择课程属性</string>
     <string name="theatre_buy_type">课程类型</string>
+    <string name="study_advice">\t\t你好小萌新，零基础的你从今天开始学习戏剧表演，只要你按时完成学习计划，预计1年可以达到中级戏剧表演等级,可以更加靠近进入艺术名校的梦想啦！加油吧,马它它会一直陪伴着你哟!</string>
 </resources>

@@ -124,6 +124,7 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
                 Toast.makeText(mContext, "该功能暂未开通", Toast.LENGTH_SHORT).show();
             }
         });
+        //艺术定制
         holder.homePagerSetArtIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

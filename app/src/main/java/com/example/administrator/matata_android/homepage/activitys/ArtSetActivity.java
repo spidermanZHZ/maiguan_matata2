@@ -88,7 +88,7 @@ public class ArtSetActivity extends BaseActivity {
         titleBar.setOnTitleBarListener(new OnTitleBarListener() {
     @Override
     public void onLeftClick(View v) {
-
+            finishActivity();
     }
 
     @Override

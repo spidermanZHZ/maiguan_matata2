@@ -12,9 +12,11 @@ import android.widget.TextView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
 import com.example.administrator.matata_android.homepage.activitys.AllTeacherActivity;
+import com.example.administrator.matata_android.homepage.activitys.TeacherDetailsActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -73,6 +75,15 @@ public class HomepagerTwoAdapter extends DelegateAdapter.Adapter<HomepagerTwoAda
         if (homepagerTeacherBean!=null){
             adapter.addData(homepagerTeacherBean.getTeacher());
         }
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                 Intent intent = new Intent(mContext, TeacherDetailsActivity.class);
+                        String id=String.valueOf(homepagerTeacherBean.getTeacher().get(position).getId());
+                        intent.putExtra("teacher_id",id);
+                        startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -18,7 +18,7 @@ import com.example.administrator.matata_android.my.activitys.MyOrdersActivity;
 import com.example.administrator.matata_android.my.activitys.MyFollowActivity;
 import com.example.administrator.matata_android.my.activitys.MyFriendActivity;
 import com.example.administrator.matata_android.my.activitys.MyMessageActivity;
-import com.example.administrator.matata_android.my.activitys.MyOrderActivity;
+import com.example.administrator.matata_android.my.activitys.MyExtendActivity;
 import com.example.administrator.matata_android.my.activitys.MyVipActivity;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragment;
 
@@ -101,7 +101,7 @@ public class MyFragment extends BaseFragment {
                 startActivity(new Intent(getContext(), MyOrdersActivity.class));
                 break;
             case R.id.my_ll_order:
-                startActivity(new Intent(getContext(), MyOrderActivity.class));
+                startActivity(new Intent(getContext(), MyExtendActivity.class));
                 break;
             case R.id.my_ll_follow:
                 startActivity(new Intent(getContext(), MyFollowActivity.class));

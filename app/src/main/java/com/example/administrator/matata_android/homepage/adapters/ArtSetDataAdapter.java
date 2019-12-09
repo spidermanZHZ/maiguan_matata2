@@ -20,7 +20,7 @@ import com.example.administrator.matata_android.bean.TheatreCourseDetailsBean;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TheatreCollageTwoSingleLayoutHelperAdapter extends DelegateAdapter.Adapter<TheatreCollageTwoSingleLayoutHelperAdapter.SingleLayoutHelperViewHolder> {
+public class ArtSetDataAdapter extends RecyclerView.Adapter<ArtSetDataAdapter.SingleLayoutHelperViewHolder> {
 
     private Context mContext;
     private LayoutHelper mHelper;
@@ -28,8 +28,8 @@ public class TheatreCollageTwoSingleLayoutHelperAdapter extends DelegateAdapter.
     private final static String URL="https://www.maiguanjy.com/";
 
     public interface  OnItemClickListener{
-        void onItemClick(View view,int position);
-        void onLongItemClick(View view,int position);
+        void onItemClick(View view, int position);
+        void onLongItemClick(View view, int position);
     }
     public OnItemClickListener mOnItemClickListenre;//设置点击事件
 
@@ -38,20 +38,13 @@ public class TheatreCollageTwoSingleLayoutHelperAdapter extends DelegateAdapter.
     }
 
 
-    public TheatreCollageTwoSingleLayoutHelperAdapter(Context mContext, LayoutHelper mHelper, TheatreCourseDetailsBean theatreCourseDetailsBean) {
+    public ArtSetDataAdapter(Context mContext, TheatreCourseDetailsBean theatreCourseDetailsBean) {
         this.mContext = mContext;
-        this.mHelper = mHelper;
         this.theatreCourseDetailsBean = theatreCourseDetailsBean;
     }
     public  void addData(TheatreCourseDetailsBean theatreCourseDetailsBean){
         this.theatreCourseDetailsBean=theatreCourseDetailsBean;
         notifyDataSetChanged();
-    }
-
-
-    @Override
-    public LayoutHelper onCreateLayoutHelper() {
-        return mHelper;
     }
 
     @NonNull
