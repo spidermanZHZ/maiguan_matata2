@@ -56,6 +56,8 @@ public class ArtBuyCompleteActivity extends BaseActivity {
     SerializableMap dataMap;
 
     private String campsite_id;
+    private String online_id;
+    private String offline_id;
     private String attribute;
     private String date;
     private String num;
@@ -65,6 +67,8 @@ public class ArtBuyCompleteActivity extends BaseActivity {
     private BaseObserver<ArtBuyCompleteBean> buyCompleteBeanBaseObserver;
     private HashMap<String, Object> campBuyInfoMap ;
     private BaseObserver<WXPayBean> wxPayBeanBaseObserver;
+
+    private String orderType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_art_buy_complete);
@@ -76,21 +80,30 @@ public class ArtBuyCompleteActivity extends BaseActivity {
     protected void getExras() {
 
         Intent intent = getIntent();
-        campsite_id=intent.getStringExtra("campsite_id");
-        Bundle bundle = intent.getBundleExtra("mBundle");
-        dataMap = (SerializableMap)bundle.getSerializable("myMap");
+        if (intent.getStringExtra("type").equals("campsite")){
+            campsite_id=intent.getStringExtra("campsite_id");
+            Bundle bundle = intent.getBundleExtra("mBundle");
+            dataMap = (SerializableMap)bundle.getSerializable("myMap");
 
-        if (dataMap != null) {
+            if (dataMap != null) {
 
-            attribute=dataMap.get("attribute").toString().trim();
-            date=dataMap.get("date").toString().trim();
-            num=dataMap.get("num").toString().trim();
-            contact=dataMap.get("contact").toString().trim();
-            contact_phone=dataMap.get("contact_phone").toString().trim();
+                attribute=dataMap.get("attribute").toString().trim();
+                date=dataMap.get("date").toString().trim();
+                num=dataMap.get("num").toString().trim();
+                contact=dataMap.get("contact").toString().trim();
+                contact_phone=dataMap.get("contact_phone").toString().trim();
 
-        }else {
-            return ;
+            }else {
+                return ;
+            }
+
+        }else if (intent.getStringExtra("type").equals("online")){
+            online_id=intent.getStringExtra("online_id");
+        }else if(intent.getStringExtra("type").equals("offline")){
+            offline_id=intent.getStringExtra("offline_id");
         }
+
+
 
     }
 
@@ -106,7 +119,7 @@ public class ArtBuyCompleteActivity extends BaseActivity {
     }
 
     /**
-     * 获得订单信息
+     * 获得营地订单信息
      */
     public void getCampOrder(){
         campBuyInfoMap=new HashMap<>();

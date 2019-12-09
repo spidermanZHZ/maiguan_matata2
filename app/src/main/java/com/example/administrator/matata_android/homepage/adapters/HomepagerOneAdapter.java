@@ -21,8 +21,10 @@ import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
 import com.example.administrator.matata_android.homepage.activitys.ArtCampActivity;
 import com.example.administrator.matata_android.homepage.activitys.ArtSetActivity;
+import com.example.administrator.matata_android.homepage.activitys.CourseDetailsTwoActivity;
 import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
 import com.example.administrator.matata_android.homepage.activitys.TheatreCollageActivity;
+import com.example.administrator.matata_android.homepage.activitys.TheatreCollageCourseDetailsActivity;
 
 import java.util.Arrays;
 
@@ -92,7 +94,27 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
         holder.bannerGuideContent.setDelegate(new BGABanner.Delegate<ImageView, String>() {
             @Override
             public void onBannerItemClick(BGABanner banner, ImageView itemView, @Nullable String model, int position) {
-                Toast.makeText(mContext, "点击了轮播图", Toast.LENGTH_SHORT).show();
+
+                if (homepagerTeacherBeans.getBanner().get(position).getSub().equals("JXKC")){
+                    Intent intent = new Intent(mContext, CourseDetailsTwoActivity.class);
+                    String id=String.valueOf(homepagerTeacherBeans.getBanner().get(position).getId());
+                    intent.putExtra("onlineId",id);
+                    startActivity(intent);
+                }else if (homepagerTeacherBeans.getBanner().get(position).getSub().equals("OFFJXKC")){
+                    Intent intent = new Intent(mContext, TheatreCollageCourseDetailsActivity.class);
+                    String id =String.valueOf(homepagerTeacherBeans.getBanner().get(position).getId());
+                    intent.putExtra("offlineId",id);
+                    startActivity(intent);
+                }else if(homepagerTeacherBeans.getBanner().get(position).getSub().equals("DRAMA")){
+                    Intent intent = new Intent(mContext, TheatreCollageCourseDetailsActivity.class);
+                    String id =String.valueOf(homepagerTeacherBeans.getBanner().get(position).getId());
+                    intent.putExtra("offlineId",id);
+                    startActivity(intent);
+                }
+
+
+
+
             }
         });
 

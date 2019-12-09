@@ -179,6 +179,8 @@ public class ThetreaBuyActivity extends BaseActivity {
 
                     Bundle bundle=new Bundle();
                     bundle.putSerializable("myMap",myMap);
+                    intent.putExtra("type","offline");
+                    intent.putExtra("offline_id",offLineCourseBean.getId());
                     intent.putExtra("mBundle",bundle);
                     startActivity(intent);
                 }

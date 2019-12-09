@@ -267,6 +267,7 @@ public class ArtBuyActivity extends BaseActivity {
 
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("myMap",myMap);
+                intent.putExtra("type","campsite");
                 intent.putExtra("mBundle",bundle);
                 intent.putExtra("campsite_id",campsite_id);
                 startActivity(intent);

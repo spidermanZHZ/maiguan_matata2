@@ -207,6 +207,18 @@ public class CourseDetailsTwoActivity extends SupportActivity {
                 }else{
                     courseDetailsJoin.setText("购买课程");
                 }
+                courseDetailsJoin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent();
+                        intent.setClass(CourseDetailsTwoActivity.this,ArtBuyCompleteActivity.class);
+
+                        intent.putExtra("type","online");
+                        intent.putExtra("online_id",onLineCourseBean.getId());
+                        startActivity(intent);
+                    }
+                });
             }
 
         };
