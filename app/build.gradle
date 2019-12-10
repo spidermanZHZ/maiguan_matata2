@@ -10,10 +10,20 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs{
+        release{ storeFile file("C:/Users/Administrator/Desktop/kkeyStore/makeapp.jks")
+            storePassword "z123456"
+            keyAlias "maker"
+            keyPassword "zz123456"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {

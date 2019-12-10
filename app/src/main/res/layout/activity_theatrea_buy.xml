@@ -123,6 +123,31 @@
                 android:text="@string/theatre_buy_attribute"
                 />
             <LinearLayout
+                android:id="@+id/but_ll_shuxing_two"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+                <TextView
+                    android:id="@+id/buy_title_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="@color/Tv_text"
+                    android:textSize="15sp"
+                    android:text="@string/at_date"
+                    />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_join_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="14dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
                 android:id="@+id/but_ll_shuxing_one"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

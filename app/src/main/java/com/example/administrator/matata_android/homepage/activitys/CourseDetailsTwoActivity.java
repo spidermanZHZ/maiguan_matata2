@@ -215,7 +215,7 @@ public class CourseDetailsTwoActivity extends SupportActivity {
                         intent.setClass(CourseDetailsTwoActivity.this,ArtBuyCompleteActivity.class);
 
                         intent.putExtra("type","online");
-                        intent.putExtra("online_id",onLineCourseBean.getId());
+                        intent.putExtra("online_id",String.valueOf(onLineCourseBean.getId()));
                         startActivity(intent);
                     }
                 });

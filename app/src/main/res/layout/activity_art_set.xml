@@ -132,67 +132,6 @@
             android:background="@drawable/rg_btn_bg"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="请选择想要学习的艺术技能"
-            android:textSize="17sp"
-            android:layout_gravity="center"
-            android:textColor="@color/Tv_text"
-            android:layout_marginTop="43dp"
-            />
-        <RadioGroup
-            android:id="@+id/rg_department"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:background="@color/white">
-            <RadioButton
-                android:id="@+id/rb_department1"
-                android:layout_width="220dp"
-                android:layout_height="28dp"
-                android:text="戏剧表演"
-                android:textSize="14sp"
-                android:layout_marginTop="21dp"
-                android:gravity="center"
-                android:button="@null"
-                android:background="@drawable/rg_btn_change"
-                />
-            <RadioButton
-                android:id="@+id/rb_department2"
-                android:layout_width="220dp"
-                android:layout_height="28dp"
-                android:text="乐器演奏"
-                android:textSize="14sp"
-                android:layout_marginTop="21dp"
-                android:gravity="center"
-                android:button="@null"
-                android:background="@drawable/rg_btn_change"
-                />
-            <RadioButton
-                android:id="@+id/rb_department3"
-                android:layout_width="220dp"
-                android:layout_height="28dp"
-                android:text="声乐表演"
-                android:textSize="14sp"
-                android:layout_marginTop="21dp"
-                android:gravity="center"
-                android:button="@null"
-                android:background="@drawable/rg_btn_change"
-                />
-            <RadioButton
-                android:id="@+id/rb_department4"
-                android:layout_width="220dp"
-                android:layout_height="28dp"
-                android:text="音乐剧表演"
-                android:textSize="14sp"
-                android:layout_marginTop="21dp"
-                android:gravity="center"
-                android:button="@null"
-                android:background="@drawable/rg_btn_change"
-                />
-        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
@@ -230,6 +169,7 @@
                 />
         </RadioGroup>
         <TextView
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="请选择学习者喜欢的学习方式"
@@ -244,7 +184,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:background="@color/white">
+            android:background="@color/white"
+            android:visibility="gone"
+            >
             <RadioButton
                 android:id="@+id/rb_type1"
                 android:layout_width="220dp"
@@ -311,7 +253,7 @@
                 android:id="@+id/rb_time2"
                 android:layout_width="220dp"
                 android:layout_height="28dp"
-                android:text="周末/节假日"
+                android:text="周末"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
                 android:gravity="center"
@@ -322,7 +264,7 @@
                 android:id="@+id/rb_time3"
                 android:layout_width="220dp"
                 android:layout_height="28dp"
-                android:text="自由安排"
+                android:text="工作日及周末"
                 android:textSize="14sp"
                 android:layout_marginTop="21dp"
                 android:gravity="center"
@@ -330,6 +272,67 @@
                 android:background="@drawable/rg_btn_change"
                 />
 
+        </RadioGroup>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="请选择想要学习的艺术技能"
+            android:textSize="17sp"
+            android:layout_gravity="center"
+            android:textColor="@color/Tv_text"
+            android:layout_marginTop="43dp"
+            />
+        <RadioGroup
+            android:id="@+id/rg_department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:background="@color/white">
+            <RadioButton
+                android:id="@+id/rb_department1"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
+                android:text="戏剧表演"
+                android:textSize="14sp"
+                android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
+                />
+            <RadioButton
+                android:id="@+id/rb_department2"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
+                android:text="乐器演奏"
+                android:textSize="14sp"
+                android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
+                />
+            <RadioButton
+                android:id="@+id/rb_department3"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
+                android:text="声乐表演"
+                android:textSize="14sp"
+                android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
+                />
+            <RadioButton
+                android:id="@+id/rb_department4"
+                android:layout_width="220dp"
+                android:layout_height="28dp"
+                android:text="美术创作"
+                android:textSize="14sp"
+                android:layout_marginTop="21dp"
+                android:gravity="center"
+                android:button="@null"
+                android:background="@drawable/rg_btn_change"
+                />
         </RadioGroup>
 
        <ImageView

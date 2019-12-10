@@ -3,6 +3,7 @@ package com.example.administrator.matata_android.zhzbase.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Base64;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.SPUtils;
 
@@ -194,6 +195,7 @@ public class MatataSPUtils {
                 }
             }
         }
+        Toast.makeText(context, "保存个人信息成功", Toast.LENGTH_SHORT).show();
     }
 
     public static <T extends Object> T getBeanFromSp(Context context, String fileName, String keyNme) {

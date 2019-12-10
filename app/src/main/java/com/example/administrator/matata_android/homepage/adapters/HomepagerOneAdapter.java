@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -38,6 +39,7 @@ import static com.blankj.utilcode.util.ActivityUtils.startActivity;
  * 首页装载轮播图适配器,以及按钮
  */
 public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAdapter.HomepagerOneAdapterViewHolder> {
+
     private Context mContext;
     private LayoutHelper layoutHelper;
     private HomepagerTeacherBean homepagerTeacherBeans;
@@ -95,24 +97,22 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
             @Override
             public void onBannerItemClick(BGABanner banner, ImageView itemView, @Nullable String model, int position) {
 
-                if (homepagerTeacherBeans.getBanner().get(position).getSub().equals("JXKC")){
+                if (homepagerTeacherBeans.getBanner().get(position).getSub().equals("JXKC")) {
                     Intent intent = new Intent(mContext, CourseDetailsTwoActivity.class);
-                    String id=String.valueOf(homepagerTeacherBeans.getBanner().get(position).getId());
-                    intent.putExtra("onlineId",id);
+                    String id = String.valueOf(homepagerTeacherBeans.getBanner().get(position).getValue().getObjId());
+                    intent.putExtra("onlineId", id);
                     startActivity(intent);
-                }else if (homepagerTeacherBeans.getBanner().get(position).getSub().equals("OFFJXKC")){
+                } else if (homepagerTeacherBeans.getBanner().get(position).getSub().equals("OFFJXKC")) {
                     Intent intent = new Intent(mContext, TheatreCollageCourseDetailsActivity.class);
-                    String id =String.valueOf(homepagerTeacherBeans.getBanner().get(position).getId());
-                    intent.putExtra("offlineId",id);
+                    String id = String.valueOf(homepagerTeacherBeans.getBanner().get(position).getValue().getObjId());
+                    intent.putExtra("offlineId", id);
                     startActivity(intent);
-                }else if(homepagerTeacherBeans.getBanner().get(position).getSub().equals("DRAMA")){
+                } else if (homepagerTeacherBeans.getBanner().get(position).getSub().equals("DRAMA")) {
                     Intent intent = new Intent(mContext, TheatreCollageCourseDetailsActivity.class);
-                    String id =String.valueOf(homepagerTeacherBeans.getBanner().get(position).getId());
-                    intent.putExtra("offlineId",id);
+                    String id = String.valueOf(homepagerTeacherBeans.getBanner().get(position).getValue().getObjId());
+                    intent.putExtra("offlineId", id);
                     startActivity(intent);
                 }
-
-
 
 
             }
@@ -147,7 +147,7 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
             }
         });
         //艺术定制
-        holder.homePagerSetArtIv.setOnClickListener(new View.OnClickListener() {
+        holder.homePagerSetArtLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, ArtSetActivity.class);
@@ -172,8 +172,8 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
         LinearLayout llHomepageArtCamp;
         @BindView(R.id.ll_homepage_grade)
         LinearLayout llHomepageGrade;
-        @BindView(R.id.home_pager_set_art_iv)
-        ImageView homePagerSetArtIv;
+        @BindView(R.id.home_pager_set_art_ll)
+        RelativeLayout homePagerSetArtLl;
         public HomepagerOneAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

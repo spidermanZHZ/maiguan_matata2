@@ -9,8 +9,8 @@
         android:layout_height="160dp"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/cornerbg_white_single"
 
         app:banner_pointAutoPlayAble="true"
@@ -29,8 +29,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/cornerbg_white_single"
         android:orientation="horizontal"
         >
@@ -131,14 +131,44 @@
                 />
         </com.zhy.autolayout.AutoLinearLayout>
     </com.zhy.autolayout.AutoLinearLayout>
-    <ImageView
-        android:id="@+id/home_pager_set_art_iv"
+    <RelativeLayout
+        android:id="@+id/home_pager_set_art_ll"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="93dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="5dp"
-        android:scaleType="fitXY"
-        android:background="@mipmap/homepage_artcustom2"
-        />
+        android:layout_marginTop="10dp"
+        android:background="@drawable/cornerbg_white_single"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="来自马它它的神秘邀请>>>"
+            android:textSize="16sp"
+            android:textColor="@color/tv_service_code"
+            android:layout_gravity="center"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@mipmap/home_made3x"
+            android:layout_alignParentBottom="true"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginLeft="40dp"
+                android:text="立即生成专属学习计划"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
 </com.zhy.autolayout.AutoLinearLayout>

@@ -3,9 +3,11 @@ package com.example.administrator.matata_android.homepage.activitys;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.example.administrator.matata_android.R;
@@ -60,6 +62,12 @@ public class ArtsetTwoActivity extends BaseActivity {
     ImageView artSetIv1;
     @BindView(R.id.title_bar)
     TitleBar titleBar;
+    @BindView(R.id.et_department5)
+    EditText etDepartment5;
+    @BindView(R.id.rgDepartment_tv)
+    TextView rgDepartmentTv;
+
+    private String department;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +80,24 @@ public class ArtsetTwoActivity extends BaseActivity {
 
     @Override
     protected void getExras() {
-
+        Intent intent = getIntent();
+        department = intent.getStringExtra("department");
+        if (department.equals("戏剧")) {
+            rbDepartment1.setText("心理成长");
+            rbDepartment2.setText("英语学习");
+            rbDepartment3.setVisibility(View.GONE);
+            rbDepartment4.setVisibility(View.GONE);
+        } else if (department.equals("乐器")) {
+            etDepartment5.setVisibility(View.VISIBLE);
+        } else if (department.equals("声乐")) {
+            rgDepartmentTv.setVisibility(View.GONE);
+            rgDepartment.setVisibility(View.GONE);
+        } else if (department.equals("美术")) {
+            rbDepartment1.setText("国画");
+            rbDepartment2.setText("西洋画");
+            rbDepartment3.setText("创意美术");
+            rbDepartment4.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -90,7 +115,7 @@ public class ArtsetTwoActivity extends BaseActivity {
 
             @Override
             public void onRightClick(View v) {
-                Intent intent = new Intent(ArtsetTwoActivity.this,ArtSetThreeActivity.class);
+                Intent intent = new Intent(ArtsetTwoActivity.this, ArtSetThreeActivity.class);
                 startActivity(intent);
 
             }

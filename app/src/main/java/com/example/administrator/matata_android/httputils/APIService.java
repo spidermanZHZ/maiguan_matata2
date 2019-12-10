@@ -13,8 +13,11 @@ import com.example.administrator.matata_android.bean.MusicOffLineBean;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
 import com.example.administrator.matata_android.bean.MyExtendBean;
 import com.example.administrator.matata_android.bean.MyFollowBean;
+import com.example.administrator.matata_android.bean.MyOrderBean;
 import com.example.administrator.matata_android.bean.OffLineCourseBean;
+import com.example.administrator.matata_android.bean.OffLineOrderBean;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
+import com.example.administrator.matata_android.bean.OnlineOrderBean;
 import com.example.administrator.matata_android.bean.TeacherDetailsInfoBean;
 import com.example.administrator.matata_android.bean.TeacherInfoBean;
 import com.example.administrator.matata_android.bean.TheatreCourseDetailsBean;
@@ -284,5 +287,38 @@ public interface APIService {
      */
     @GET("user/popularize")
     Observable<BaseBeanResponse<MyExtendBean>> getExtendInfo(@QueryMap Map<String ,Object> map);
+
+    /**
+     * 购买线上课程订单
+     * @param
+     * @return
+     */
+    @POST("online/course/order")
+    @FormUrlEncoded
+    Observable<BaseBeanResponse<OnlineOrderBean>>getOnlineOrder(@FieldMap Map<String, Object> map);
+
+    /**
+     * 购买课程接口
+     * @param
+     * @return
+     */
+    @GET("online/course/pay")
+    Observable<BaseBeanResponse<WXPayBean>>payCourse(@QueryMap Map<String, Object> map);
+
+    /**
+     * 生成线下课程订单
+     * @param
+     * @return
+     */
+    @POST("offline/course/order")
+    @FormUrlEncoded
+    Observable<BaseBeanResponse<OffLineOrderBean>>getOfflineOrder(@FieldMap Map<String, Object> map);
+    /**
+     * 获取我的订单
+     * @param map
+     * @return
+     */
+    @GET("user/order")
+    Observable<BaseBeanResponse<MyOrderBean>> getMyOrderInfo(@QueryMap Map<String ,Object> map);
 
 }
