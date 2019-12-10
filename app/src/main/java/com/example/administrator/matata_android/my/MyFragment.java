@@ -6,19 +6,17 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.ActivityUtils;
 import com.example.administrator.matata_android.R;
-import com.example.administrator.matata_android.login.activitys.LoginActivity;
-import com.example.administrator.matata_android.my.activitys.MyOrdersActivity;
+import com.example.administrator.matata_android.my.activitys.MyExtendActivity;
 import com.example.administrator.matata_android.my.activitys.MyFollowActivity;
 import com.example.administrator.matata_android.my.activitys.MyFriendActivity;
 import com.example.administrator.matata_android.my.activitys.MyMessageActivity;
-import com.example.administrator.matata_android.my.activitys.MyExtendActivity;
+import com.example.administrator.matata_android.my.activitys.MyOrdersActivity;
+import com.example.administrator.matata_android.my.activitys.MySetActivity;
 import com.example.administrator.matata_android.my.activitys.MyVipActivity;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragment;
 
@@ -45,13 +43,13 @@ public class MyFragment extends BaseFragment {
     LinearLayout myLlOrder;
     @BindView(R.id.my_ll_follow)
     LinearLayout myLlFollow;
-    @BindView(R.id.my_btn_offlogin)
-    Button myBtnOfflogin;
     Unbinder unbinder;
     @BindView(R.id.my_ll_message)
     LinearLayout myLlMessage;
     @BindView(R.id.my_ll_friend)
     LinearLayout myLlFriend;
+    @BindView(R.id.ll_my_set)
+    LinearLayout llMySet;
 
     @Override
     protected int initLayoutId() {
@@ -91,7 +89,7 @@ public class MyFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.my_ll_vip, R.id.my_ll_orders, R.id.my_ll_order, R.id.my_ll_follow, R.id.my_btn_offlogin,R.id.my_ll_message, R.id.my_ll_friend})
+    @OnClick({R.id.my_ll_vip, R.id.my_ll_orders, R.id.my_ll_order, R.id.my_ll_follow, R.id.my_ll_message, R.id.my_ll_friend,R.id.ll_my_set})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.my_ll_vip:
@@ -106,15 +104,14 @@ public class MyFragment extends BaseFragment {
             case R.id.my_ll_follow:
                 startActivity(new Intent(getContext(), MyFollowActivity.class));
                 break;
-            case R.id.my_btn_offlogin:
-                startActivity(new Intent(getContext(), LoginActivity.class));
-                ActivityUtils.finishAllActivities();
-                break;
             case R.id.my_ll_message:
                 startActivity(new Intent(getContext(), MyMessageActivity.class));
                 break;
             case R.id.my_ll_friend:
                 startActivity(new Intent(getContext(), MyFriendActivity.class));
+                break;
+            case R.id.ll_my_set:
+                startActivity(new Intent(getContext(), MySetActivity.class));
                 break;
         }
     }

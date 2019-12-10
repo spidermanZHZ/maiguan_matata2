@@ -17,6 +17,7 @@ import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.ChildDetailsBean;
+import com.example.administrator.matata_android.bean.MyCourseBean;
 import com.example.administrator.matata_android.growup.activity.ChangChildInfoActivity;
 import com.example.administrator.matata_android.growup.activity.StudyAdjustActivity;
 import com.example.administrator.matata_android.growup.adapter.DateAdapter;
@@ -35,11 +36,13 @@ import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -52,6 +55,7 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
     Unbinder unbinder;
     @BindView(R.id.rv_grow_up_fragment)
     RecyclerView rvGrowUpFragment;
+    private BaseObserver<MyCourseBean> myCourseBeanBaseObserver;
 
     private String child_id;
     private BaseObserver<ChildDetailsBean> childDetailsBeanBaseObserver;
@@ -95,7 +99,7 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
         SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
         growUpSingleLayoutHelperTwoAdapter=new GrowUpSingleLayoutHelperTwoAdapter(getContext(),singleLayoutHelper,null);
 
-        getChlidDetails();
+            getChlidDetails();
 
        //装载开始练习功能
         SingleLayoutHelper singleLayoutHelper13 = new SingleLayoutHelper();
@@ -127,9 +131,9 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
             public void onSuccess(ChildDetailsBean childDetailsBean) {
 
                 growUpSingleLayoutHelperAdapter.addData(childDetailsBean);
-                growUpSingleLayoutHelperTwoAdapter.addData(childDetailsBean);
-                child_id = childDetailsBean.getId();
 
+                child_id = childDetailsBean.getId();
+                getStudyCourse();
 
             }
         };
@@ -140,6 +144,27 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
                 .subscribe(childDetailsBeanBaseObserver);
 
     }
+
+    /**
+     * 获得学习中的课程
+     */
+    private void getStudyCourse(){
+        Map<String,Object> map=new HashMap<>();
+        map.put("token",MatataSPUtils.getToken());
+        myCourseBeanBaseObserver=new BaseObserver<MyCourseBean>(getContext(),true,false) {
+            @Override
+            public void onSuccess(MyCourseBean myCourseBean) {
+                growUpSingleLayoutHelperTwoAdapter.addData(myCourseBean);
+            }
+        };
+        RetrofitUtil.getInstance().getApiService().getMyCourseInfo(map)
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(myCourseBeanBaseObserver);
+
+    }
+
 
     @Override
     public void onDestroyView() {

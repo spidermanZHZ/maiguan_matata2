@@ -10,8 +10,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    signingConfigs{
-        release{ storeFile file("C:/Users/Administrator/Desktop/kkeyStore/makeapp.jks")
+    signingConfigs {
+        release {
+            storeFile file("C:/Users/jml5201314/Desktop/keystore/makeapp.jks")
             storePassword "z123456"
             keyAlias "maker"
             keyPassword "zz123456"
@@ -22,7 +23,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        debug{
+        debug {
             signingConfig signingConfigs.release
         }
     }
@@ -126,5 +127,5 @@ dependencies {
 
     //图表
     implementation 'com.github.lecho:hellocharts-android:v1.5.8'
-    
+
 }

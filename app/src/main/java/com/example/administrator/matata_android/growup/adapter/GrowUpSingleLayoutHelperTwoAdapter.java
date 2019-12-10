@@ -2,6 +2,7 @@ package com.example.administrator.matata_android.growup.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.ChildDetailsBean;
+import com.example.administrator.matata_android.bean.MyCourseBean;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,16 +25,16 @@ import butterknife.ButterKnife;
 public class GrowUpSingleLayoutHelperTwoAdapter extends DelegateAdapter.Adapter<GrowUpSingleLayoutHelperTwoAdapter.SingleLayoutHelperViewHolder> {
 
     private Context mContext;
-    private DateAdapter dateAdapter;
     private LayoutHelper mHelper;
-    private ChildDetailsBean childDetailsBean;
+    private MyCourseBean myCourseBean;
+    private MyStudyCourseAdapter adapter;
     private static final String URL = "https://www.maiguanjy.com/";
     private String child_id;
 
-    public GrowUpSingleLayoutHelperTwoAdapter(Context mContext, LayoutHelper mHelper, ChildDetailsBean childDetailsBean) {
+    public GrowUpSingleLayoutHelperTwoAdapter(Context mContext, LayoutHelper mHelper, MyCourseBean myCourseBean) {
         this.mContext = mContext;
         this.mHelper = mHelper;
-        this.childDetailsBean = childDetailsBean;
+        this.myCourseBean = myCourseBean;
     }
 
     /**
@@ -40,8 +42,8 @@ public class GrowUpSingleLayoutHelperTwoAdapter extends DelegateAdapter.Adapter<
      *
      * @param
      */
-    public void addData(ChildDetailsBean childDetailsBean) {
-        this.childDetailsBean = childDetailsBean;
+    public void addData(MyCourseBean myCourseBean) {
+        this.myCourseBean = myCourseBean;
         notifyDataSetChanged();
     }
 
@@ -59,7 +61,14 @@ public class GrowUpSingleLayoutHelperTwoAdapter extends DelegateAdapter.Adapter<
 
     @Override
     public void onBindViewHolder(@NonNull SingleLayoutHelperViewHolder holder, int position) {
-
+        if (myCourseBean!=null){
+            LinearLayoutManager linearLayoutManager=new LinearLayoutManager(mContext);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+            holder.upStuRvCourse.setLayoutManager(linearLayoutManager);
+            adapter=new MyStudyCourseAdapter(mContext,R.layout.adapter_music_online,null);
+            adapter.addData(myCourseBean);
+            holder.upStuRvCourse.setAdapter(adapter);
+        }
 
     }
 

@@ -126,7 +126,7 @@ public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandl
                 errorMsg="支付失败，请稍后到我的订单页面重新购买"+baseResp.errCode;
                 break;
             default://发送返回
-                errorMsg="支付失败，请返回上级页面重新购买"+baseResp.errCode;
+                errorMsg="支付失败，请返回上级页面重新购买"+baseResp.errCode+baseResp.errStr;
                 break;
 
         }

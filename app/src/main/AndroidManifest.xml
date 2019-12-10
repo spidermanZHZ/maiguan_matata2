@@ -23,6 +23,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
     <application
         android:name=".zhzbase.base.BaseApplication"
         android:allowBackup="true"
@@ -31,9 +32,11 @@
         android:roundIcon="@mipmap/matata"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        >
-        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+        android:usesCleartextTraffic="true">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
         <meta-data
             android:name="design_width"
             android:value="750" />
@@ -104,17 +107,19 @@
         <activity android:name=".homepage.activitys.ArtSetThreeActivity" />
         <activity android:name=".homepage.activitys.ThetreaBuyActivity" />
         <activity android:name=".my.activitys.MyVipIntroduceActivity" />
-
-        <activity android:name=".wxapi.WXPayEntryActivity"
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:launchMode="singleTop"
-            >
+            android:launchMode="singleTop">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="wx0c29113c18ba2dfc"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="wx0c29113c18ba2dfc" />
             </intent-filter>
         </activity>
+        <activity android:name=".my.activitys.MySetActivity"></activity>
     </application>
 
 </manifest>

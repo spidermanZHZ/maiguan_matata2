@@ -25,7 +25,9 @@
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -377,6 +379,7 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/ll_my_set"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -408,18 +411,7 @@
                     android:src="@mipmap/go_iv"
                     />
             </LinearLayout>
-            <Button
-                android:id="@+id/my_btn_offlogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="71dp"
-                android:layout_marginLeft="71dp"
-                android:layout_marginTop="30dp"
-                android:textAllCaps="false"
-                android:text="@string/my_offline"
-                android:textSize="14sp"
-                android:background="@drawable/login_btn_style"
-                />
+
         </LinearLayout>
     </ScrollView>
 

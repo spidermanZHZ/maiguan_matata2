@@ -74,7 +74,7 @@
                 android:background="@null"
                 android:gravity="center"
                 android:singleLine="true"
-                android:textColor="@color/green"
+                android:textColor="@color/black666"
                 android:textSize="16sp"
                 tools:text="确定" />
         </LinearLayout>

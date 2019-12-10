@@ -11,6 +11,7 @@ import com.example.administrator.matata_android.bean.LoginBean;
 import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.bean.MusicOffLineBean;
 import com.example.administrator.matata_android.bean.MusicOnlineBean;
+import com.example.administrator.matata_android.bean.MyCourseBean;
 import com.example.administrator.matata_android.bean.MyExtendBean;
 import com.example.administrator.matata_android.bean.MyFollowBean;
 import com.example.administrator.matata_android.bean.MyOrderBean;
@@ -320,5 +321,13 @@ public interface APIService {
      */
     @GET("user/order")
     Observable<BaseBeanResponse<MyOrderBean>> getMyOrderInfo(@QueryMap Map<String ,Object> map);
+
+    /**
+     * 获取我的课程
+     * @param map
+     * @return
+     */
+    @GET("user/course")
+    Observable<BaseBeanResponse<MyCourseBean>> getMyCourseInfo(@QueryMap Map<String ,Object> map);
 
 }

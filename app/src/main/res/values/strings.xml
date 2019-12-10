@@ -141,7 +141,7 @@
 
     <string name="my_vip">我的会员</string>
     <string name="my_center">我的订单</string>
-    <string name="my_offline">退出登录</string>
+    <string name="my_offline">切换账号</string>
     <string name="my_order">推广中心</string>
     <string name="my_friend">联系客服</string>
     <string name="my_follow">我的收藏</string>
