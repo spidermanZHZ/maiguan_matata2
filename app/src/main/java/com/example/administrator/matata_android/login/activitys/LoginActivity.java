@@ -65,20 +65,23 @@ public class LoginActivity extends BaseActivity {
 
     }
 
+    /**
+     * 密码格式判断需要更改
+     */
     @Override
     protected void initData() {
-        //限制EditText输入字符
-        loginEtPassword.setFilters(new InputFilter[]{new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence charSequence, int start, int end, Spanned dest, int dstart, int dend) {
-                String regex = "^[\u4E00-\u9FA5]+$";
-                boolean isChinese = Pattern.matches(regex, charSequence.toString());
-                if (!Character.isLetterOrDigit(charSequence.charAt(start)) || isChinese) {
-                    return "";
-                }
-                return null;
-            }
-        }});
+//        //限制EditText输入字符
+//        loginEtPassword.setFilters(new InputFilter[]{new InputFilter() {
+//            @Override
+//            public CharSequence filter(CharSequence charSequence, int start, int end, Spanned dest, int dstart, int dend) {
+//                String regex = "^[\u4E00-\u9FA5]+$";
+//                boolean isChinese = Pattern.matches(regex, charSequence.toString());
+//                if (!Character.isLetterOrDigit(charSequence.charAt(start)) || isChinese) {
+//                    return "";
+//                }
+//                return null;
+//            }
+//        }});
     }
 
     @Override

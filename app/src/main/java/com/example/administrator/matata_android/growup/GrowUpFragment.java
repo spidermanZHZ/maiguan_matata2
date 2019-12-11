@@ -23,6 +23,8 @@ import com.example.administrator.matata_android.growup.activity.StudyAdjustActiv
 import com.example.administrator.matata_android.growup.adapter.DateAdapter;
 import com.example.administrator.matata_android.growup.adapter.GrowUpSingleLayoutHelperAdapter;
 import com.example.administrator.matata_android.growup.adapter.GrowUpSingleLayoutHelperTwoAdapter;
+import com.example.administrator.matata_android.growup.adapter.GrowUpSingleThreeAdapter;
+import com.example.administrator.matata_android.growup.adapter.NotChildSingleLayoutHelperAdapter;
 import com.example.administrator.matata_android.homepage.adapters.HomepagerOneAdapter;
 import com.example.administrator.matata_android.homepage.adapters.HomepagerThreeAdapter;
 import com.example.administrator.matata_android.homepage.adapters.HomepagerTwoAdapter;
@@ -62,6 +64,8 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
     private DateAdapter dateAdapter;
     private GrowUpSingleLayoutHelperAdapter growUpSingleLayoutHelperAdapter;
     private GrowUpSingleLayoutHelperTwoAdapter growUpSingleLayoutHelperTwoAdapter;
+    private GrowUpSingleThreeAdapter growUpSingleThreeAdapter;
+    private NotChildSingleLayoutHelperAdapter notChildSingleLayoutHelperAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,6 +75,13 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
         return view;
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
     private void initData() {
 
         //创建VirtuaLayoutManager
@@ -99,39 +110,41 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
         SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
         growUpSingleLayoutHelperTwoAdapter=new GrowUpSingleLayoutHelperTwoAdapter(getContext(),singleLayoutHelper,null);
 
-            getChlidDetails();
+        getChlidDetails(MatataSPUtils.getStudentId(),false);
 
-       //装载开始练习功能
-        SingleLayoutHelper singleLayoutHelper13 = new SingleLayoutHelper();
-
+       //装载调整学习计划开始练习功能
+        SingleLayoutHelper singleLayoutHelper3 = new SingleLayoutHelper();
+        growUpSingleThreeAdapter=new GrowUpSingleThreeAdapter(getContext(),singleLayoutHelper3,null);
 
        adapters.add(growUpSingleLayoutHelperAdapter);
        adapters.add(growUpSingleLayoutHelperTwoAdapter);
-
+       adapters.add(growUpSingleThreeAdapter);
 //        adapters.add(homepagerThreeAdapter);
 
         delegateAdapter.setAdapters(adapters);
-        }else{
+        }else if (MatataSPUtils.getIsHaveStudent().equals("0")){
             //当没有添加学员时，加载添加学员页面
             SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
-
+            notChildSingleLayoutHelperAdapter=new NotChildSingleLayoutHelperAdapter(getContext(),singleLayoutHelper);
+            adapters.add(notChildSingleLayoutHelperAdapter);
+            delegateAdapter.setAdapters(adapters);
         }
         rvGrowUpFragment.setAdapter(delegateAdapter);
 
     }
 
 
-    public void getChlidDetails() {
+    public void getChlidDetails(String id,boolean b) {
         HashMap<String, Object> childMap = new HashMap<>();
         childMap.put("token", MatataSPUtils.getToken());
-        childMap.put("child_id", "19");
+        childMap.put("child_id",id);
 
-        childDetailsBeanBaseObserver = new BaseObserver<ChildDetailsBean>(getContext(), false, false) {
+        childDetailsBeanBaseObserver = new BaseObserver<ChildDetailsBean>(getContext(), b, false) {
             @Override
             public void onSuccess(ChildDetailsBean childDetailsBean) {
 
                 growUpSingleLayoutHelperAdapter.addData(childDetailsBean);
-
+                growUpSingleThreeAdapter.addData(childDetailsBean);
                 child_id = childDetailsBean.getId();
                 getStudyCourse();
 
@@ -151,7 +164,7 @@ public class GrowUpFragment extends BaseViewNeedSetFragment {
     private void getStudyCourse(){
         Map<String,Object> map=new HashMap<>();
         map.put("token",MatataSPUtils.getToken());
-        myCourseBeanBaseObserver=new BaseObserver<MyCourseBean>(getContext(),true,false) {
+        myCourseBeanBaseObserver=new BaseObserver<MyCourseBean>(getContext(),false,false) {
             @Override
             public void onSuccess(MyCourseBean myCourseBean) {
                 growUpSingleLayoutHelperTwoAdapter.addData(myCourseBean);

@@ -216,11 +216,13 @@ public class MainActivity extends BaseFragmentActivity {
             public void onSuccess(UserInfoBean userInfoBean) {
                 MatataSPUtils.saveIsVip(userInfoBean.getIs_vip());
                 //保存用户是否添加学员
-                if (userInfoBean.getUser_child()==null){
+                if (userInfoBean.getUser_child().size()==0){
                     MatataSPUtils.saveIsHaveStudent("0");
                 }else {
                     MatataSPUtils.saveIsHaveStudent("1");
-                    MatataSPUtils.saveBean2Sp(MainActivity.this,userInfoBean.getUser_child(),"UserInfo","User_child");
+                    MatataSPUtils.saveStudentId(String.valueOf(userInfoBean.getUser_child().get(0).getId()));
+                   // MatataSPUtils.saveBean2Sp(MainActivity.this,userInfoBean.getUser_child(),"UserInfo","User_child");
+
                 }
             }
         };

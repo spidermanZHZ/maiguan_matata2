@@ -128,7 +128,7 @@ public class AllTeacherActivity extends BaseActivity {
                     @Override
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(AllTeacherActivity.this, TeacherDetailsActivity.class);
-                        String id=String.valueOf(teacherInfoBean.getData().get(position).getId());
+                        String id=String.valueOf(teacherInfoBean.getData().get(position-1).getId());
                         intent.putExtra("teacher_id",id);
                         startActivity(intent);
                     }

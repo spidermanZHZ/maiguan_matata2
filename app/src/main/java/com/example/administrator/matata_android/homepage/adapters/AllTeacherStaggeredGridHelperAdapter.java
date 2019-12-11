@@ -71,13 +71,13 @@ public class AllTeacherStaggeredGridHelperAdapter extends DelegateAdapter.Adapte
 
     @Override
     public void onBindViewHolder(@NonNull LinearHelperAdapterViewHolder helper, int position) {
-        ViewGroup.LayoutParams layoutParams =  helper.adapterTheatreInfoTitle.getLayoutParams();
-        if (position % 2==0){
-
-        }else {
-            layoutParams.height = 100 + position % 7 * 20;
-        }
-        helper.adapterTheatreInfoTitle.setLayoutParams(layoutParams);
+//        ViewGroup.LayoutParams layoutParams =  helper.adapterTheatreInfoTitle.getLayoutParams();
+//        if (position % 2==0){
+//
+//        }else {
+//            layoutParams.height = 100 + position % 7 * 20;
+//        }
+//        helper.adapterTheatreInfoTitle.setLayoutParams(layoutParams);
 
         if (mOnItemClickListenre!=null){
             helper.itemView.setOnClickListener(new View.OnClickListener() {

@@ -46,48 +46,8 @@
         android:layout_marginTop="17dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:orientation="vertical"
-        android:background="@drawable/cornerbg_white_single"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="9dp"
-            android:text="学习计时器"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            />
-        <TextView
-            android:id="@+id/grow_up_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="17dp"
-            android:layout_gravity="center"
-            android:text="00:00"
-            android:textColor="@color/black666"
-            android:background="@drawable/cornerbg_ac_bg"
-            android:textSize="18sp"
-            />
-    <Button
-        android:id="@+id/up_stu_start_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="71dp"
-        android:layout_marginLeft="71dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:textAllCaps="false"
-        android:text="开始练习"
-        android:textSize="14sp"
-        android:background="@drawable/login_btn_style" />
+
 
     </LinearLayout>
+
 </com.zhy.autolayout.AutoLinearLayout>

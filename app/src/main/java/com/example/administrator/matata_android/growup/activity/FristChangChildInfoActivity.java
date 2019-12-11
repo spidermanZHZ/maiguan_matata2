@@ -203,6 +203,8 @@ public class FristChangChildInfoActivity extends TakePhotoActivity {
             @Override
             public void onSuccess(ChildId childId) {
                 showTextDialog("学员信息添加成功");
+                MatataSPUtils.saveIsHaveStudent("1");
+                MatataSPUtils.saveStudentId(childId.getChild_id());
                 ActivityUtils.finishActivity(FristChangChildInfoActivity.this);
             }
         };

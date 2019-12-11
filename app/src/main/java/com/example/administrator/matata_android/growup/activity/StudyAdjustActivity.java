@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.Utils;
 import com.example.administrator.matata_android.R;
@@ -73,7 +74,7 @@ public class StudyAdjustActivity extends BaseActivity {
         setContentView(R.layout.activity_study_adjust);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
-
+        BarUtils.setStatusBarColor(this,getResources().getColor(R.color.background_title),true);
     }
 
     @Override
@@ -106,10 +107,6 @@ public class StudyAdjustActivity extends BaseActivity {
                 // adjustAdapter.setSelect(position);
                 //更新选择了几天
                 tvAdjustWeekDay.setText(String.valueOf(adjustAdapter.getCheckedArrays().size() + "天"));
-
-
-               Toast.makeText(mContext, adjustAdapter.getCheck_position().replace("=", "").replace("8", "").replace("{","").replace("}",""), Toast.LENGTH_SHORT).show();
-
 
             }
 
@@ -233,8 +230,16 @@ public class StudyAdjustActivity extends BaseActivity {
 
     @OnClick(R.id.adjust_btn_confim)
     public void onClick() {
+        if (tvAdjustWeekDay.getText().equals("0天")){
+            showTextDialog("至少选择一天");
+            return;
+        }else if (tvAdjustDayTime.getText().equals("0")){
+            showTextDialog("学习时间不能为0");
+            return;
+        }else {
+            changeTime();
+        }
 
-        changeTime();
 
     }
 
@@ -280,11 +285,11 @@ public class StudyAdjustActivity extends BaseActivity {
         map.put("time",String.valueOf(tvAdjustDayTime.getText().toString()));
         map.put("child_id",child_id);
 
-        changeTimeBaseOberver=new BaseObserver<Object>(this,true,false) {
+        changeTimeBaseOberver=new BaseObserver<Object>(this,true,true) {
             @Override
             public void onSuccess(Object o) {
 
-                StudyAdjustActivity.this.showProgressDialog("调整成功",false);
+               // StudyAdjustActivity.this.showProgressDialog("调整成功",false);
 
                 ActivityUtils.finishActivity(StudyAdjustActivity.this);
 

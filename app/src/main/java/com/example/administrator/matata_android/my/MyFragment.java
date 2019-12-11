@@ -1,6 +1,7 @@
 package com.example.administrator.matata_android.my;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.my.activitys.MyExtendActivity;
 import com.example.administrator.matata_android.my.activitys.MyFollowActivity;
@@ -19,6 +21,8 @@ import com.example.administrator.matata_android.my.activitys.MyOrdersActivity;
 import com.example.administrator.matata_android.my.activitys.MySetActivity;
 import com.example.administrator.matata_android.my.activitys.MyVipActivity;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragment;
+import com.example.administrator.matata_android.zhzbase.dialog.CustomDialog;
+import com.example.administrator.matata_android.zhzbase.dialog.TextDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,7 +54,8 @@ public class MyFragment extends BaseFragment {
     LinearLayout myLlFriend;
     @BindView(R.id.ll_my_set)
     LinearLayout llMySet;
-
+    private TextDialog textDialog;
+    private CustomDialog customDialog;
     @Override
     protected int initLayoutId() {
         return R.layout.fragment_my;
@@ -108,7 +113,8 @@ public class MyFragment extends BaseFragment {
                 startActivity(new Intent(getContext(), MyMessageActivity.class));
                 break;
             case R.id.my_ll_friend:
-                startActivity(new Intent(getContext(), MyFriendActivity.class));
+                showProgressDialog("客服热线：0531-88821319",true);
+               // startActivity(new Intent(getContext(), MyFriendActivity.class));
                 break;
             case R.id.ll_my_set:
                 startActivity(new Intent(getContext(), MySetActivity.class));
@@ -116,4 +122,66 @@ public class MyFragment extends BaseFragment {
         }
     }
 
+    /**
+     * 显示提示弹窗
+     *
+     * @param text 弹窗提示语
+     */
+    public void showTextDialog(String text) {
+        if (textDialog == null)
+            textDialog = new TextDialog(getContext());
+        textDialog.setText(text);
+        textDialog.show();
+    }
+    /**
+     * 显示交互弹窗
+     *
+     * @param text       弹窗提示语id
+     * @param cancelable 是否可以点击弹窗外侧取消
+     */
+    public void showProgressDialog(String text, boolean cancelable) {
+        if (customDialog == null)
+            customDialog = new CustomDialog(getContext());
+        customDialog.setTitle("提示");
+        customDialog.setMessage(text);
+        customDialog.setYes("拨打");
+        customDialog.setNo("取消");
+        customDialog.setOnYesOnClickListener( new CustomDialog.onYesOnClickListener() {
+            @Override
+            public void onYesClick() {
+                call("053188821319");
+            }
+        });
+        customDialog.setNoOnclickListener( new CustomDialog.onNoOnClickLister() {
+            @Override
+            public void onNoClick() {
+                customDialog.cancelImediately();
+            }
+        });
+        customDialog.setCancelable(cancelable);
+        customDialog.show();
+
+    }
+    /**
+     * 调用拨号界面
+     * @param phone 电话号码
+     */
+    private void call(String phone) {
+        Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+phone));
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    /**
+     * 直接拨号
+     * @param phone 电话号码
+     */
+    private void callpast(String phone) {
+        Intent intent=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+phone));
+        startActivity(intent);
+    }
+
+
+
 }
+

@@ -1,6 +1,7 @@
 package com.example.administrator.matata_android.growup.activity;
 
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -69,14 +70,14 @@ public class ChangChildInfoActivity extends TakePhotoActivity {
     private CompressConfig compressConfig;//压缩参数
     private Uri imageUri; //图片保存路径
 
-    private BaseObserver<ChildId> baseObserver;
+    private BaseObserver<Object> baseObserver;
     private String headUrl;
     private String name;
     private String age;
     private String sex;
     private String signature;
     private TextDialog textDialog;
-
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,9 @@ public class ChangChildInfoActivity extends TakePhotoActivity {
     }
 
     private void initDatass() {
+        Intent intent = getIntent();
+        id=intent.getStringExtra("child_id");
+
         //获取TakePhoto实例
         takePhoto = getTakePhoto();
         //设置裁剪参数
@@ -143,7 +147,7 @@ public class ChangChildInfoActivity extends TakePhotoActivity {
                         showTextDialog("请输入学习宣言");
                         return;
                     }
-                    setChildInfo(name,sex,age,signature);
+                    setChildInfo(name,sex,age,signature,id);
                 }
             });
 
@@ -176,26 +180,28 @@ public class ChangChildInfoActivity extends TakePhotoActivity {
     /**
      * 上传学员信息
      */
-    private void setChildInfo(String name,String sex,String age,String signature) {
+    private void setChildInfo(String name,String sex,String age,String signature,String ids) {
 
             RequestBody tokenBody = RequestBody.create(MediaType.parse("multipart/form-data"), MatataSPUtils.getToken());
             RequestBody nameBody = RequestBody.create(MediaType.parse("multipart/form-data"), name);
             RequestBody sexBody = RequestBody.create(MediaType.parse("multipart/form-data"), sex);
             RequestBody ageBody = RequestBody.create(MediaType.parse("multipart/form-data"), age);
+            RequestBody child_id = RequestBody.create(MediaType.parse("multipart/form-data"), ids);
             RequestBody signatureBody = RequestBody.create(MediaType.parse("multipart/form-data"), signature);
+
             //头像上传
             File file = new File(headUrl);
             RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
             MultipartBody.Part head_fileBody = MultipartBody.Part.createFormData("head_file", file.getName(), requestBody);
 
-            baseObserver = new BaseObserver<ChildId>(this, true, true) {
+            baseObserver = new BaseObserver<Object>(this, true, true) {
                 @Override
-                public void onSuccess(ChildId childId) {
-                    showTextDialog("学员信息添加成功");
+                public void onSuccess(Object o) {
+                    showTextDialog("学员信息修改成功");
                     ActivityUtils.finishActivity(ChangChildInfoActivity.this);
                 }
             };
-            RetrofitUtil.getInstance().getApiService().addStudent(tokenBody, nameBody, sexBody, ageBody, signatureBody, head_fileBody)
+            RetrofitUtil.getInstance().getApiService().editStudent(tokenBody, nameBody, sexBody, ageBody, signatureBody,child_id, head_fileBody)
                     .subscribeOn(Schedulers.io())
                     .unsubscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

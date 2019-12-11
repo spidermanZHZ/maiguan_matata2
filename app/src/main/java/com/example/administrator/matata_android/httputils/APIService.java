@@ -14,6 +14,7 @@ import com.example.administrator.matata_android.bean.MusicOnlineBean;
 import com.example.administrator.matata_android.bean.MyCourseBean;
 import com.example.administrator.matata_android.bean.MyExtendBean;
 import com.example.administrator.matata_android.bean.MyFollowBean;
+import com.example.administrator.matata_android.bean.MyOffLineCourseNumBean;
 import com.example.administrator.matata_android.bean.MyOrderBean;
 import com.example.administrator.matata_android.bean.OffLineCourseBean;
 import com.example.administrator.matata_android.bean.OffLineOrderBean;
@@ -146,6 +147,15 @@ public interface APIService {
     @Multipart
     @POST("child/add")
     Observable<BaseBeanResponse<ChildId>>addStudent(@Part("token")RequestBody token,@Part("name")RequestBody name,@Part("sex")RequestBody sex,@Part("age")RequestBody age,@Part("signature")RequestBody signature,@Part MultipartBody.Part image);
+
+    /**
+     *  编辑一名学员
+     *  图片文件上传，需要添加@Multipart注解
+     * @return
+     */
+    @Multipart
+    @POST("child/edit")
+    Observable<BaseBeanResponse<Object>>editStudent(@Part("token")RequestBody token,@Part("name")RequestBody name,@Part("sex")RequestBody sex,@Part("age")RequestBody age,@Part("signature")RequestBody signature,@Part("child_id")RequestBody child_id,@Part MultipartBody.Part image);
 
 
     /**
@@ -329,5 +339,13 @@ public interface APIService {
      */
     @GET("user/course")
     Observable<BaseBeanResponse<MyCourseBean>> getMyCourseInfo(@QueryMap Map<String ,Object> map);
+
+    /**
+     * 获取线下课程的次数
+     * @param map
+     * @return
+     */
+    @GET("user/offline/number")
+    Observable<BaseBeanResponse<List<MyOffLineCourseNumBean>>> getMyOfflineCourseNum(@QueryMap Map<String ,Object> map);
 
 }

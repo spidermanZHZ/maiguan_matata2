@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".growup.activity.OfflineCourseTaskActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background=" @color/white"
+        android:fitsSystemWindows="true"
+        >
+        <com.hjq.bar.TitleBar
+            android:id="@+id/title_bar"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@color/background_title"
+            app:title="课次安排"
+            app:titleColor="#000000"
+            app:titleSize="17sp"
+            app:backButton="true"
+            app:lineColor="@color/background_title"
+            />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/task_iv"
+        android:layout_width="match_parent"
+        android:layout_height="186dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="16dp"
+        />
+    <android.support.design.widget.TabLayout
+        android:id="@+id/my_orders_tab"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="40dp"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/my_orders_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</com.zhy.autolayout.AutoLinearLayout>

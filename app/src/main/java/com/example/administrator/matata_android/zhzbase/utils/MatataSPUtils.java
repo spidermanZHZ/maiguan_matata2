@@ -79,6 +79,20 @@ public class MatataSPUtils {
         return SPUtils.getInstance("UserParts").getString("isHaveStudent");
     }
 
+    /**
+     * 保存用户第一个孩子Id
+     * @param isHaveStudent app语言
+     */
+    public static void saveStudentId(String isHaveStudent){
+        SPUtils.getInstance("UserParts").put("StudentId",isHaveStudent);
+
+
+    }
+
+    public static String getStudentId(){
+        return SPUtils.getInstance("UserParts").getString("StudentId");
+    }
+
 
     /**
      * 保存app内语言格式

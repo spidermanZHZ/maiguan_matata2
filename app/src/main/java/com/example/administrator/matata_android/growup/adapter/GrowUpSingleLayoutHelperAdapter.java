@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -19,8 +18,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.ChildDetailsBean;
 import com.example.administrator.matata_android.growup.activity.ChangChildInfoActivity;
-import com.example.administrator.matata_android.growup.activity.StudyAdjustActivity;
-import com.example.administrator.matata_android.zhzbase.utils.DateUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -69,14 +66,15 @@ public class GrowUpSingleLayoutHelperAdapter extends DelegateAdapter.Adapter<Gro
 
     @Override
     public void onBindViewHolder(@NonNull SingleLayoutHelperViewHolder holder, int position) {
+        dateAdapter = new DateAdapter(mContext, null);
         if (childDetailsBean != null) {
             child_id = childDetailsBean.getId();
 
             //加载头像
             Glide.with(mContext)
-                    .load(URL+childDetailsBean.getHead_file())
+                    .load(URL + childDetailsBean.getHead_file())
                     .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                   .into(holder.ivGrowUpChildHead);
+                    .into(holder.ivGrowUpChildHead);
 
             holder.stuName.setText(childDetailsBean.getName());
             holder.stuSex.setText(String.valueOf(childDetailsBean.getSex() + "\t" + "\t" + childDetailsBean.getAge()));
@@ -85,14 +83,7 @@ public class GrowUpSingleLayoutHelperAdapter extends DelegateAdapter.Adapter<Gro
             holder.stuTestTime.setText(childDetailsBean.getTime().getExerciseTime());
             holder.stuAllDay.setText(childDetailsBean.getTime().getOnlineTime());
             holder.stuDay.setText(childDetailsBean.getTime().getOfflineTime());
-            holder.stuAdjust.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext, StudyAdjustActivity.class);
-                    intent.putExtra("child_id", child_id);
-                    startActivity(intent);
-                }
-            });
+
             holder.stuEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -101,40 +92,7 @@ public class GrowUpSingleLayoutHelperAdapter extends DelegateAdapter.Adapter<Gro
                     startActivity(intent2);
                 }
             });
-            dateAdapter = new DateAdapter(mContext, null);
-            if (childDetailsBean.getPlans() != null) {
-                //日期加载
-                dateAdapter.addData(childDetailsBean.getPlans());
-                dateAdapter.notifyDataSetChanged();
-            }
 
-            dateAdapter.setOnItemClickListener(new DateAdapter.OnItemClickListener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    dateAdapter.setSelect(position);
-
-                    holder.upTvPlanStudy.setText(String.valueOf("计划学习" + DateUtils.getInstance().stringTime(childDetailsBean.getPlans().get(position).getSum_time()) + "分钟"));
-                    holder.upTvStudyAlready.setText(String.valueOf("已按计划学习" + DateUtils.getInstance().stringTime(childDetailsBean.getPlans().get(position).getTime()) + "分钟"));
-
-                    int sun_time = Integer.parseInt(childDetailsBean.getPlans().get(position).getSum_time());
-                    int time = Integer.parseInt(childDetailsBean.getPlans().get(position).getTime());
-                    if (sun_time > 0) {
-
-                        if (time >= sun_time) {
-                            holder.upTvStudyState.setText("已完成计划");
-                        } else {
-                            holder.upTvStudyState.setText("未完成计划");
-                        }
-                    } else {
-                        holder.upTvStudyState.setText("未制定计划");
-                    }
-                }
-
-                @Override
-                public void onLongItemClick(View view, int position) {
-
-                }
-            });
         }
 
 
@@ -146,6 +104,9 @@ public class GrowUpSingleLayoutHelperAdapter extends DelegateAdapter.Adapter<Gro
     }
 
     class SingleLayoutHelperViewHolder extends RecyclerView.ViewHolder {
+
+        @BindView(R.id.iv_grow_up_child_head)
+        ImageView ivGrowUpChildHead;
         @BindView(R.id.stu_name)
         TextView stuName;
         @BindView(R.id.stu_sex)
@@ -164,21 +125,6 @@ public class GrowUpSingleLayoutHelperAdapter extends DelegateAdapter.Adapter<Gro
         TextView stuAllDay;
         @BindView(R.id.stu_day)
         TextView stuDay;
-        @BindView(R.id.stu_adjust)
-        TextView stuAdjust;
-        @BindView(R.id.stu_rv_plan_time)
-        RecyclerView stuRvPlanTime;
-        @BindView(R.id.up_tv_plan_study)
-        TextView upTvPlanStudy;
-        @BindView(R.id.up_tv_study_already)
-        TextView upTvStudyAlready;
-        @BindView(R.id.up_ll_plan)
-        LinearLayout upLlPlan;
-        @BindView(R.id.up_tv_study_state)
-        TextView upTvStudyState;
-        @BindView(R.id.iv_grow_up_child_head)
-        ImageView ivGrowUpChildHead;
-
         public SingleLayoutHelperViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
