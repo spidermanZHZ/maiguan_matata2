@@ -35,7 +35,7 @@ import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class TheatreCollageActivity extends BaseActivity {
+public class TheatreEnglishActivity extends BaseActivity {
 
     @BindView(R.id.theatre_collage_rv)
     RecyclerView theatreCollageRv;
@@ -166,7 +166,7 @@ public class TheatreCollageActivity extends BaseActivity {
     private void getCourseDetails() {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("token", MatataSPUtils.getToken());
-        map.put("class_id", "97");
+        map.put("class_id", "98");
 
         beanBaseObservers = new BaseObserver<TheatreCourseDetailsBean>(this, true, false) {
             @Override

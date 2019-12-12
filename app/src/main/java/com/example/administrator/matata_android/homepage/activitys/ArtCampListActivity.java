@@ -16,6 +16,7 @@ import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 import com.liaoinstan.springview.widget.SpringView;
 
@@ -63,6 +64,22 @@ public class ArtCampListActivity extends BaseActivity {
     @Override
     protected void initData() {
         atcampTitlebar.setTitle(atName+"营地");
+        atcampTitlebar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finishActivity();
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
         getCampAtList(1);
         //活动列表
         LinearLayoutManager managerhot = new LinearLayoutManager(this);

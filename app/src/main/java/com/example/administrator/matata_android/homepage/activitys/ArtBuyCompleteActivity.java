@@ -18,6 +18,8 @@ import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.wxapi.WXPayUtils;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,6 +66,18 @@ public class ArtBuyCompleteActivity extends BaseActivity {
     TextView orderDate;
     @BindView(R.id.order_tv_time)
     TextView orderTvTime;
+    @BindView(R.id.tv_1)
+    TextView tv1;
+    @BindView(R.id.tv_3)
+    TextView tv3;
+    @BindView(R.id.tv_4)
+    TextView tv4;
+    @BindView(R.id.tv5)
+    TextView tv5;
+    @BindView(R.id.ll_money_type)
+    LinearLayout llMoneyType;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
 
     private String campsite_id;
     private String online_id;
@@ -82,6 +96,8 @@ public class ArtBuyCompleteActivity extends BaseActivity {
     private String orderType;
     private String card_type;
     private String child_id;
+    private String lastPrice;
+    private String online_price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +111,7 @@ public class ArtBuyCompleteActivity extends BaseActivity {
 
         Intent intent = getIntent();
         if (intent.getStringExtra("type").equals("campsite")) {
-            orderType="campsite";
+            orderType = "campsite";
             campsite_id = intent.getStringExtra("campsite_id");
             Bundle bundle = intent.getBundleExtra("mBundle");
             dataMap = (SerializableMap) bundle.getSerializable("myMap");
@@ -113,19 +129,20 @@ public class ArtBuyCompleteActivity extends BaseActivity {
             }
 
         } else if (intent.getStringExtra("type").equals("online")) {
-            orderType="online";
+            orderType = "online";
             online_id = intent.getStringExtra("online_id");
-
+            online_price = intent.getStringExtra("online_price");
 
         } else if (intent.getStringExtra("type").equals("offline")) {
-            orderType="offline";
+            orderType = "offline";
             offline_id = intent.getStringExtra("offline_id");
+            lastPrice = intent.getStringExtra("lastPrice");
             Bundle bundle = intent.getBundleExtra("mBundle");
             dataMap = (SerializableMap) bundle.getSerializable("myMap");
 
             if (dataMap != null) {
-                card_type=String.valueOf(dataMap.get("card_type"));
-                child_id=String.valueOf(dataMap.get("child_id"));
+                card_type = String.valueOf(dataMap.get("card_type"));
+                child_id = String.valueOf(dataMap.get("child_id"));
 
 
             } else {
@@ -138,20 +155,39 @@ public class ArtBuyCompleteActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        if (orderType.equals("campsite")){
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finishActivity();
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
+
+        if (orderType.equals("campsite")) {
             getCampOrder();
-        }else if (orderType.equals("online")){
+        } else if (orderType.equals("online")) {
             getOnlineOrderInfo(online_id);
-        }else if (orderType.equals("offline")){
+        } else if (orderType.equals("offline")) {
             getOfflineOrderInfo(offline_id);
         }
 
     }
 
+
     @Override
     protected void setListener() {
 
     }
+
     /**
      * 获得线下课程订单信息
      */
@@ -159,22 +195,34 @@ public class ArtBuyCompleteActivity extends BaseActivity {
         Map<String, Object> map = new HashMap<>();
         map.put("token", MatataSPUtils.getToken());
         map.put("offline_course_id", offline_id);
-        map.put("card_type",card_type);
-        map.put("child_id",child_id);
+        map.put("card_type", card_type);
+        map.put("child_id", child_id);
         offlineOrderBeanBaseObserver = new BaseObserver<OffLineOrderBean>(this, true, false) {
             @Override
             public void onSuccess(OffLineOrderBean offLineOrderBean) {
                 tvArtBuyNo.setText(offLineOrderBean.getNo());
-                tvArtBuyPrice.setText("暂无");
+                tvArtBuyPrice.setText(lastPrice);
                 tvArtBuyName.setText(offLineOrderBean.getName());
                 orderDate.setText("下单时间:");
                 tvArtBuyDate.setText(offLineOrderBean.getCreateDt());
                 tvArtBuyPeople.setVisibility(View.GONE);
-                orderTvTime.setText("有效时间:");
-                tvArtBuyNum.setText("一次购买,永久享用");
+                orderTvTime.setText("有效期:");
+                if (offLineOrderBean.getCard_type().equals("mouth")) {
+                    tvArtBuyNum.setText("月卡");
+                } else if (offLineOrderBean.getCard_type().equals("year")) {
+                    tvArtBuyNum.setText("年卡");
+                } else {
+                    tvArtBuyNum.setText("季卡");
+
+                }
+                tv1.setVisibility(View.GONE);
+                tv3.setVisibility(View.GONE);
+                tv4.setVisibility(View.GONE);
+                tv5.setVisibility(View.GONE);
+
                 tvArtBuyContact.setVisibility(View.GONE);
                 tvArtBuyContactPhone.setVisibility(View.GONE);
-                artBuyPriceAll.setText("暂无");
+                artBuyPriceAll.setText("¥" + lastPrice);
                 artConfirmBuy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -194,6 +242,7 @@ public class ArtBuyCompleteActivity extends BaseActivity {
                 .subscribe(offlineOrderBeanBaseObserver);
 
     }
+
     /**
      * 获得线上课程订单信息
      */
@@ -205,7 +254,7 @@ public class ArtBuyCompleteActivity extends BaseActivity {
             @Override
             public void onSuccess(OnlineOrderBean onlineOrderBean) {
                 tvArtBuyNo.setText(onlineOrderBean.getNo());
-                tvArtBuyPrice.setText("暂无");
+                tvArtBuyPrice.setText(online_price);
                 tvArtBuyName.setText(onlineOrderBean.getName());
                 orderDate.setText("下单时间:");
                 tvArtBuyDate.setText(onlineOrderBean.getCreateDt());
@@ -213,8 +262,12 @@ public class ArtBuyCompleteActivity extends BaseActivity {
                 orderTvTime.setText("有效时间:");
                 tvArtBuyNum.setText("一次购买,永久享用");
                 tvArtBuyContact.setVisibility(View.GONE);
+                tv1.setVisibility(View.GONE);
+                tv3.setVisibility(View.GONE);
+                tv4.setVisibility(View.GONE);
+                tv5.setVisibility(View.GONE);
                 tvArtBuyContactPhone.setVisibility(View.GONE);
-                artBuyPriceAll.setText("暂无");
+                artBuyPriceAll.setText(online_price);
                 artConfirmBuy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -284,6 +337,7 @@ public class ArtBuyCompleteActivity extends BaseActivity {
                 .subscribe(buyCompleteBeanBaseObserver);
 
     }
+
     /**
      * 调用微信购买商品 ,课程购买
      * <p>

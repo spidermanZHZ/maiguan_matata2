@@ -10,11 +10,11 @@ import android.widget.LinearLayout;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.login.activitys.LoginActivity;
+import com.example.administrator.matata_android.login.activitys.RetrievePasswordOneActivity;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.dialog.CustomDialog;
 import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,7 +27,10 @@ public class MySetActivity extends BaseActivity {
     LinearLayout llMySet;
     @BindView(R.id.my_btn_offlogin)
     Button myBtnOfflogin;
+    @BindView(R.id.ll_my_password)
+    LinearLayout llMyPassword;
     private CustomDialog customDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_my_set);
@@ -43,34 +46,44 @@ public class MySetActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-    titileBar.setOnTitleBarListener(new OnTitleBarListener() {
-    @Override
-    public void onLeftClick(View v) {
-        ActivityUtils.finishActivity(MySetActivity.class);
-    }
+        titileBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                ActivityUtils.finishActivity(MySetActivity.class);
+            }
 
-    @Override
-    public void onTitleClick(View v) {
+            @Override
+            public void onTitleClick(View v) {
 
-    }
+            }
 
-    @Override
-    public void onRightClick(View v) {
+            @Override
+            public void onRightClick(View v) {
 
-    }
-});
-    myBtnOfflogin.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            showProgressDialog("是否退出当前账号",false);
+            }
+        });
+        myBtnOfflogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showProgressDialog("是否退出当前账号", false);
 //            Intent intent = new Intent(MySetActivity.this, LoginActivity.class);
 //            startActivity(intent);
 //            ActivityUtils.finishAllActivities();
 
-        }
-    });
+            }
+        });
+
+        llMyPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MySetActivity.this, RetrievePasswordOneActivity.class);
+                startActivity(intent);
+                finishActivity();
+            }
+        });
 
     }
+
     /**
      * 显示交互弹窗
      *
@@ -84,7 +97,7 @@ public class MySetActivity extends BaseActivity {
         customDialog.setMessage(text);
         customDialog.setYes("确认");
         customDialog.setNo("取消");
-        customDialog.setOnYesOnClickListener( new CustomDialog.onYesOnClickListener() {
+        customDialog.setOnYesOnClickListener(new CustomDialog.onYesOnClickListener() {
             @Override
             public void onYesClick() {
                 Intent intent = new Intent(MySetActivity.this, LoginActivity.class);
@@ -92,7 +105,7 @@ public class MySetActivity extends BaseActivity {
                 ActivityUtils.finishAllActivities();
             }
         });
-        customDialog.setNoOnclickListener( new CustomDialog.onNoOnClickLister() {
+        customDialog.setNoOnclickListener(new CustomDialog.onNoOnClickLister() {
             @Override
             public void onNoClick() {
                 customDialog.cancelImediately();
@@ -102,6 +115,7 @@ public class MySetActivity extends BaseActivity {
         customDialog.show();
 
     }
+
     @Override
     protected void setListener() {
 

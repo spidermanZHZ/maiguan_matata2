@@ -124,6 +124,7 @@
         <activity android:name=".growup.activity.FristChangChildInfoActivity" />
         <activity android:name=".growup.activity.OffLineCourseDetailsActivity" />
         <activity android:name=".growup.activity.OfflineCourseTaskActivity"></activity>
+        <activity android:name=".homepage.activitys.TheatreEnglishActivity"></activity>
     </application>
 
 </manifest>

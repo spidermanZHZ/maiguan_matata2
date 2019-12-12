@@ -195,9 +195,9 @@
                 >
                 <Button
                     android:id="@+id/btn_buy_subtract"
-                    android:layout_width="42dp"
-                    android:layout_height="22dp"
-                    android:background="@mipmap/subtract"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@mipmap/delete_1"
                     />
 
                 <TextView
@@ -211,9 +211,9 @@
                     />
                 <Button
                     android:id="@+id/btn_buy_add"
-                    android:layout_width="42dp"
+                    android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@mipmap/add"
+                    android:background="@mipmap/add_1"
                     />
 
             </LinearLayout>

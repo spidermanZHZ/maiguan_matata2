@@ -14,6 +14,8 @@ import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.view.CountDownTextView;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -35,6 +37,8 @@ public class RetrievePasswordOneActivity extends BaseActivity {
     CountDownTextView retrieveTvCountdown;
     @BindView(R.id.retrieve_btn_next)
     Button retrieveBtnNext;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
 
     private BaseObserver<Object> sendCodeBaseObeserver;
     private BaseObserver<Object> confimCodeBaseObeserver;
@@ -64,6 +68,22 @@ public class RetrievePasswordOneActivity extends BaseActivity {
 
     @Override
     protected void setListener() {
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finishActivity();
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
         retrieveTvCountdown.setNormalText(getResources().getString(R.string.sign_sendcode))
                 .setCountDownText("(", "s)")
                 .setCountDownClickable(false)
@@ -105,6 +125,7 @@ public class RetrievePasswordOneActivity extends BaseActivity {
         });
 
     }
+
     /**
      * 发送验证码
      */
@@ -122,7 +143,7 @@ public class RetrievePasswordOneActivity extends BaseActivity {
                 return;
             }
         }
-        sendCodeBaseObeserver = new BaseObserver<Object>(this, false,true) {
+        sendCodeBaseObeserver = new BaseObserver<Object>(this, false, true) {
             @Override
             public void onSuccess(Object o) {
                 showTextDialog("验证码发送成功");
@@ -136,13 +157,14 @@ public class RetrievePasswordOneActivity extends BaseActivity {
                 .subscribe(sendCodeBaseObeserver);
 
     }
+
     /**
      * 提交验证码
      */
-    public void confimCode(){
+    public void confimCode() {
         accountTwo = signEtNumber.getText().toString();
-        registerCode=signEtCode.getText().toString();
-        confimCodeMap=new HashMap<>();
+        registerCode = signEtCode.getText().toString();
+        confimCodeMap = new HashMap<>();
         if (StringUtils.isEmpty(accountTwo)) {
             showTextDialog("请输入手机号");
             return;
@@ -160,16 +182,16 @@ public class RetrievePasswordOneActivity extends BaseActivity {
             showTextDialog("请输入验证码");
             return;
         } else {
-            if (registerCode.length()==4){
+            if (registerCode.length() == 4) {
                 confimCodeMap.put("code", registerCode);    //添加code
-            }else {
+            } else {
                 showTextDialog("请输入4位验证码");
                 return;
             }
 
         }
 
-        confimCodeBaseObeserver=new BaseObserver<Object>(this,false,false) {
+        confimCodeBaseObeserver = new BaseObserver<Object>(this, true, false) {
             @Override
             public void onSuccess(Object o) {
                 RetrievePasswordOneActivity();
@@ -185,13 +207,14 @@ public class RetrievePasswordOneActivity extends BaseActivity {
 
     }
 
-    public void RetrievePasswordOneActivity(){
+    public void RetrievePasswordOneActivity() {
         Intent intent = new Intent(RetrievePasswordOneActivity.this, RetrievePasswordTwoActivity.class);
-        intent.putExtra("phone",account);
-        intent.putExtra("code",registerCode);
+        intent.putExtra("phone", account);
+        intent.putExtra("code", registerCode);
         startActivity(intent);
         finishActivity();
     }
+
     @Override
     protected boolean onKeyBack() {
         return false;

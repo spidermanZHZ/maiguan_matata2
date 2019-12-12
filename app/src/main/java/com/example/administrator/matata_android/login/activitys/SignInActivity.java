@@ -10,16 +10,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.StringUtils;
-import com.example.administrator.matata_android.MainActivity;
 import com.example.administrator.matata_android.R;
-import com.example.administrator.matata_android.bean.LoginBean;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
-import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 import com.example.administrator.matata_android.zhzbase.view.CountDownTextView;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +43,8 @@ public class SignInActivity extends BaseActivity {
     Button signBtnSign;
     @BindView(R.id.sign_tv_hasaccount)
     TextView signTvHasaccount;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
     private BaseObserver<Object> sendCodeBaseObeserver;
     private BaseObserver<Object> confimCodeBaseObeserver;
     private String account;
@@ -69,10 +69,27 @@ public class SignInActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finishActivity();
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
     }
 
     @Override
     protected void setListener() {
+
         //发送验证码
         signTvCountdown.setNormalText(getResources().getString(R.string.sign_sendcode))
                 .setCountDownText("(", "s)")
@@ -132,7 +149,7 @@ public class SignInActivity extends BaseActivity {
                 return;
             }
         }
-        sendCodeBaseObeserver = new BaseObserver<Object>(this, false,true) {
+        sendCodeBaseObeserver = new BaseObserver<Object>(this, true, true) {
             @Override
             public void onSuccess(Object o) {
                 showTextDialog("验证码发送成功");
@@ -150,16 +167,16 @@ public class SignInActivity extends BaseActivity {
     /**
      * 提交验证码
      */
-    public void confimCode(){
+    public void confimCode() {
         accountTwo = signEtNumber.getText().toString();
-        registerCode=signEtCode.getText().toString();
-        confimCodeMap=new HashMap<>();
+        registerCode = signEtCode.getText().toString();
+        confimCodeMap = new HashMap<>();
         if (StringUtils.isEmpty(accountTwo)) {
             showTextDialog("请输入手机号");
             return;
         } else {
             if (accountTwo.length() == 11) {
-          confimCodeMap.put("phone", accountTwo);
+                confimCodeMap.put("phone", accountTwo);
             } else {
                 showTextDialog("请输入11位手机号码");
                 return;
@@ -171,19 +188,19 @@ public class SignInActivity extends BaseActivity {
             showTextDialog("请输入验证码");
             return;
         } else {
-            if (registerCode.length()>=4){
-              confimCodeMap.put("code", registerCode);    //添加code
-            }else {
+            if (registerCode.length() >= 4) {
+                confimCodeMap.put("code", registerCode);    //添加code
+            } else {
                 showTextDialog("请输入正确格式的验证码");
                 return;
             }
 
         }
 
-        confimCodeBaseObeserver=new BaseObserver<Object>(this,false,false) {
+        confimCodeBaseObeserver = new BaseObserver<Object>(this, false, false) {
             @Override
             public void onSuccess(Object o) {
-                    toSignInTwoActivity();
+                toSignInTwoActivity();
             }
 
 
@@ -199,10 +216,10 @@ public class SignInActivity extends BaseActivity {
     /**
      * 跳转确认密码页面并传值
      */
-    public void toSignInTwoActivity(){
+    public void toSignInTwoActivity() {
         Intent intent = new Intent(SignInActivity.this, SignInTwoActivity.class);
-        intent.putExtra("phone",account);
-        intent.putExtra("code",registerCode);
+        intent.putExtra("phone", account);
+        intent.putExtra("code", registerCode);
         startActivity(intent);
         finishActivity();
     }

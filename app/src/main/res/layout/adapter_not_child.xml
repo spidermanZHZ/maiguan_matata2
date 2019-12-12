@@ -1,17 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-
+    android:gravity="center"
+    android:orientation="vertical"
     >
+  <ImageView
+
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:layout_marginBottom="10dp"
+      android:layout_gravity="center"
+      android:src="@mipmap/no_default"
+      />
+  <TextView
+      android:id="@+id/empty_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="17dp"
+      android:layout_marginBottom="10dp"
+      android:layout_gravity="center"
+      android:includeFontPadding="false"
+      android:text="没有正在学习的学员，请先添加一名学员吧"
+      android:textColor="@color/black666"
+      android:textSize="14sp" />
   <Button
       android:id="@+id/grow_up_btn"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginLeft="71dp"
       android:layout_marginRight="71dp"
-      android:text="请先添加一名学员"
+      android:text="添加学员"
       android:padding="10dp"
       android:layout_marginTop="50dp"
       android:layout_alignParentTop="true"
@@ -19,11 +39,5 @@
       android:background="@drawable/login_btn_style"
       android:textColor="@color/black"
       />
-    <ImageView
-        android:id="@+id/grow_up_iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/defaultpage"
-        tools:ignore="ContentDescription"/>
-</com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

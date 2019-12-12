@@ -26,6 +26,8 @@ import com.example.administrator.matata_android.homepage.activitys.CourseDetails
 import com.example.administrator.matata_android.homepage.activitys.MusicCollageThreeActivity;
 import com.example.administrator.matata_android.homepage.activitys.TheatreCollageActivity;
 import com.example.administrator.matata_android.homepage.activitys.TheatreCollageCourseDetailsActivity;
+import com.example.administrator.matata_android.homepage.activitys.TheatreEnglishActivity;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.Arrays;
 
@@ -39,6 +41,7 @@ import static com.blankj.utilcode.util.ActivityUtils.startActivity;
  * 首页装载轮播图适配器,以及按钮
  */
 public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAdapter.HomepagerOneAdapterViewHolder> {
+
 
     private Context mContext;
     private LayoutHelper layoutHelper;
@@ -132,6 +135,32 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
                 startActivity(new Intent(mContext, TheatreCollageActivity.class));
             }
         });
+        //英语戏剧
+        holder.llHomepage6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, TheatreEnglishActivity.class));
+            }
+        });
+        holder.llHomepage5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "该模块功能在在构建中，敬请期待", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.llHomepage7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "该模块功能在在构建中，敬请期待", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.llHomepage8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "该模块功能在在构建中，敬请期待", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //艺术营地
         holder.llHomepageArtCamp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +172,7 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
         holder.llHomepageGrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "该功能暂未开通", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "该模块功能在在构建中，敬请期待", Toast.LENGTH_SHORT).show();
             }
         });
         //艺术定制
@@ -174,6 +203,14 @@ public class HomepagerOneAdapter extends DelegateAdapter.Adapter<HomepagerOneAda
         LinearLayout llHomepageGrade;
         @BindView(R.id.home_pager_set_art_ll)
         RelativeLayout homePagerSetArtLl;
+        @BindView(R.id.ll_homepage_6)
+        AutoLinearLayout llHomepage6;
+        @BindView(R.id.ll_homepage_8)
+        AutoLinearLayout llHomepage8;
+        @BindView(R.id.ll_homepage_5)
+        AutoLinearLayout llHomepage5;
+        @BindView(R.id.ll_homepage_7)
+        AutoLinearLayout llHomepage7;
         public HomepagerOneAdapterViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

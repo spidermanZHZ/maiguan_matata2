@@ -25,6 +25,7 @@ import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
 import com.hjq.bar.TitleBar;
 
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class ThetreaBuyActivity extends BaseActivity {
     private HashMap<String, String> mPrice;
     private  HashMap<String, Object> dataMap = new HashMap<String, Object>();
     SerializableMap myMap;
-
+    private String lastPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_theatrea_buy);
@@ -111,6 +112,23 @@ public class ThetreaBuyActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+            titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+                @Override
+                public void onLeftClick(View v) {
+                    finishActivity();
+                }
+
+                @Override
+                public void onTitleClick(View v) {
+
+                }
+
+                @Override
+                public void onRightClick(View v) {
+
+                }
+            });
+
         mPrice = new HashMap<String, String>();
         //加载孩子列表
         butLlShuxingTwo.setVisibility(View.VISIBLE);
@@ -126,13 +144,16 @@ public class ThetreaBuyActivity extends BaseActivity {
             if (a == 1) {
                 tvJoinToBugVip.setVisibility(View.GONE);
                 tvJoinBugPrice.setVisibility(View.GONE);
-
+                int c = offLineCourseBean.getPrice().get(0).getPrice() / 100;//原价
+                double d = (100 - offLineCourseBean.getDiscount()) / 100;//折扣价
+                int f = (int) (c * d);
+                lastPrice=String.valueOf(f);
             }
             tvJoinToBugVip.setVisibility(View.VISIBLE);
             tvJoinBugPrice.setVisibility(View.VISIBLE);
             String price = "¥" + getPrice(String.valueOf(offLineCourseBean.getPrice().get(0).getPrice())) + "(" + offLineCourseBean.getPrice().get(0).getNum() + "次)";
             tvJoinBugPrice.setText(price);
-
+            lastPrice=price;
             int c = offLineCourseBean.getPrice().get(0).getPrice() / 100;//原价
             double d = (100 - offLineCourseBean.getDiscount()) / 100;//折扣价
             int f = (int) (c * d);
@@ -203,6 +224,7 @@ public class ThetreaBuyActivity extends BaseActivity {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("myMap", myMap);
                     intent.putExtra("type", "offline");
+                    intent.putExtra("lastPrice",lastPrice);
                     intent.putExtra("offline_id",String.valueOf(offLineCourseBean.getId()) );
                     intent.putExtra("mBundle", bundle);
                     startActivity(intent);

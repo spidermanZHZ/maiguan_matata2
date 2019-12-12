@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,7 +18,7 @@ import butterknife.OnClick;
 
 /**
  * VIP会员页面
- *'
+ * '
  */
 public class MyVipActivity extends BaseActivity {
 
@@ -43,6 +45,8 @@ public class MyVipActivity extends BaseActivity {
     LinearLayout llVipEight;
     @BindView(R.id.ll_vip_nine)
     LinearLayout llVipNine;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,22 @@ public class MyVipActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finishActivity();
+            }
 
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
     }
 
     @Override

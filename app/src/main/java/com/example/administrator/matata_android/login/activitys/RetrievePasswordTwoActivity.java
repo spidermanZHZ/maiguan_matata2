@@ -6,17 +6,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.StringUtils;
-import com.example.administrator.matata_android.MainActivity;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.LoginBean;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
-import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import java.util.HashMap;
 
@@ -36,6 +35,8 @@ public class RetrievePasswordTwoActivity extends BaseActivity {
     EditText loginEtPassword;
     @BindView(R.id.retrieve_btn_confirm)
     Button retrieveBtnConfirm;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
 
     private String account;
     private String accountTwo;
@@ -64,7 +65,22 @@ public class RetrievePasswordTwoActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finishActivity();
+            }
 
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -72,7 +88,7 @@ public class RetrievePasswordTwoActivity extends BaseActivity {
         retrieveBtnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            findpwd();
+                findpwd();
             }
         });
     }
@@ -80,7 +96,7 @@ public class RetrievePasswordTwoActivity extends BaseActivity {
     /**
      * 修改密码
      */
-    private void findpwd(){
+    private void findpwd() {
         password = loginEtAccount.getText().toString();//第一遍密码
         passwordConfim = loginEtPassword.getText().toString();//第二遍密码
 
@@ -113,7 +129,7 @@ public class RetrievePasswordTwoActivity extends BaseActivity {
             }
         }
 
-        findpwdBaseObserver=new BaseObserver<Object>(this,false,false) {
+        findpwdBaseObserver = new BaseObserver<Object>(this, true, false) {
             @Override
             public void onSuccess(Object o) {
                 showTextDialog("修改密码成功跳转登录页...");

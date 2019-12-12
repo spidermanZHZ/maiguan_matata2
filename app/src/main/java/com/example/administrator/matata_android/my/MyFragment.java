@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.ActivityUtils;
 import com.example.administrator.matata_android.R;
+import com.example.administrator.matata_android.growup.activity.FristChangChildInfoActivity;
 import com.example.administrator.matata_android.my.activitys.MyExtendActivity;
 import com.example.administrator.matata_android.my.activitys.MyFollowActivity;
 import com.example.administrator.matata_android.my.activitys.MyFriendActivity;
@@ -55,8 +55,11 @@ public class MyFragment extends BaseFragment {
     LinearLayout myLlFriend;
     @BindView(R.id.ll_my_set)
     LinearLayout llMySet;
+    @BindView(R.id.add_friend)
+    LinearLayout addFriend;
     private TextDialog textDialog;
     private CustomDialog customDialog;
+
     @Override
     protected int initLayoutId() {
         return R.layout.fragment_my;
@@ -87,7 +90,7 @@ public class MyFragment extends BaseFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
 
-        stuSign.setText(String.valueOf("手机号："+MatataSPUtils.getUserName()));
+        stuSign.setText(String.valueOf("手机号：" + MatataSPUtils.getUserName()));
         return rootView;
     }
 
@@ -97,9 +100,12 @@ public class MyFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.my_ll_vip, R.id.my_ll_orders, R.id.my_ll_order, R.id.my_ll_follow, R.id.my_ll_message, R.id.my_ll_friend,R.id.ll_my_set})
+    @OnClick({R.id.stu_edit,R.id.my_ll_vip, R.id.my_ll_orders, R.id.my_ll_order, R.id.my_ll_follow, R.id.my_ll_message, R.id.my_ll_friend, R.id.ll_my_set,R.id.add_friend})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.stu_edit:
+                Intent intent = new Intent(getContext(), FristChangChildInfoActivity.class);
+                break;
             case R.id.my_ll_vip:
                 startActivity(new Intent(getContext(), MyVipActivity.class));
                 break;
@@ -116,11 +122,14 @@ public class MyFragment extends BaseFragment {
                 startActivity(new Intent(getContext(), MyMessageActivity.class));
                 break;
             case R.id.my_ll_friend:
-                showProgressDialog("客服热线：0531-88821319",true);
-               // startActivity(new Intent(getContext(), MyFriendActivity.class));
+                showProgressDialog("客服热线：0531-88821319", true);
+
                 break;
             case R.id.ll_my_set:
                 startActivity(new Intent(getContext(), MySetActivity.class));
+                break;
+            case R.id.add_friend:
+                startActivity(new Intent(getContext(), MyFriendActivity.class));
                 break;
         }
     }
@@ -136,6 +145,7 @@ public class MyFragment extends BaseFragment {
         textDialog.setText(text);
         textDialog.show();
     }
+
     /**
      * 显示交互弹窗
      *
@@ -149,13 +159,13 @@ public class MyFragment extends BaseFragment {
         customDialog.setMessage(text);
         customDialog.setYes("拨打");
         customDialog.setNo("取消");
-        customDialog.setOnYesOnClickListener( new CustomDialog.onYesOnClickListener() {
+        customDialog.setOnYesOnClickListener(new CustomDialog.onYesOnClickListener() {
             @Override
             public void onYesClick() {
                 call("053188821319");
             }
         });
-        customDialog.setNoOnclickListener( new CustomDialog.onNoOnClickLister() {
+        customDialog.setNoOnclickListener(new CustomDialog.onNoOnClickLister() {
             @Override
             public void onNoClick() {
                 customDialog.cancelImediately();
@@ -165,26 +175,31 @@ public class MyFragment extends BaseFragment {
         customDialog.show();
 
     }
+
     /**
      * 调用拨号界面
+     *
      * @param phone 电话号码
      */
     private void call(String phone) {
-        Intent intent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:"+phone));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone));
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
     /**
      * 直接拨号
+     *
      * @param phone 电话号码
      */
     private void callpast(String phone) {
-        Intent intent=new Intent(Intent.ACTION_CALL,Uri.parse("tel:"+phone));
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone));
         startActivity(intent);
     }
 
 
-
+    @OnClick(R.id.add_friend)
+    public void onClick() {
+    }
 }
 

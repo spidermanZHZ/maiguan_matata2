@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -48,8 +49,8 @@ public class StickyLayoutHelperAdapter extends DelegateAdapter.Adapter<StickyLay
 
     @Override
     public void onBindViewHolder(@NonNull StickyLayoutHelperViewHolder helper, int position) {
-
-        helper.tvLeibie.setOnClickListener(new View.OnClickListener() {
+            helper.llFenlei.setVisibility(View.GONE);
+            helper.tvLeibie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                popWindow(view);
@@ -116,6 +117,8 @@ public class StickyLayoutHelperAdapter extends DelegateAdapter.Adapter<StickyLay
         TextView tvLeibie;
         @BindView(R.id.tv_grade)
         TextView tvGrade;
+        @BindView(R.id.ll_fenlei)
+        LinearLayout llFenlei;
         public StickyLayoutHelperViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

@@ -16,11 +16,11 @@ import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,6 +56,8 @@ public class ArtCampAtActivity extends BaseActivity {
     TextView artAtJoin;
     @BindView(R.id.art_at_web)
     WebView artAtWeb;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
 
 
     private ArtCampAtDetailPicAdapter artCampAtDetailPicAdapter;
@@ -71,7 +73,6 @@ public class ArtCampAtActivity extends BaseActivity {
     private ArrayList<String> vip_priceData;
     private String is_vip;
     private String cover_pic;
-
 
 
     @Override
@@ -91,6 +92,22 @@ public class ArtCampAtActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finishActivity();
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
         getArtCampAtInfo();
         //实现画廊效果
         picAdapter = new ArtCampAtPicAdapter(this, null);
@@ -100,13 +117,13 @@ public class ArtCampAtActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ArtCampAtActivity.this, ArtBuyActivity.class);
 
-                intent.putStringArrayListExtra("data",data);
-                intent.putStringArrayListExtra("mDate",mdate);
-                intent.putStringArrayListExtra("priceData",priceData);
-                intent.putStringArrayListExtra("vip_priceData",vip_priceData);
-                intent.putExtra("is_vip",is_vip);
-                intent.putExtra("cover_pic",cover_pic);
-                intent.putExtra("campsite_id",campsite_id);
+                intent.putStringArrayListExtra("data", data);
+                intent.putStringArrayListExtra("mDate", mdate);
+                intent.putStringArrayListExtra("priceData", priceData);
+                intent.putStringArrayListExtra("vip_priceData", vip_priceData);
+                intent.putExtra("is_vip", is_vip);
+                intent.putExtra("cover_pic", cover_pic);
+                intent.putExtra("campsite_id", campsite_id);
                 startActivity(intent);
             }
         });
@@ -130,12 +147,12 @@ public class ArtCampAtActivity extends BaseActivity {
             @Override
             public void onSuccess(ArtCampInfoBean artCampInfoBean) {
 
-                data=(ArrayList<String>) artCampInfoBean.getAttribute();
-                mdate=(ArrayList<String>)artCampInfoBean.getDate();
-                priceData=(ArrayList<String>)artCampInfoBean.getPrice();
-                vip_priceData=(ArrayList<String>)artCampInfoBean.getVipPrice();
-                is_vip=(String) artCampInfoBean.getIs_vip();
-                cover_pic=artCampInfoBean.getCover_pic();
+                data = (ArrayList<String>) artCampInfoBean.getAttribute();
+                mdate = (ArrayList<String>) artCampInfoBean.getDate();
+                priceData = (ArrayList<String>) artCampInfoBean.getPrice();
+                vip_priceData = (ArrayList<String>) artCampInfoBean.getVipPrice();
+                is_vip = (String) artCampInfoBean.getIs_vip();
+                cover_pic = artCampInfoBean.getCover_pic();
 
                 picAdapter.getData(artCampInfoBean.getDetail_pic());
                 picAdapter.notifyDataSetChanged();
@@ -163,7 +180,7 @@ public class ArtCampAtActivity extends BaseActivity {
                     artAtPrice.setText("价格待定");
                 }
                 //加载webView
-                    artAtWeb.loadUrl(URLweb+"?id="+artCampInfoBean.getId()+"&type=campsite");
+                artAtWeb.loadUrl(URLweb + "?id=" + artCampInfoBean.getId() + "&type=campsite");
 
             }
         };

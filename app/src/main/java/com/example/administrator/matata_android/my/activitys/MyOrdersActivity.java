@@ -8,9 +8,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.MyOrderBean;
 import com.example.administrator.matata_android.httputils.BaseObserver;
@@ -20,6 +21,8 @@ import com.example.administrator.matata_android.my.fragments.MyOrdersCompleteFra
 import com.example.administrator.matata_android.my.fragments.MyOrdersNoPaidFragment;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragmentActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +31,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -41,6 +43,8 @@ public class MyOrdersActivity extends BaseFragmentActivity {
     TabLayout myOrdersTab;
     @BindView(R.id.my_orders_viewpager)
     ViewPager myOrdersViewpager;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
     private List<Fragment> fragments;
     private List<String> titles;
 
@@ -48,6 +52,7 @@ public class MyOrdersActivity extends BaseFragmentActivity {
     private MyOrdersCompleteFragment myOrdersCompleteFragment;
     private MyOrdersNoPaidFragment myOrdersNoPaidFragment;
     private BaseObserver<MyOrderBean> myOrderBeanBaseObserver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_my_orders);
@@ -63,7 +68,23 @@ public class MyOrdersActivity extends BaseFragmentActivity {
 
     @Override
     protected void initData() {
-            getMyOrders();
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                ActivityUtils.finishActivity(MyOrdersActivity.this);
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
+        getMyOrders();
 
     }
 
@@ -75,15 +96,15 @@ public class MyOrdersActivity extends BaseFragmentActivity {
     /**
      * 获取我的订单
      */
-    private void getMyOrders(){
-        Map<String,Object> map=new HashMap<>();
+    private void getMyOrders() {
+        Map<String, Object> map = new HashMap<>();
         map.put("token", MatataSPUtils.getToken());
-        myOrderBeanBaseObserver=new BaseObserver<MyOrderBean>(this,true,false) {
+        myOrderBeanBaseObserver = new BaseObserver<MyOrderBean>(this, true, false) {
             @Override
             public void onSuccess(MyOrderBean myOrderBean) {
 
-                fragments=new ArrayList<>();
-                titles=new ArrayList<>();
+                fragments = new ArrayList<>();
+                titles = new ArrayList<>();
 
                 myOrdersAllFragment = new MyOrdersAllFragment();
                 //往fragment传递数据
@@ -142,6 +163,7 @@ public class MyOrdersActivity extends BaseFragmentActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(myOrderBeanBaseObserver);
     }
+
     @Override
     protected boolean onKeyBack() {
         return false;

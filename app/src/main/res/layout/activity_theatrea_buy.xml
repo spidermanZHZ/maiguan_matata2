@@ -107,7 +107,6 @@
                         android:layout_marginTop="18dp"
                         android:textColor="@color/tv_adr"
                         android:textSize="13sp"
-                        android:text="济南站星空露营趴"
                         />
                 </LinearLayout>
 

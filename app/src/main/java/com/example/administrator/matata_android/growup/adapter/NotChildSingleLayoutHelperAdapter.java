@@ -72,8 +72,7 @@ public class NotChildSingleLayoutHelperAdapter extends DelegateAdapter.Adapter<N
 
         @BindView(R.id.grow_up_btn)
         Button growUpBtn;
-        @BindView(R.id.grow_up_iv)
-        ImageView growUpIv;
+
         public SingleLayoutHelperViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

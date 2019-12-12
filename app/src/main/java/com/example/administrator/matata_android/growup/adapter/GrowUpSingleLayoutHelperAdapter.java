@@ -77,7 +77,12 @@ public class GrowUpSingleLayoutHelperAdapter extends DelegateAdapter.Adapter<Gro
                     .into(holder.ivGrowUpChildHead);
 
             holder.stuName.setText(childDetailsBean.getName());
-            holder.stuSex.setText(String.valueOf(childDetailsBean.getSex() + "\t" + "\t" + childDetailsBean.getAge()));
+            if (childDetailsBean.getSex().equals("1")){
+                holder.stuSex.setText("男生"+String.valueOf("\t" + "\t" + childDetailsBean.getAge()+"岁"));
+            }else {
+                holder.stuSex.setText("女生"+String.valueOf("\t" + "\t" + childDetailsBean.getAge()+"岁"));
+            }
+
             holder.stuSign.setText(childDetailsBean.getSignature());
             holder.stuAllTime.setText(childDetailsBean.getTime().getSumTime());
             holder.stuTestTime.setText(childDetailsBean.getTime().getExerciseTime());

@@ -19,12 +19,13 @@ import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -44,6 +45,8 @@ public class SignInTwoActivity extends BaseActivity {
     Button signBtnSign;
     @BindView(R.id.sign_tv_hasaccount)
     TextView signTvHasaccount;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
     private String account;
     private String accountTwo;
     private String password;
@@ -70,7 +73,22 @@ public class SignInTwoActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finishActivity();
+            }
 
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -122,7 +140,7 @@ public class SignInTwoActivity extends BaseActivity {
             }
         }
 
-        registerBaseObserver = new BaseObserver<LoginBean>(this, false, true) {
+        registerBaseObserver = new BaseObserver<LoginBean>(this, true, true) {
             @Override
             public void onSuccess(LoginBean loginBean) {
                 showTextDialog("注册成功正在跳转首页...");

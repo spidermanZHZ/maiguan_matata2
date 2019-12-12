@@ -12,7 +12,7 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("C:/Users/Administrator/Desktop/kkeyStore/makeapp.jks")
+            storeFile file("C:/Users/jml5201314/Desktop/keystore/makeapp.jks")
             storePassword "z123456"
             keyAlias "maker"
             keyPassword "zz123456"

@@ -10,6 +10,7 @@ import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
 import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.BarUtils;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.MusicHotBean;
 import com.example.administrator.matata_android.homepage.adapters.SingleLayoutHelperAdapter;
@@ -56,7 +57,7 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
         setContentView(R.layout.activity_music_collage_three);
         ButterKnife.bind(this);
         super.onCreate(savedInstanceState);
-
+        BarUtils.setStatusBarColor(this,getResources().getColor(R.color.white),true);
     }
 
     @Override

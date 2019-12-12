@@ -16,6 +16,8 @@ import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
 import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,6 +37,8 @@ public class ArtCampActivity extends BaseActivity {
     RecyclerView rvArtcampActivity;
 
     RecyclerView rvArtcampCamp;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
 
     private ArtCampCampListAdapter adapter;
     private ArtCampHotListAdapter adapterhot;
@@ -59,15 +63,30 @@ public class ArtCampActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+                finishActivity();
+            }
 
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
         //热门活动列表
-        LinearLayoutManager   managerhot = new LinearLayoutManager(this);
+        LinearLayoutManager managerhot = new LinearLayoutManager(this);
         managerhot.setOrientation(LinearLayoutManager.VERTICAL);
         rvArtcampActivity.setLayoutManager(managerhot);
 
         adapterhot = new ArtCampHotListAdapter(this, R.layout.adapter_art_camp_hot, null);
 
-      //  adapterhot.setEmptyView(R.layout.adapter_empty,(ViewGroup)rvArtcampActivity.getParent());
+        //  adapterhot.setEmptyView(R.layout.adapter_empty,(ViewGroup)rvArtcampActivity.getParent());
         rvArtcampActivity.setAdapter(adapterhot);
 
 
@@ -75,9 +94,9 @@ public class ArtCampActivity extends BaseActivity {
         View headView = getLayoutInflater().inflate(R.layout.header_camp_list, null);
         adapterhot.addHeaderView(headView);
 
-        rvArtcampCamp=(RecyclerView) headView.findViewById(R.id.rv_artcamp_camp);
+        rvArtcampCamp = (RecyclerView) headView.findViewById(R.id.rv_artcamp_camp);
         //营地列表
-        LinearLayoutManager  manager = new LinearLayoutManager(this);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rvArtcampCamp.setLayoutManager(manager);
         adapter = new ArtCampCampListAdapter(this, R.layout.adapter_art_camplist, null);
@@ -110,9 +129,9 @@ public class ArtCampActivity extends BaseActivity {
                 adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                        Intent intent=new Intent(ArtCampActivity.this,ArtCampListActivity.class);
-                        intent.putExtra("class_id",campListDatas.get(position).getId());
-                        intent.putExtra("atname",campListDatas.get(position).getName());
+                        Intent intent = new Intent(ArtCampActivity.this, ArtCampListActivity.class);
+                        intent.putExtra("class_id", campListDatas.get(position).getId());
+                        intent.putExtra("atname", campListDatas.get(position).getName());
                         startActivity(intent);
                     }
                 });
@@ -124,8 +143,8 @@ public class ArtCampActivity extends BaseActivity {
                 adapterhot.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                        Intent intent=new Intent(ArtCampActivity.this,ArtCampAtActivity.class);
-                        intent.putExtra("campsite_id",hotListDatas.get(position).getId());
+                        Intent intent = new Intent(ArtCampActivity.this, ArtCampAtActivity.class);
+                        intent.putExtra("campsite_id", hotListDatas.get(position).getId());
                         startActivity(intent);
                     }
                 });
@@ -153,7 +172,7 @@ public class ArtCampActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (artCampActivityBaseObserver!=null){
+        if (artCampActivityBaseObserver != null) {
             artCampActivityBaseObserver.destroy();
         }
     }

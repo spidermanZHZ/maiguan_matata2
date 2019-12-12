@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.example.administrator.matata_android.bean.HomepagerTeacherBean;
@@ -49,6 +50,8 @@ public class MainActivity extends BaseFragmentActivity {
     private GrowUpFragment growUpFragment;
     private MyFragment myFragment;
     private BaseObserver<UserInfoBean> userInfoBeanBaseObserver;
+    private static final int TIME_EXIT=2000;
+    private long mBackPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,8 +122,20 @@ public class MainActivity extends BaseFragmentActivity {
     @Override
     protected boolean onKeyBack() {
 
-        return true;
-    } 
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(mBackPressed+TIME_EXIT>System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else{
+            Toast.makeText(this,"再点一次退出程序",Toast.LENGTH_SHORT).show();
+            mBackPressed=System.currentTimeMillis();
+
+        }
+    }
 
     @Override
     protected boolean onKeyMenu() {

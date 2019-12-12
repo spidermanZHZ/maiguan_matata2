@@ -93,7 +93,7 @@
     <string name="art_btn_confirm">确认</string>
     <string name="art_buy_adapter">\t暂无更多\t</string>
     <string name="art_bug_vip">会员价：</string>
-    <string name="art_buy_complete">活动支付</string>
+    <string name="art_buy_complete">订单支付</string>
     <string name="art_buy_tip">支付完成后可在我的订单中查看订单信息</string>
     <string name="art_money">¥</string>
     <string name="art_buy_no">订单号:</string>
@@ -129,12 +129,12 @@
 
     <string name="change_child_info">编辑资料</string>
     <string name="change_child_name">姓名:</string>
-    <string name="change_child_et_name">请输入学员姓名</string>
+    <string name="change_child_et_name">请输入姓名</string>
     <string name="change_child_sign">学习宣言:</string>
     <string name="change_child_et_sign">请输入学习宣言</string>
     <string name="change_child_date">年龄:</string>
     <string name="change_child_sex">性别:</string>
-    <string name="change_child_age">请输入学员年龄</string>
+    <string name="change_child_age">请输入年龄</string>
     <string name="course_details">课程详情</string>
 
     <string name="course_vedio">视频播放</string>
@@ -143,13 +143,13 @@
     <string name="my_center">我的订单</string>
     <string name="my_offline">切换账号</string>
     <string name="my_order">推广中心</string>
-    <string name="my_friend">联系客服</string>
+    <string name="my_friend">邀请好友</string>
     <string name="my_follow">我的收藏</string>
     <string name="my_news">我的消息</string>
 
     <string name="title_activity_course_details_off_line">CourseDetailsOffLineActivity</string>
 
-    <string name="theatre_name">戏剧学院</string>
+    <string name="theatre_name">成长戏剧</string>
 
     <string name="all_teacher_name">老师</string>
     <string name="all_teacher_details">老师详情</string>

@@ -59,7 +59,7 @@
                         android:layout_height="57dp"
                         android:layout_marginLeft="22dp"
                         android:layout_marginTop="27dp"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/toux" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -75,6 +75,7 @@
                             android:layout_height="wrap_content"
                             android:includeFontPadding="false"
                             android:textColor="@color/light_black"
+                            android:text="用户名："
                             android:textSize="16sp" />
 
                         <TextView
@@ -98,8 +99,8 @@
 
                     <ImageView
                         android:id="@+id/stu_edit"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_marginRight="22dp"
                         android:layout_marginTop="27dp"
                         android:includeFontPadding="false"
@@ -304,7 +305,7 @@
                     android:layout_gravity="center"
                     android:textSize="14sp"
                     android:textColor="@color/Tv_text"
-                    android:text="@string/my_friend"
+                    android:text="联系客服"
                     />
                 <ImageView
                     android:layout_width="8dp"
@@ -347,6 +348,7 @@
                     />
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/add_friend"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"

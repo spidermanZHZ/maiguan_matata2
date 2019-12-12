@@ -230,7 +230,7 @@ public interface APIService {
      * @param map
      * @return
      */
-    @GET("course/drama")
+    @GET("course/offline")
     Observable<BaseBeanResponse<TheatreCourseDetailsBean>> getTheatreCourseDetails(@QueryMap Map<String ,Object> map);
 
     /**

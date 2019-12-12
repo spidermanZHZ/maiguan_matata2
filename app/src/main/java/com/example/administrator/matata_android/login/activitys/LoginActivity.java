@@ -150,7 +150,7 @@ public class LoginActivity extends BaseActivity {
             }
 
         }
-            loginBeanBaseObserver=new BaseObserver<LoginBean>(this,false,true) {
+            loginBeanBaseObserver=new BaseObserver<LoginBean>(this,true,true) {
                 @Override
                 public void onSuccess(LoginBean loginBean) {
                     showTextDialog("登录成功");

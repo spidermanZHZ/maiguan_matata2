@@ -26,4 +26,17 @@
             app:lineColor="@color/white"
             />
     </LinearLayout>
+    <EditText
+        android:id="@+id/search_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"
+        android:hint="请输入搜索内容"
+        android:background="@drawable/cornerbg_white_single"
+        />
 </com.zhy.autolayout.AutoLinearLayout>
