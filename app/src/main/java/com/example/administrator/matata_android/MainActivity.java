@@ -218,8 +218,10 @@ public class MainActivity extends BaseFragmentActivity {
                 //保存用户是否添加学员
                 if (userInfoBean.getUser_child().size()==0){
                     MatataSPUtils.saveIsHaveStudent("0");
+
                 }else {
                     MatataSPUtils.saveIsHaveStudent("1");
+                    MatataSPUtils.saveUserName(userInfoBean.getMobile_no());
                     MatataSPUtils.saveStudentId(String.valueOf(userInfoBean.getUser_child().get(0).getId()));
                    // MatataSPUtils.saveBean2Sp(MainActivity.this,userInfoBean.getUser_child(),"UserInfo","User_child");
 

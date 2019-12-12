@@ -113,12 +113,16 @@ public class OffLineCourseDetailsActivity extends BaseActivity {
                 gridLayoutHelperAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                        Intent intent = new Intent(OffLineCourseDetailsActivity.this, OfflineCourseTaskActivity.class);
+                         if (myOffLineCourseNumBean.get(position).getNum_id()!=null){
+                            Intent intent = new Intent(OffLineCourseDetailsActivity.this, OfflineCourseTaskActivity.class);
                             intent.putExtra("num",myOffLineCourseNumBean.get(position).getNum());
-                        if (myOffLineCourseNumBean.get(position).getNum_id()!=null){
                             intent.putExtra("num_id",myOffLineCourseNumBean.get(position).getNum_id());
+
+                            startActivity(intent);
+                        }else {
+                            Toast.makeText(OffLineCourseDetailsActivity.this, "前面的课上完后才能查看本课时内容哟", Toast.LENGTH_SHORT).show();
                         }
-                        startActivity(intent);
+
                     }
                 });
 

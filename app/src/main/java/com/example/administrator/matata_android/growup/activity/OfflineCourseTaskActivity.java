@@ -22,6 +22,10 @@ public class OfflineCourseTaskActivity extends BaseActivity {
     @BindView(R.id.title_bar)
     TitleBar titleBar;
     private String num;
+    private String num_id;
+    private final String URLweb = "https://www.maiguanjy.com/api/app/view/details";
+    private String urlPreview;
+    private String urlTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_offline_course_task);
@@ -34,6 +38,10 @@ public class OfflineCourseTaskActivity extends BaseActivity {
     protected void getExras() {
         Intent intent = getIntent();
         num =   intent.getStringExtra("num");
+        num_id=intent.getStringExtra("num_id");
+
+        urlPreview= URLweb + "?id=" + num_id + "&type=before_class";
+        urlTask= URLweb + "?id=" + num_id + "&type=after_class";
     }
 
     @Override

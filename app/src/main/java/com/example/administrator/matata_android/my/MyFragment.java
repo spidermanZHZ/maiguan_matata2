@@ -23,6 +23,7 @@ import com.example.administrator.matata_android.my.activitys.MyVipActivity;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragment;
 import com.example.administrator.matata_android.zhzbase.dialog.CustomDialog;
 import com.example.administrator.matata_android.zhzbase.dialog.TextDialog;
+import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,6 +86,8 @@ public class MyFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         unbinder = ButterKnife.bind(this, rootView);
+
+        stuSign.setText(String.valueOf("手机号："+MatataSPUtils.getUserName()));
         return rootView;
     }
 

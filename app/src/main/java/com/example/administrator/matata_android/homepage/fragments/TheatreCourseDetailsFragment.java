@@ -47,6 +47,7 @@ public class TheatreCourseDetailsFragment extends BaseViewNeedSetFragment {
         View view = inflater.inflate(R.layout.fragment_course_details, container,false);
         unbinder = ButterKnife.bind(this, view);
         courseDetailsWeb.loadUrl(URLweb + "?id=" + url + "&type=course_offline");
+        courseDetailsWeb.getSettings().setJavaScriptEnabled(true);
         return view;
     }
 

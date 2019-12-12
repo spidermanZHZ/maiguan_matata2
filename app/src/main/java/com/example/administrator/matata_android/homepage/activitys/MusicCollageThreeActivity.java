@@ -4,27 +4,23 @@ package com.example.administrator.matata_android.homepage.activitys;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
-import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.alibaba.android.vlayout.layout.SingleLayoutHelper;
 import com.alibaba.android.vlayout.layout.StickyLayoutHelper;
+import com.blankj.utilcode.util.ActivityUtils;
 import com.example.administrator.matata_android.R;
 import com.example.administrator.matata_android.bean.MusicHotBean;
-import com.example.administrator.matata_android.bean.MusicOffLineBean;
-import com.example.administrator.matata_android.bean.MusicOnlineBean;
-import com.example.administrator.matata_android.homepage.adapters.LinearHelperAdapter;
-import com.example.administrator.matata_android.homepage.adapters.LinearHelperTwoAdapter;
 import com.example.administrator.matata_android.homepage.adapters.SingleLayoutHelperAdapter;
 import com.example.administrator.matata_android.homepage.adapters.SingleLayoutHelperCollageAdapter;
 import com.example.administrator.matata_android.homepage.adapters.StickyLayoutHelperAdapter;
 import com.example.administrator.matata_android.httputils.BaseObserver;
 import com.example.administrator.matata_android.httputils.RetrofitUtil;
-import com.example.administrator.matata_android.zhzbase.base.BaseActivity;
 import com.example.administrator.matata_android.zhzbase.base.BaseFragmentActivity;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+import com.hjq.bar.OnTitleBarListener;
+import com.hjq.bar.TitleBar;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +39,8 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
 
     @BindView(R.id.music_three_rv)
     RecyclerView musicThreeRv;
+    @BindView(R.id.title_bar)
+    TitleBar titleBar;
     private BaseObserver<List<MusicHotBean>> baseMusicHotBeanObserver;
 
     private SingleLayoutHelperAdapter singleLayoutHelperAdapter;
@@ -68,6 +66,23 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
 
     @Override
     protected void initData() {
+        titleBar.setOnTitleBarListener(new OnTitleBarListener() {
+            @Override
+            public void onLeftClick(View v) {
+               ActivityUtils. finishActivity(MusicCollageThreeActivity.this);
+            }
+
+            @Override
+            public void onTitleClick(View v) {
+
+            }
+
+            @Override
+            public void onRightClick(View v) {
+
+            }
+        });
+
         //创建VirtuaLayoutManager
         VirtualLayoutManager layoutManager = new VirtualLayoutManager(this);
         musicThreeRv.setLayoutManager(layoutManager);
@@ -78,7 +93,7 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
         musicThreeRv.setRecycledViewPool(viewPool);
 
         //创建一个adapter的list
-        List<DelegateAdapter.Adapter> adapters=new ArrayList<>();
+        List<DelegateAdapter.Adapter> adapters = new ArrayList<>();
 
 
         //创建delegateadapter
@@ -92,23 +107,21 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
         adapters.add(singleLayoutHelperAdapter);
 
         //吸顶布局
-        StickyLayoutHelper stickyLayoutHelper=new StickyLayoutHelper();
-        stickyLayoutHelperAdapter=new StickyLayoutHelperAdapter(this,stickyLayoutHelper);
+        StickyLayoutHelper stickyLayoutHelper = new StickyLayoutHelper();
+        stickyLayoutHelperAdapter = new StickyLayoutHelperAdapter(this, stickyLayoutHelper);
         adapters.add(stickyLayoutHelperAdapter);
 
 
-
         //单独布局+Fragment 实现线上线下课程切换
-        SingleLayoutHelper singleLayoutHelper1=new SingleLayoutHelper();
-        singleLayoutHelperCollageAdapter=new SingleLayoutHelperCollageAdapter(this,singleLayoutHelper1,0);
+        SingleLayoutHelper singleLayoutHelper1 = new SingleLayoutHelper();
+        singleLayoutHelperCollageAdapter = new SingleLayoutHelperCollageAdapter(this, singleLayoutHelper1, 0);
         adapters.add(singleLayoutHelperCollageAdapter);
-
 
 
         stickyLayoutHelperAdapter.setOnItemClickListener(new StickyLayoutHelperAdapter.OnItemClickListener() {
             @Override
             public void onOnLineClick(View v, int position) {
-               singleLayoutHelperCollageAdapter.setType(0);
+                singleLayoutHelperCollageAdapter.setType(0);
                 delegateAdapter.notifyDataSetChanged();
 
             }
@@ -132,7 +145,7 @@ public class MusicCollageThreeActivity extends BaseFragmentActivity {
         });
 
         //delegateAdapter可以设置一个Adapter的list
-         delegateAdapter.setAdapters(adapters);
+        delegateAdapter.setAdapters(adapters);
 
         //设置adapter
         musicThreeRv.setAdapter(delegateAdapter);

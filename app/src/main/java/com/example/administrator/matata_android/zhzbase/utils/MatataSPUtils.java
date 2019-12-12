@@ -80,6 +80,20 @@ public class MatataSPUtils {
     }
 
     /**
+     * 保存用户姓名
+     * @param isHaveStudent app语言
+     */
+    public static void saveUserName(String isHaveStudent){
+        SPUtils.getInstance("UserParts").put("UserName",isHaveStudent);
+
+
+    }
+
+    public static String getUserName(){
+        return SPUtils.getInstance("UserParts").getString("UserName");
+    }
+
+    /**
      * 保存用户第一个孩子Id
      * @param isHaveStudent app语言
      */

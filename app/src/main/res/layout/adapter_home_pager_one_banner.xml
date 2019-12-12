@@ -24,40 +24,22 @@
         android:scaleType="fitXY"
 
         />
-
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:orientation="vertical"
         android:background="@drawable/cornerbg_white_single"
+        >
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         android:orientation="horizontal"
         >
-        <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/ll_homepage_music"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="vertical"
-            >
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@mipmap/homepage_music"
-                android:layout_gravity="center"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
-                android:text="@string/homepage_music"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                />
-        </com.zhy.autolayout.AutoLinearLayout>
+
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/ll_homepage_theatre"
             android:layout_width="0dp"
@@ -70,7 +52,7 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@mipmap/homepage_drama"
+                android:src="@mipmap/hp8"
                 android:layout_gravity="center"
                 />
             <TextView
@@ -83,7 +65,7 @@
                 />
         </com.zhy.autolayout.AutoLinearLayout>
         <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/ll_homepage_art_camp"
+            android:id="@+id/ll_homepage_6"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -94,20 +76,20 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@mipmap/homepage_art"
+                android:src="@mipmap/hp4"
                 android:layout_gravity="center"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
-                android:text="@string/homepage_art"
+                android:text="英语戏剧"
                 android:textSize="14sp"
                 android:layout_gravity="center"
                 />
         </com.zhy.autolayout.AutoLinearLayout>
         <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/ll_homepage_grade"
+            android:id="@+id/ll_homepage_music"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -118,18 +100,150 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@mipmap/homepage_grade"
+                android:src="@mipmap/hp7"
                 android:layout_gravity="center"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="13dp"
-                android:text="@string/homepage_grade"
+                android:text="@string/homepage_music"
                 android:textSize="14sp"
                 android:layout_gravity="center"
                 />
         </com.zhy.autolayout.AutoLinearLayout>
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/ll_homepage_8"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@mipmap/hp3"
+                android:layout_gravity="center"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="13dp"
+                android:text="美术创作"
+                android:textSize="14sp" />
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/ll_homepage_5"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@mipmap/hp6"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="演出展览"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    />
+            </com.zhy.autolayout.AutoLinearLayout>
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/ll_homepage_art_camp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@mipmap/hp2"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/homepage_art"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/ll_homepage_7"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@mipmap/hp1"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="艺术留学"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/ll_homepage_grade"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                >
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@mipmap/hp5"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
+                    android:text="@string/homepage_grade"
+                    android:textSize="14sp"
+                    android:layout_gravity="center"
+                    />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
     </com.zhy.autolayout.AutoLinearLayout>
     <RelativeLayout
         android:id="@+id/home_pager_set_art_ll"
