@@ -28,9 +28,9 @@
     <application
         android:name=".zhzbase.base.BaseApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/matata"
+        android:icon="@mipmap/matata1"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/matata"
+        android:roundIcon="@mipmap/matata1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
@@ -125,6 +125,8 @@
         <activity android:name=".growup.activity.OffLineCourseDetailsActivity" />
         <activity android:name=".growup.activity.OfflineCourseTaskActivity"></activity>
         <activity android:name=".homepage.activitys.TheatreEnglishActivity"></activity>
+        <activity android:name=".my.activitys.VipBuyActivity"></activity>
+        <activity android:name=".my.activitys.ChangeUserInfoActivity"></activity>
     </application>
 
 </manifest>

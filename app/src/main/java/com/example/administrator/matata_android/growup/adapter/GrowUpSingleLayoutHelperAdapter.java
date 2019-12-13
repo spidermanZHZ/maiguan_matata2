@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
@@ -88,7 +89,12 @@ public class GrowUpSingleLayoutHelperAdapter extends DelegateAdapter.Adapter<Gro
             holder.stuTestTime.setText(childDetailsBean.getTime().getExerciseTime());
             holder.stuAllDay.setText(childDetailsBean.getTime().getOnlineTime());
             holder.stuDay.setText(childDetailsBean.getTime().getOfflineTime());
-
+            holder.stuMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "模块功能完善中", Toast.LENGTH_SHORT).show();
+                }
+            });
             holder.stuEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

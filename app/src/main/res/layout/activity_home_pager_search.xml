@@ -25,18 +25,39 @@
             app:backButton="true"
             app:lineColor="@color/white"
             />
+
     </LinearLayout>
-    <EditText
-        android:id="@+id/search_et"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp"
+        android:orientation="horizontal"
         android:layout_marginTop="17dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:gravity="center_horizontal"
-        android:textSize="16sp"
-        android:hint="请输入搜索内容"
-        android:background="@drawable/cornerbg_white_single"
-        />
+        android:gravity="center"
+        >
+        <EditText
+            android:id="@+id/search_et"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:inputType="text"
+            android:lines="1"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:hint="请输入想要搜索内容"
+            android:background="@drawable/cornerbg_white_single"
+            />
+
+    </LinearLayout>
+  <android.support.v7.widget.RecyclerView
+      android:id="@+id/search_rv"
+      android:layout_marginRight="15dp"
+      android:layout_marginLeft="15dp"
+      android:layout_marginTop="17dp"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"/>
+
 </com.zhy.autolayout.AutoLinearLayout>

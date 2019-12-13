@@ -4,15 +4,20 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.administrator.matata_android.R;
-import com.example.administrator.matata_android.growup.activity.FristChangChildInfoActivity;
+import com.example.administrator.matata_android.bean.UserInfoBean;
+import com.example.administrator.matata_android.httputils.BaseObserver;
+import com.example.administrator.matata_android.httputils.RetrofitUtil;
+import com.example.administrator.matata_android.my.activitys.ChangeUserInfoActivity;
 import com.example.administrator.matata_android.my.activitys.MyExtendActivity;
 import com.example.administrator.matata_android.my.activitys.MyFollowActivity;
 import com.example.administrator.matata_android.my.activitys.MyFriendActivity;
@@ -20,17 +25,22 @@ import com.example.administrator.matata_android.my.activitys.MyMessageActivity;
 import com.example.administrator.matata_android.my.activitys.MyOrdersActivity;
 import com.example.administrator.matata_android.my.activitys.MySetActivity;
 import com.example.administrator.matata_android.my.activitys.MyVipActivity;
-import com.example.administrator.matata_android.zhzbase.base.BaseFragment;
+import com.example.administrator.matata_android.zhzbase.base.BaseViewNeedSetFragment;
 import com.example.administrator.matata_android.zhzbase.dialog.CustomDialog;
 import com.example.administrator.matata_android.zhzbase.dialog.TextDialog;
 import com.example.administrator.matata_android.zhzbase.utils.MatataSPUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
-public class MyFragment extends BaseFragment {
+public class MyFragment extends BaseViewNeedSetFragment {
 
     @BindView(R.id.stu_name)
     TextView stuName;
@@ -57,41 +67,40 @@ public class MyFragment extends BaseFragment {
     LinearLayout llMySet;
     @BindView(R.id.add_friend)
     LinearLayout addFriend;
+    @BindView(R.id.user_head)
+    ImageView userHead;
+
     private TextDialog textDialog;
     private CustomDialog customDialog;
-
-    @Override
-    protected int initLayoutId() {
-        return R.layout.fragment_my;
-    }
-
-    @Override
-    protected void getExras() {
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    protected void setListener() {
-
-    }
-
-    @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        return false;
-    }
+    private BaseObserver<UserInfoBean> userInfoBeanBaseObserver;
+    private static final String URL = "https://www.maiguanjy.com/";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
+        View view = inflater.inflate(R.layout.fragment_my, container, false);
 
+        unbinder = ButterKnife.bind(this, view);
+
+        initData();
+        return view;
+    }
+
+    public void initData() {
+        if (MatataSPUtils.getUserHead()!=null){
+            //加载头像
+            Glide.with(getContext())
+                    .load(URL + MatataSPUtils.getUserHead())
+                    .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                    .into(userHead);
+        }
         stuSign.setText(String.valueOf("手机号：" + MatataSPUtils.getUserName()));
-        return rootView;
+        stuName.setText(String.valueOf("用户名：" + MatataSPUtils.getUserNName()));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     @Override
@@ -100,11 +109,12 @@ public class MyFragment extends BaseFragment {
         unbinder.unbind();
     }
 
-    @OnClick({R.id.stu_edit,R.id.my_ll_vip, R.id.my_ll_orders, R.id.my_ll_order, R.id.my_ll_follow, R.id.my_ll_message, R.id.my_ll_friend, R.id.ll_my_set,R.id.add_friend})
+    @OnClick({R.id.stu_edit, R.id.my_ll_vip, R.id.my_ll_orders, R.id.my_ll_order, R.id.my_ll_follow, R.id.my_ll_message, R.id.my_ll_friend, R.id.ll_my_set, R.id.add_friend})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.stu_edit:
-                Intent intent = new Intent(getContext(), FristChangChildInfoActivity.class);
+                Intent intent = new Intent(getContext(), ChangeUserInfoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.my_ll_vip:
                 startActivity(new Intent(getContext(), MyVipActivity.class));

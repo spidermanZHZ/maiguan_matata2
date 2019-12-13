@@ -27,6 +27,14 @@ public class ArtBuyJoinPeopleAdapter  extends RecyclerView.Adapter <ArtBuyJoinPe
 
     private int selected = -1;//选中位置
 
+    /**
+     * 添加数据
+     * @param data
+     */
+    public void addData(List<String> data){
+        mData=data;
+        notifyDataSetChanged();
+    }
 
     public ArtBuyJoinPeopleAdapter(Context mContext, List<String> mData) {
         this.mContext = mContext;

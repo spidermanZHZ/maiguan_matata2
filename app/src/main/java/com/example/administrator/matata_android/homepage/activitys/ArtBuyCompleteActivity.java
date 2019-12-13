@@ -98,7 +98,7 @@ public class ArtBuyCompleteActivity extends BaseActivity {
     private String child_id;
     private String lastPrice;
     private String online_price;
-
+    private String vip_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_art_buy_complete);
@@ -338,6 +338,7 @@ public class ArtBuyCompleteActivity extends BaseActivity {
 
     }
 
+
     /**
      * 调用微信购买商品 ,课程购买
      * <p>
@@ -443,6 +444,9 @@ public class ArtBuyCompleteActivity extends BaseActivity {
 
     }
 
+    private void getVipList(){
+
+    }
 
     @Override
     protected boolean onKeyBack() {

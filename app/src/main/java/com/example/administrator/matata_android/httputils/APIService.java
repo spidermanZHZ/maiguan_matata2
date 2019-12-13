@@ -20,11 +20,13 @@ import com.example.administrator.matata_android.bean.OffLineCourseBean;
 import com.example.administrator.matata_android.bean.OffLineOrderBean;
 import com.example.administrator.matata_android.bean.OnLineCourseBean;
 import com.example.administrator.matata_android.bean.OnlineOrderBean;
+import com.example.administrator.matata_android.bean.SearchBean;
 import com.example.administrator.matata_android.bean.TeacherDetailsInfoBean;
 import com.example.administrator.matata_android.bean.TeacherInfoBean;
 import com.example.administrator.matata_android.bean.TheatreCourseDetailsBean;
 import com.example.administrator.matata_android.bean.TheatreHotInfoBean;
 import com.example.administrator.matata_android.bean.UserInfoBean;
+import com.example.administrator.matata_android.bean.VipListBean;
 import com.example.administrator.matata_android.bean.WXPayBean;
 
 import java.util.ArrayList;
@@ -315,6 +317,13 @@ public interface APIService {
      */
     @GET("online/course/pay")
     Observable<BaseBeanResponse<WXPayBean>>payCourse(@QueryMap Map<String, Object> map);
+    /**
+     * 开通Vip接口
+     * @param
+     * @return
+     */
+    @GET("user/vip")
+    Observable<BaseBeanResponse<WXPayBean>>payVip(@QueryMap Map<String, Object> map);
 
     /**
      * 生成线下课程订单
@@ -347,5 +356,31 @@ public interface APIService {
      */
     @GET("user/offline/number")
     Observable<BaseBeanResponse<List<MyOffLineCourseNumBean>>> getMyOfflineCourseNum(@QueryMap Map<String ,Object> map);
+    /**
+     * 获取vip列表
+     * @param map
+     * @return
+     */
+    @GET("user/vip/list")
+    Observable<BaseBeanResponse<List<VipListBean>>> getVipList(@QueryMap Map<String ,Object> map);
+
+    /**
+     * 获取搜索结果
+     * @param map
+     * @return
+     */
+    @GET("search")
+    Observable<BaseBeanResponse<SearchBean>> searchInfo(@QueryMap Map<String ,Object> map);
+
+
+    /**
+     *  编辑保存用户信息
+     *  图片文件上传，需要添加@Multipart注解
+     * @return
+     */
+    @Multipart
+    @POST("user/save")
+    Observable<BaseBeanResponse<Object>>addUserInfo(@Part("token")RequestBody token,@Part("name")RequestBody name,@Part("sex")RequestBody sex,@Part("address")RequestBody address,@Part MultipartBody.Part image);
+
 
 }

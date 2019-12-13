@@ -66,7 +66,7 @@ public class CourseDetailsCatalogFragment  extends BaseViewNeedSetFragment {
         View view =inflater.inflate( R.layout.fragment_course_details_catalog, container,false);
 
         rv=(RecyclerView)view.findViewById(R.id.course_details_catalog_rv);
-        adapter=new CourseDetailsCatalogFragmentAdapter(R.layout.adapter_course_details_catalog,onLineCourseBean.getCatalog());
+        adapter=new CourseDetailsCatalogFragmentAdapter(R.layout.adapter_course_details_catalog,null);
         adapter.addData(onLineCourseBean.getCatalog());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

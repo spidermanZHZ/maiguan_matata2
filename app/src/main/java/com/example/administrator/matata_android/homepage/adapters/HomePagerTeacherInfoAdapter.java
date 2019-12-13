@@ -33,7 +33,7 @@ public class HomePagerTeacherInfoAdapter  extends BaseQuickAdapter<HomepagerTeac
                 .apply(RequestOptions.bitmapTransform(new CircleCrop()))
                 .into((ImageView)helper.getView(R.id.adapter_teacher_info_iv));
             helper.setText(R.id.adapter_teacher_info_name,String.valueOf(item.getName()));
-            helper.setText(R.id.adapter_teacher_info_title,String.valueOf(item.getMajor()));
+            helper.setText(R.id.adapter_teacher_info_title,String.valueOf(item.getClassify().getName()));
 
     }
 }

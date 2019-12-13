@@ -59,7 +59,7 @@
     <string name="art_camp">艺术营地</string>
     <string name="my">我的</string>
     <string name="back">返回</string>
-    <string name="home_search">搜索</string>
+    <string name="home_search">搜索页面</string>
     <!-- 首页-->
     <string name="homepage_location">济南</string>
     <string name="homepage_music">音乐学院</string>
@@ -129,12 +129,12 @@
 
     <string name="change_child_info">编辑资料</string>
     <string name="change_child_name">姓名:</string>
-    <string name="change_child_et_name">请输入姓名</string>
+    <string name="change_child_et_name">请输入学员姓名</string>
     <string name="change_child_sign">学习宣言:</string>
     <string name="change_child_et_sign">请输入学习宣言</string>
     <string name="change_child_date">年龄:</string>
     <string name="change_child_sex">性别:</string>
-    <string name="change_child_age">请输入年龄</string>
+    <string name="change_child_age">请输入学员年龄</string>
     <string name="course_details">课程详情</string>
 
     <string name="course_vedio">视频播放</string>

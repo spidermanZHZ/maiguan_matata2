@@ -78,7 +78,32 @@ public class MatataSPUtils {
     public static String getIsHaveStudent(){
         return SPUtils.getInstance("UserParts").getString("isHaveStudent");
     }
+    /**
+     * 保存用户姓名
+     * @param
+     */
+    public static void saveUserNName(String isHaveStudent){
+        SPUtils.getInstance("UserParts").put("UserNName",isHaveStudent);
 
+
+    }
+
+    public static String getUserNName(){
+        return SPUtils.getInstance("UserParts").getString("UserNName");
+    }
+    /**
+     * 保存用户头像地址
+     * @param
+     */
+    public static void saveUserHead(String isHaveStudent){
+        SPUtils.getInstance("UserParts").put("UserHead",isHaveStudent);
+
+
+    }
+
+    public static String getUserHead(){
+        return SPUtils.getInstance("UserParts").getString("UserHead");
+    }
     /**
      * 保存用户姓名
      * @param isHaveStudent app语言

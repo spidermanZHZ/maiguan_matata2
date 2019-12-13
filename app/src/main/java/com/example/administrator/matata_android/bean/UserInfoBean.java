@@ -79,9 +79,174 @@ public class UserInfoBean implements Serializable {
     private Object agent_user_3;
     private Object user_shool_id;
     private String password;
-    private Object vip_info;
+
+    public Vip_info getVip_info() {
+        return vip_info;
+    }
+
+    public void setVip_info(Vip_info vip_info) {
+        this.vip_info = vip_info;
+    }
+
+    private Vip_info vip_info;
     private List<UserChildBean> user_child;
 
+    public static class Vip_info implements Serializable{
+
+        /**
+         * id : 104
+         * user_id : 2317
+         * nick_name :
+         * real_name :
+         * vip_id : 287
+         * vip_name : 普通会员
+         * vip_buy_time : 2019-12-13 15:18:45
+         * vip_due_time : 2020-12-13 15:18:45
+         * vip_buy_source : 0
+         * voucher_num : 3
+         * amt : 99
+         * is_refund : null
+         * refund_reason : null
+         * createDt : 2019-12-13 15:18:45
+         * updateDt : 2019-12-13 15:18:45
+         */
+
+        private int id;
+        private int user_id;
+        private String nick_name;
+        private String real_name;
+        private int vip_id;
+        private String vip_name;
+        private String vip_buy_time;
+        private String vip_due_time;
+        private String vip_buy_source;
+        private int voucher_num;
+        private int amt;
+        private Object is_refund;
+        private Object refund_reason;
+        private String createDt;
+        private String updateDt;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public int getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(int user_id) {
+            this.user_id = user_id;
+        }
+
+        public String getNick_name() {
+            return nick_name;
+        }
+
+        public void setNick_name(String nick_name) {
+            this.nick_name = nick_name;
+        }
+
+        public String getReal_name() {
+            return real_name;
+        }
+
+        public void setReal_name(String real_name) {
+            this.real_name = real_name;
+        }
+
+        public int getVip_id() {
+            return vip_id;
+        }
+
+        public void setVip_id(int vip_id) {
+            this.vip_id = vip_id;
+        }
+
+        public String getVip_name() {
+            return vip_name;
+        }
+
+        public void setVip_name(String vip_name) {
+            this.vip_name = vip_name;
+        }
+
+        public String getVip_buy_time() {
+            return vip_buy_time;
+        }
+
+        public void setVip_buy_time(String vip_buy_time) {
+            this.vip_buy_time = vip_buy_time;
+        }
+
+        public String getVip_due_time() {
+            return vip_due_time;
+        }
+
+        public void setVip_due_time(String vip_due_time) {
+            this.vip_due_time = vip_due_time;
+        }
+
+        public String getVip_buy_source() {
+            return vip_buy_source;
+        }
+
+        public void setVip_buy_source(String vip_buy_source) {
+            this.vip_buy_source = vip_buy_source;
+        }
+
+        public int getVoucher_num() {
+            return voucher_num;
+        }
+
+        public void setVoucher_num(int voucher_num) {
+            this.voucher_num = voucher_num;
+        }
+
+        public int getAmt() {
+            return amt;
+        }
+
+        public void setAmt(int amt) {
+            this.amt = amt;
+        }
+
+        public Object getIs_refund() {
+            return is_refund;
+        }
+
+        public void setIs_refund(Object is_refund) {
+            this.is_refund = is_refund;
+        }
+
+        public Object getRefund_reason() {
+            return refund_reason;
+        }
+
+        public void setRefund_reason(Object refund_reason) {
+            this.refund_reason = refund_reason;
+        }
+
+        public String getCreateDt() {
+            return createDt;
+        }
+
+        public void setCreateDt(String createDt) {
+            this.createDt = createDt;
+        }
+
+        public String getUpdateDt() {
+            return updateDt;
+        }
+
+        public void setUpdateDt(String updateDt) {
+            this.updateDt = updateDt;
+        }
+    }
     public int getId() {
         return id;
     }
@@ -360,14 +525,6 @@ public class UserInfoBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Object getVip_info() {
-        return vip_info;
-    }
-
-    public void setVip_info(Object vip_info) {
-        this.vip_info = vip_info;
     }
 
     public List<UserChildBean> getUser_child() {

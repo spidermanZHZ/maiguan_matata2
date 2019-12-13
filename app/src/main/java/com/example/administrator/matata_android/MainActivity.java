@@ -61,6 +61,7 @@ public class MainActivity extends BaseFragmentActivity {
 
     }
 
+
     @Override
     protected void getExras() {
 
@@ -230,6 +231,8 @@ public class MainActivity extends BaseFragmentActivity {
             @Override
             public void onSuccess(UserInfoBean userInfoBean) {
                 MatataSPUtils.saveIsVip(userInfoBean.getIs_vip());
+                MatataSPUtils.saveUserHead(String.valueOf(userInfoBean.getHead_file()));
+                MatataSPUtils.saveUserNName(String.valueOf(userInfoBean.getName()));
                 //保存用户是否添加学员
                 if (userInfoBean.getUser_child().size()==0){
                     MatataSPUtils.saveIsHaveStudent("0");
